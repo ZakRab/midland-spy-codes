@@ -10,6 +10,7 @@ const [activePlayer, setActivePlayer] = useState({
 const [gameStatus, setGameStatus] = useState(null);
 const [players, setPlayers] = useState([]);
 const [activeTeam, setActiveTeam] = useState(null);
+const [lobby, setLobby] = useState();
 
 export function useGameContext() {
   return useContext(GameContext);
@@ -29,6 +30,8 @@ export function GameProvider(props) {
         setPlayers,
         activeTeam,
         setActiveTeam,
+        lobby,
+        setLobby,
       }}
     >
       {props.children}
