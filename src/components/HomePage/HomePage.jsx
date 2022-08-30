@@ -1,16 +1,17 @@
 import React, { useMemo, useState } from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { NavLink, useNavigate, Navigate } from "react-router-dom";
-
+import { useNavigate, navigate } from "react-router-dom";
+import useGameContext from "../../context/GameContext"
 
 function HomePage() {
-
+  const navigate = useNavigate();
+  const { lobby, setLobby, setActivePlayer } = useGameContext;
   // const lobbyError = useMemo(
-  //   () => Lobby.length = 4
-  //   [Lobby]
+  //   () => lobby.length = 4
+  //   [lobby]
   // );
-
+  const { name, setName } = useState("");
   return (
     <div>
       <h1 className="">Welcome to Codename</h1>
@@ -19,30 +20,37 @@ function HomePage() {
           id="Name"
           label="Name"
           variant="outlined"
-          // value="name"
-          onChange={(e) => setActivePlayer({ name: e.target.value, isHost(false) })} />
+          value={name}
+          onChange={(e) => setName((e.target.value))}
+        />
       </div>
       <div>
         <TextField
           id="Lobby"
           label="Lobby"
           variant="outlined"
-          // value="lobby"
+          value={lobby}
           onChange={(e) => setLobby(e.target.value)} />
       </div>
       <Button
         variant="outlined"
         // disabled={nameError || lobbyError}
-        onClick={() => { Navigate("/game") }}
+        onClick={(e) => {
+          setActivePlayer({ name, isHost: false, team: null })
+          navigate(`/game/:${lobby}`)
+        }
+        }
       >Go to Lobby</Button>
       <Button
         variant="outlined"
         // disabled={nameError || lobbyError}
-        onClick={() => { Navigate("/game") }}
-        onChange={(e) => { setIsHost(true) }}
+        onClick={(e) => {
+          navigate("/game")
+          setActivePlayer({ name, isHost: true, team: null })
+        }}
       >Create Lobby</Button>
       <footer>Created by 1&&0</footer>
-    </div>
+    </div >
   );
 }
 
