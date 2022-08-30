@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 
 export const GameContext = createContext(null);
 
-export function useGameContext() {
+export default function useGameContext() {
   return useContext(GameContext);
 }
 
@@ -39,4 +39,3 @@ export function GameProvider(props) {
   );
 }
 
-export default useGameContext;
