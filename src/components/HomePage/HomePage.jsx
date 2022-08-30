@@ -6,12 +6,13 @@ import useGameContext from "../../context/GameContext"
 
 function HomePage() {
   const navigate = useNavigate();
-  const { lobby, setLobby, setActivePlayer } = useGameContext();
+  const { setActivePlayer } = useGameContext();
   // const lobbyError = useMemo(
   //   () => lobby.length = 4
   //   [lobby]
   // );
   const [name, setName] = useState("");
+  const [lobby, setLobby] = useState("");
   return (
     <div>
       <h1 className="">Welcome to Codename</h1>
@@ -45,7 +46,7 @@ function HomePage() {
         variant="outlined"
         // disabled={nameError || lobbyError}
         onClick={(e) => {
-          setLobby((Math.random() + 1).toString(36).substring(7))
+          let lobby = ((Math.random() + 1).toString(36).substring(7))
           setActivePlayer({ name, isHost: true, team: null })
           navigate(`/game/:${lobby}`)
         }}
