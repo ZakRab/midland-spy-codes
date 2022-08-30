@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 export const GameContext = createContext(null);
 
@@ -8,6 +8,8 @@ export function useGameContext() {
   const [cards, setCards] = useState([]);
   const [activePlayer, setActivePlayer] = useState({ name: null, host: null, team: null });
   const [gameStatus, setGameStatus] = useState(null);
+  const [players, setPlayers] = useState([]);
+  const [activeTeam, setActiveTeam] = useState(null);
 
 
 
@@ -16,7 +18,7 @@ export function useGameContext() {
 
 export function GameProvider(props) {
   return (
-    <GameContext.Provider value={{ cards, serCards, activePlayer, setActivePlayer, setStatus, setGameStatus }}>{props.children}</GameContext.Provider>
+    <GameContext.Provider value={{ cards, serCards, activePlayer, setActivePlayer, setStatus, setGameStatus, players, setPlayers, activeTeam, setActiveTeam }}>{props.children}</GameContext.Provider>
   );
 }
 
