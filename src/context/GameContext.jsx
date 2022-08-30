@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 
 export const GameContext = createContext(null);
 
-export function useGameContext() {
+export default function useGameContext() {
   return useContext(GameContext);
 }
 
@@ -16,7 +16,6 @@ export function GameProvider(props) {
   const [gameStatus, setGameStatus] = useState(null);
   const [players, setPlayers] = useState([]);
   const [activeTeam, setActiveTeam] = useState(null);
-  const [lobby, setLobby] = useState();
   return (
     <GameContext.Provider
       value={{
@@ -30,8 +29,6 @@ export function GameProvider(props) {
         setPlayers,
         activeTeam,
         setActiveTeam,
-        lobby,
-        setLobby,
       }}
     >
       {props.children}
@@ -39,4 +36,3 @@ export function GameProvider(props) {
   );
 }
 
-export default useGameContext;
