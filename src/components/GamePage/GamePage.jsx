@@ -1,7 +1,20 @@
 import React from "react";
+import useGameContext from "../../context/GameContext";
+import Clue from "./GameBoard/Clue";
+import GameBoard from "./GameBoard/GameBoard";
+import TeamSelect from "./TeamSelect/TeamSelect";
 
 function GamePage() {
-  return <div>GamePage</div>;
+
+  const {gameStatus} = useGameContext;
+  return (
+    <div>
+      <h1>Game</h1>
+      <TeamSelect></TeamSelect>
+      {(gameStatus == "started") && <Clue></Clue>}
+      {(gameStatus == "started") && <GameBoard></GameBoard>}
+    </div>
+  );
 }
 
 export default GamePage;
