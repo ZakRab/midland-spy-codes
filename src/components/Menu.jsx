@@ -1,3 +1,6 @@
+
+//TODO  Add links into Nav.
+
 import React from 'react'
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -38,8 +41,7 @@ const handleCloseNavMenu = () => {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+        <Toolbar disableGutters> 
           <Typography
             variant="h6"
             noWrap
