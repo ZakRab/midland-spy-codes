@@ -1,6 +1,16 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 export const GameContext = createContext(null);
+const [cards, setCards] = useState([]);
+const [activePlayer, setActivePlayer] = useState({
+  name: null,
+  isHost: false,
+  team: null,
+});
+const [gameStatus, setGameStatus] = useState(null);
+const [players, setPlayers] = useState([]);
+const [activeTeam, setActiveTeam] = useState(null);
+const [lobby, setLobby] = useState();
 
 export function useGameContext() {
   return useContext(GameContext);
@@ -8,6 +18,25 @@ export function useGameContext() {
 
 export function GameProvider(props) {
   return (
-    <GameContext.Provider value={{}}>{props.children}</GameContext.Provider>
+    <GameContext.Provider
+      value={{
+        cards,
+        setCards,
+        activePlayer,
+        setActivePlayer,
+        gameStatus,
+        setGameStatus,
+        players,
+        setPlayers,
+        activeTeam,
+        setActiveTeam,
+        lobby,
+        setLobby,
+      }}
+    >
+      {props.children}
+    </GameContext.Provider>
   );
 }
+
+export default useGameContext;
