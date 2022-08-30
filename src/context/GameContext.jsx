@@ -21,7 +21,7 @@ export function GameProvider(props) {
     <GameContext.Provider
       value={{
         cards,
-        serCards,
+        setCards,
         activePlayer,
         setActivePlayer,
         setStatus,
