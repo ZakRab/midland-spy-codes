@@ -1,7 +1,6 @@
-
 //TODO  Add links into Nav.
 
-import React from 'react'
+import React from "react";
 import { NavLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -17,29 +16,28 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
- const pages = ["Home", "Rules", "About"];
+const pages = ["Home", "Rules", "About"];
 
-function NavMenu(){
+function NavMenu() {
+	const [anchorElNav, setAnchorElNav] = React.useState(null);
+	// const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-const [anchorElNav, setAnchorElNav] = React.useState(null);
-// const [anchorElUser, setAnchorElUser] = React.useState(null);
+	const handleOpenNavMenu = (event) => {
+		setAnchorElNav(event.currentTarget);
+	};
+	// const handleOpenUserMenu = (event) => {
+	//  setAnchorElUser(event.currentTarget);
+	// };
 
-const handleOpenNavMenu = (event) => {
-	setAnchorElNav(event.currentTarget);
-};
-// const handleOpenUserMenu = (event) => {
-// 	setAnchorElUser(event.currentTarget);
-// };
+	const handleCloseNavMenu = () => {
+		setAnchorElNav(null);
+	};
 
-const handleCloseNavMenu = () => {
-	setAnchorElNav(null);
-};
+	// const handleCloseUserMenu = () => {
+	//  setAnchorElUser(null);
+	// };
 
-// const handleCloseUserMenu = () => {
-// 	setAnchorElUser(null);
-// };
-    
-  return (
+	return (
 		<AppBar position="static">
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
