@@ -6,9 +6,10 @@ import { useParams } from "react-router-dom";
 import useSocket from "../../../hooks/useSocket";
 
 export default function TeamSelect() {
-  const { activePlayer, players, setPlayers } = useGameContext();
+  const { activePlayer, setPlayers } = useGameContext();
   const { lobby } = useParams();
-  const {} = useSocket(lobby);
+  const { players } = useSocket(lobby);
+  console.log(players);
   function gameStart() {
     console.log("game started");
   }

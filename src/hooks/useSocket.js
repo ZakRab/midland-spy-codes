@@ -3,7 +3,7 @@ import useGameContext from "../../src/context/GameContext";
 import { useEffect, useRef } from "react";
 
 export default function useSocket(lobby) {
-  const { activePlayer, setPlayers } = useGameContext();
+  const { activePlayer, setPlayers, players } = useGameContext();
   const socketRef = useRef;
   useEffect(() => {
     socketRef.current = io("http://localhost:3000", {
@@ -15,9 +15,11 @@ export default function useSocket(lobby) {
     });
 
     socketRef.current.on("user connect", ({ name, isHost }) => {
+      console.log("user connecting");
+      console.log(name, isHost);
       if (activePlayer.isHost) {
         setPlayers((curr) => {
-          let newPlayers = [...curr, { name, isHost }];
+          let newPlayers = [...curr, { name, isHost, team: null }];
           socketRef.current.emit("update players", newPlayers);
           return newPlayers;
         });
@@ -29,4 +31,7 @@ export default function useSocket(lobby) {
       }
     });
   });
+  return {
+    players,
+  };
 }

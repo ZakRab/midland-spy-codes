@@ -1,7 +1,6 @@
-import { io } from "socket.io-client";
-
 const socketConf = (io) => {
   io.on("connection", (socket) => {
+    console.log("connected");
     const { name, isHost, lobby } = socket.handshake.query;
     isHost = isHost === "true";
     socket.join(lobby);
@@ -11,3 +10,4 @@ const socketConf = (io) => {
     io.to(lobby).emit("update players", players);
   });
 };
+module.exports = socketConf;
