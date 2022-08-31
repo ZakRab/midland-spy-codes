@@ -10,19 +10,23 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.button-left {
-  display: block;
-  float: left;
-  width: 50%;
-  background: blue;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
-.button-right {
-  display: block;
-  float: right;
-  width: 50%;
-  background: red;
-  text-align: right;
+a.active {
+  text-decoration: underline;
+}
+a:hover {
+  color: orangered;
 }
