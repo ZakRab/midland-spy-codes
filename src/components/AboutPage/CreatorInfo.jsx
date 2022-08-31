@@ -5,6 +5,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import IconButton from '@mui/material/IconButton';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 export default function CreatorInfo({ creator }) {
   const { name, photo, bio, linkedIn, github } = creator;
@@ -21,24 +24,24 @@ export default function CreatorInfo({ creator }) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button
+          <IconButton
             size="small"
             component={"a"}
             target="_blank"
             rel="noopener noreferrer"
             href={`https://www.github.com/${github}`}
           >
-            GitHub
-          </Button>
-          <Button
+            <GitHubIcon fontSize="large" />
+          </IconButton>
+          <IconButton
             size="small"
             component="a"
             target="_blank"
             rel="noopener noreferrer"
-            href={`https://www.linkedin.com/in/${linkedIn}`}
+            onClick={() => window.open(`https://www.linkedin.com/in/${linkedIn}`)}
           >
-            LinkedIn
-          </Button>
+            <LinkedInIcon fontSize="large" />
+          </IconButton>
         </CardActions>
       </Card>
     </>
