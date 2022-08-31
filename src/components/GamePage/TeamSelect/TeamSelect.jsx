@@ -1,27 +1,53 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import useGameContext from "../../../context/GameContext";
 
 export default function TeamSelect() {
+  const { activePlayer, players, setPlayers } = useGameContext();
+  function gameStart() {
+    console.log("game started");
+  }
   return (
     <div>
       <div>
         <Stack direction="row" spacing={2}>
-          <Button variant="contained" color="error">
+          <Button
+            variant="outlined"
+            sx={{ color: "black", backgroundColor: "red" }}
+          >
             Join as Operative
           </Button>
-          <Button variant="contained">Join as Operative</Button>
+          <Button
+            variant="outlined"
+            sx={{ color: "black", backgroundColor: "blue" }}
+          >
+            Join as Operative
+          </Button>
         </Stack>
       </div>
+      {activePlayer.isHost && (
+        <Button variant="contained" onClick={() => gameStart()}>
+          Round Results
+        </Button>
+      )}
       <div>
         <p>Placeholder for Players</p>
       </div>
       <div>
         <Stack direction="row" spacing={2}>
-          <Button variant="contained" color="error">
+          <Button
+            variant="outlined"
+            sx={{ color: "black", backgroundColor: "red" }}
+          >
             Join as Spymaster
           </Button>
-          <Button variant="contained">Join as Spymaster</Button>
+          <Button
+            variant="outlined"
+            sx={{ color: "black", backgroundColor: "blue" }}
+          >
+            Join as Spymaster
+          </Button>
         </Stack>
       </div>
     </div>
