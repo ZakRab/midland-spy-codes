@@ -15,8 +15,6 @@ export default function useSocket(lobby) {
     });
 
     socketRef.current.on("user connect", ({ name, isHost }) => {
-      console.log("user connecting");
-      console.log(name, isHost);
       if (activePlayer.isHost) {
         setPlayers((curr) => {
           let newPlayers = [...curr, { name, isHost, team: null }];
@@ -34,16 +32,17 @@ export default function useSocket(lobby) {
 
     socketRef.current.on("join team", ({ player, team, role }) => {
       if (activePlayer.isHost) {
+        console.log(player);
         setPlayers((curr) => {
           let newPlayers = curr.map((p) => {
-            if (p.name == player.name) {
+            if (p.name === player.player.name) {
               p.team = team;
               p.role = role;
+              console.log("this is working");
             }
-            socketRef.current.emit("update players", newPlayers);
-
-            return player;
+            return p;
           });
+          socketRef.current.emit("update players", newPlayers);
         });
       }
       console.log(players);
