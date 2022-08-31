@@ -2,9 +2,11 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import useGameContext from "../../../context/GameContext";
+import { useParams } from "react-router-dom";
 
 export default function TeamSelect() {
   const { activePlayer, players, setPlayers } = useGameContext();
+  const { lobby } = useParams();
   function gameStart() {
     console.log("game started");
   }
@@ -28,11 +30,13 @@ export default function TeamSelect() {
       </div>
       {activePlayer.isHost && (
         <Button variant="contained" onClick={() => gameStart()}>
-          Round Results
+          Start game
         </Button>
       )}
       <div>
-        <p>Placeholder for Players</p>
+        {players.map((player) => {
+          return <div>{player.name}</div>;
+        })}
       </div>
       <div>
         <Stack direction="row" spacing={2}>
