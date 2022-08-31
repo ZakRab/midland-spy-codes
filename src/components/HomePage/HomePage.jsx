@@ -10,7 +10,7 @@ function HomePage() {
   const { setActivePlayer } = useGameContext();
   const [lobby, setLobby] = useState("");
   const [name, setName] = useState("");
-  const lobbyError = useMemo(() => lobby.length <= 3, [lobby]);
+  const lobbyError = useMemo(() => lobby.length <= 4, [lobby]);
   const nameError = useMemo(() => name.length == 0, [name]);
   return (
     <Grid
@@ -48,7 +48,7 @@ function HomePage() {
           disabled={nameError || lobbyError}
           onClick={(e) => {
             setActivePlayer({ name, isHost: false, team: null });
-            navigate(`/game/:${lobby}`);
+            navigate(`/game/${lobby}`);
           }}
         >
           Go to Lobby
@@ -59,7 +59,7 @@ function HomePage() {
           onClick={(e) => {
             let lobby = (Math.random() + 1).toString(36).substring(7);
             setActivePlayer({ name, isHost: true, team: null });
-            navigate(`/game/:${lobby}`);
+            navigate(`/game/${lobby}`);
           }}
         >
           Create Lobby
