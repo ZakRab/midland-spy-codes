@@ -6,7 +6,7 @@ import useGameContext from "../../../context/GameContext";
 export default function TeamSelect({ players, joinTeam }) {
   const { activePlayer, words, cards, addCards } = useGameContext();
   function gameStart() {
-    addCards(words);
+    
     console.log("game started");
   }
   const hasRedSM = useMemo(() => {
@@ -53,7 +53,9 @@ export default function TeamSelect({ players, joinTeam }) {
           onClick={(e) => {
             e.preventDefault();
             gameStart();
+            addCards(words);
             console.log("what is here?", cards);
+            console.log(words);
           }}
         >
           Start Game
