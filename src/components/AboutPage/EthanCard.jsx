@@ -9,8 +9,6 @@ import Typography from '@mui/material/Typography';
 export default function EthanMediaCard() {
     return (
         <>
-
-            <div></div>
             <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                     component="img"
