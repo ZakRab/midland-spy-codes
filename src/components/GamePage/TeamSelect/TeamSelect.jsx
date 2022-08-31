@@ -5,8 +5,11 @@ import useGameContext from "../../../context/GameContext";
 
 export default function TeamSelect({ players }) {
   const { activePlayer } = useGameContext();
+  const { words, cards, setCards } = useGameContext();
   function gameStart() {
+    setCards((curr)=>[...curr, words])
     console.log("game started");
+    console.log(cards);
   }
   return (
     <div>

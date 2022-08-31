@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useMemo, useCallback } from "react";
 
 export const GameContext = createContext(null);
 
@@ -16,6 +16,19 @@ export function GameProvider(props) {
   const [gameStatus, setGameStatus] = useState(null);
   const [players, setPlayers] = useState([]);
   const [activeTeam, setActiveTeam] = useState(null);
+
+  const words = useMemo( ()=> {
+      let randomWords = require("random-words");
+      return randomWords(16);
+      
+  },[gameStatus])
+  console.log(words);
+
+  const makeCardsArray = useCallback( ()=>{
+
+    },[]
+  )
+
   return (
     <GameContext.Provider
       value={{
@@ -29,6 +42,7 @@ export function GameProvider(props) {
         setPlayers,
         activeTeam,
         setActiveTeam,
+        words
       }}
     >
       {props.children}
