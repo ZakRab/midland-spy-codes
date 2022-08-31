@@ -32,5 +32,18 @@ export default function useSocket(lobby) {
       }
     });
   }, []);
-  return {};
+  function joinSMRed(activePlayer) {
+    setPlayers((curr) => {
+      curr.map((player) => {
+        if (player.name == activePlayer.name) {
+          player.team == "red";
+          player.role == "spymaster";
+        }
+      });
+    });
+  }
+  function joinOPRed(activePlayer) {}
+  function joinSMBlue(activePlayer) {}
+  function joinOPBlue(activePlayer) {}
+  return { joinOPBlue, joinOPRed, joinSMBlue, joinSMRed };
 }
