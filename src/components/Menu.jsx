@@ -1,5 +1,3 @@
-//TODO  Add links into Nav.
-
 import React from "react";
 import { NavLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
@@ -16,7 +14,11 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
-const pages = ["Home", "Rules", "About"];
+const pages = [
+	{ text: "Home", path: "/home" },
+	{ text: "Rules", path: "/rules" },
+	{ text: "About", path: "/about" },
+];
 
 function NavMenu() {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -25,41 +27,32 @@ function NavMenu() {
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
 	};
-	// const handleOpenUserMenu = (event) => {
-	//  setAnchorElUser(event.currentTarget);
-	// };
 
 	const handleCloseNavMenu = () => {
 		setAnchorElNav(null);
 	};
 
-	// const handleCloseUserMenu = () => {
-	//  setAnchorElUser(null);
-	// };
-
 	return (
 		<AppBar position="static">
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
-					<NavLink to="/">
-						<Typography
-							variant="h6"
-							noWrap
-							// component="p"
-							// href="/"
-							sx={{
-								mr: 2,
-								display: { xs: "none", md: "flex" },
-								fontFamily: "monospace",
-								fontWeight: 700,
-								letterSpacing: ".3rem",
-								color: "inherit",
-								textDecoration: "none",
-							}}
-						>
-							LOGO
-						</Typography>
-					</NavLink>
+					<Typography
+						variant="h6"
+						component={NavLink}
+						to="/home"
+						noWrap
+						sx={{
+							mr: 2,
+							display: { xs: "none", md: "flex" },
+							fontFamily: "monospace",
+							fontWeight: 700,
+							letterSpacing: ".3rem",
+							color: "inherit",
+							textDecoration: "none",
+						}}
+					>
+						LOGO
+					</Typography>
 
 					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
 						<IconButton
@@ -92,55 +85,50 @@ function NavMenu() {
 						>
 							{/* mobile dropdown menu */}
 							{pages.map((page) => (
-								<MenuItem key={page} onClick={handleCloseNavMenu}>
-									<NavLink
-										to={page}
-										// style={{ textDecoration: "none" }}
-										style={(isActive) => ({
-											color: isActive ? "green" : "blue",
-											textDecoration: isActive ? "underline" : "none",
-										})}
-										className="mobile"
-									>
-										{page}
-									</NavLink>
+								<MenuItem
+									component={NavLink}
+									to={page.path}
+									key={page.text}
+									onClick={handleCloseNavMenu}
+								>
+									<Typography textAlign="center">{page.text}</Typography>
 								</MenuItem>
 							))}
 						</Menu>
 					</Box>
-					<NavLink to="/">
-						<Typography
-							variant="h5"
-							noWrap
-							// component="a"
-							sx={{
-								mr: 2,
-								display: { xs: "flex", md: "none" },
-								flexGrow: 1,
-								fontFamily: "monospace",
-								fontWeight: 700,
-								letterSpacing: ".3rem",
-								color: "inherit",
-								textDecoration: "none",
-							}}
-						>
-							LOGO
-						</Typography>
-					</NavLink>
+					<Typography
+						variant="h5"
+						noWrap
+						component={NavLink}
+						to="/home"
+						// component="a"
+						sx={{
+							mr: 2,
+							display: { xs: "flex", md: "none" },
+							flexGrow: 1,
+							fontFamily: "monospace",
+							fontWeight: 700,
+							letterSpacing: ".3rem",
+							color: "inherit",
+							textDecoration: "none",
+						}}
+					>
+						LOGO
+					</Typography>
 
 					{/* desktop links: */}
 
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						{pages.map((page) => (
-							<NavLink to={page}>
-								<Button
-									key={page}
-									onClick={handleCloseNavMenu}
-									sx={{ my: 2, color: "white", display: "block", textDecoration: "none" }}
-								>
-									{page}
-								</Button>
-							</NavLink>
+							<Button
+								component={NavLink}
+								to={page.path}
+								key={page.text}
+								onClick={handleCloseNavMenu}
+								sx={{ my: 2, color: "white", display: "block" }}
+							>
+								{page.text}
+							</Button>
 						))}
 					</Box>
 				</Toolbar>
