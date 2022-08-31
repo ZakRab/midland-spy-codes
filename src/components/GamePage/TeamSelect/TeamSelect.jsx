@@ -20,7 +20,7 @@ export default function TeamSelect({
         <Stack direction="row" spacing={2}>
           <Button
             onClick={() => {
-              joinOPBlue(activePlayer);
+              joinOPRed(activePlayer);
             }}
             variant="outlined"
             sx={{ color: "black", backgroundColor: "red" }}
@@ -29,7 +29,7 @@ export default function TeamSelect({
           </Button>
           <Button
             onClick={() => {
-              joinOPRed(activePlayer);
+              joinOPBlue(activePlayer);
             }}
             variant="outlined"
             sx={{ color: "black", backgroundColor: "blue" }}
@@ -43,16 +43,18 @@ export default function TeamSelect({
           Start game
         </Button>
       )}
-      <div>
-        {players.map((player, idx) => {
-          return <div key={idx}>{player.name}</div>;
-        })}
-      </div>
+      {players && (
+        <div>
+          {players.map((player, idx) => {
+            return <div key={idx}>{player.name}</div>;
+          })}
+        </div>
+      )}
       <div>
         <Stack direction="row" spacing={2}>
           <Button
             onClick={() => {
-              joinSMBlue(activePlayer);
+              joinSMRed(activePlayer);
             }}
             variant="outlined"
             sx={{ color: "black", backgroundColor: "red" }}
@@ -61,7 +63,7 @@ export default function TeamSelect({
           </Button>
           <Button
             onClick={() => {
-              joinSMRed(activePlayer);
+              joinSMBlue(activePlayer);
             }}
             variant="outlined"
             sx={{ color: "black", backgroundColor: "blue" }}

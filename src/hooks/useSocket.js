@@ -33,22 +33,26 @@ export default function useSocket(lobby) {
     });
   }, []);
   function joinSMRed(activePlayer) {
+    console.log(players);
     setPlayers((curr) => {
       curr.map((player) => {
         if (player.name == activePlayer.name) {
-          player.team == "red";
-          player.role == "spymaster";
+          player.team = "red";
+          player.role = "spymaster";
         }
+        return player;
       });
+      console.log(players);
     });
   }
   function joinOPRed(activePlayer) {
     setPlayers((curr) => {
       curr.map((player) => {
         if (player.name == activePlayer.name) {
-          player.team == "red";
-          player.role == "operative";
+          player.team = "red";
+          player.role = "operative";
         }
+        return player;
       });
     });
   }
@@ -56,9 +60,10 @@ export default function useSocket(lobby) {
     setPlayers((curr) => {
       curr.map((player) => {
         if (player.name == activePlayer.name) {
-          player.team == "blue";
-          player.role == "spymaster";
+          player.team = "blue";
+          player.role = "spymaster";
         }
+        return player;
       });
     });
   }
@@ -66,9 +71,10 @@ export default function useSocket(lobby) {
     setPlayers((curr) => {
       curr.map((player) => {
         if (player.name == activePlayer.name) {
-          player.team == "blue";
-          player.role == "spymaster";
+          player.team = "blue";
+          player.role = "spymaster";
         }
+        return player;
       });
     });
   }

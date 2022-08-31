@@ -13,10 +13,13 @@ function GamePage() {
   return (
     <div>
       <h1>Game</h1>
-      <TeamSelect joinOPBlue={joinOPBlue} players={players} />
-      <TeamSelect joinSMBlue={joinSMBlue} players={players} />
-      <TeamSelect joinOPRed={joinOPRed} players={players} />
-      <TeamSelect joinSMRed={joinSMRed} players={players} />
+      <TeamSelect
+        joinOPBlue={joinOPBlue}
+        joinSMBlue={joinSMBlue}
+        joinSMRed={joinSMRed}
+        joinOPRed={joinOPRed}
+        players={players}
+      />
       {gameStatus == "started" && <Clue></Clue>}
       {gameStatus == "started" && <GameBoard></GameBoard>}
     </div>
