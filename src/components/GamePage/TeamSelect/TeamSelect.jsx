@@ -2,14 +2,9 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import useGameContext from "../../../context/GameContext";
-import { useParams } from "react-router-dom";
-import useSocket from "../../../hooks/useSocket";
 
-export default function TeamSelect() {
-  const { activePlayer, setPlayers } = useGameContext();
-  const { lobby } = useParams();
-  const { players } = useSocket(lobby);
-  console.log(players);
+export default function TeamSelect({ players }) {
+  const { activePlayer } = useGameContext();
   function gameStart() {
     console.log("game started");
   }
@@ -37,8 +32,8 @@ export default function TeamSelect() {
         </Button>
       )}
       <div>
-        {players.map((player) => {
-          return <div>{player.name}</div>;
+        {players.map((player, idx) => {
+          return <div key={idx}>{player.name}</div>;
         })}
       </div>
       <div>

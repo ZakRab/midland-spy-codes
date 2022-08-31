@@ -6,7 +6,7 @@ export default function useSocket(lobby) {
   const { activePlayer, setPlayers, players } = useGameContext();
   const socketRef = useRef;
   useEffect(() => {
-    socketRef.current = io("http://localhost:3000", {
+    socketRef.current = io("http://localhost:8080", {
       query: {
         name: activePlayer.name,
         isHost: activePlayer.isHost,
@@ -26,12 +26,11 @@ export default function useSocket(lobby) {
       }
     });
     socketRef.current.on("update players", (newPlayers) => {
+      console.log("sadfasdfz");
       if (!activePlayer.isHost) {
         setPlayers(newPlayers);
       }
     });
-  });
-  return {
-    players,
-  };
+  }, []);
+  return {};
 }
