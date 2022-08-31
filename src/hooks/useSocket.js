@@ -31,52 +31,30 @@ export default function useSocket(lobby) {
         setPlayers(newPlayers);
       }
     });
+
+    socketRef.current.on("join team", ({ player, team, role }) => {
+      if (activePlayer.isHost) {
+        setPlayers((curr) => {
+          let newPlayers = curr.map((p) => {
+            if (p.name == player.name) {
+              p.team = team;
+              p.role = role;
+            }
+            socketRef.current.emit("update players", newPlayers);
+            return player;
+          });
+        });
+      }
+    });
   }, []);
-  function joinSMRed(activePlayer) {
-    console.log(players);
-    setPlayers((curr) => {
-      curr.map((player) => {
-        if (player.name == activePlayer.name) {
-          player.team = "red";
-          player.role = "spymaster";
-        }
-        return player;
-      });
-      console.log(players);
+
+  function joinTeam(player, team, role) {
+    socketRef.current.emit("join team", {
+      player,
+      team,
+      role,
     });
   }
-  function joinOPRed(activePlayer) {
-    setPlayers((curr) => {
-      curr.map((player) => {
-        if (player.name == activePlayer.name) {
-          player.team = "red";
-          player.role = "operative";
-        }
-        return player;
-      });
-    });
-  }
-  function joinSMBlue(activePlayer) {
-    setPlayers((curr) => {
-      curr.map((player) => {
-        if (player.name == activePlayer.name) {
-          player.team = "blue";
-          player.role = "spymaster";
-        }
-        return player;
-      });
-    });
-  }
-  function joinOPBlue(activePlayer) {
-    setPlayers((curr) => {
-      curr.map((player) => {
-        if (player.name == activePlayer.name) {
-          player.team = "blue";
-          player.role = "spymaster";
-        }
-        return player;
-      });
-    });
-  }
-  return { joinOPBlue, joinOPRed, joinSMBlue, joinSMRed };
+
+  return { joinTeam };
 }

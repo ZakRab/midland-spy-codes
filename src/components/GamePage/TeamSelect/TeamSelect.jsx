@@ -3,13 +3,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import useGameContext from "../../../context/GameContext";
 
-export default function TeamSelect({
-  players,
-  joinOPBlue,
-  joinOPRed,
-  joinSMBlue,
-  joinSMRed,
-}) {
+export default function TeamSelect({ players, joinTeam }) {
   const { activePlayer } = useGameContext();
   function gameStart() {
     console.log("game started");
@@ -20,7 +14,7 @@ export default function TeamSelect({
         <Stack direction="row" spacing={2}>
           <Button
             onClick={() => {
-              joinOPRed(activePlayer);
+              joinTeam(activePlayer, "red", "operative");
             }}
             variant="outlined"
             sx={{ color: "black", backgroundColor: "red" }}
@@ -29,7 +23,7 @@ export default function TeamSelect({
           </Button>
           <Button
             onClick={() => {
-              joinOPBlue(activePlayer);
+              joinTeam(activePlayer, "blue", "operative");
             }}
             variant="outlined"
             sx={{ color: "black", backgroundColor: "blue" }}
@@ -54,7 +48,7 @@ export default function TeamSelect({
         <Stack direction="row" spacing={2}>
           <Button
             onClick={() => {
-              joinSMRed(activePlayer);
+              joinTeam(activePlayer, "red", "spymaster");
             }}
             variant="outlined"
             sx={{ color: "black", backgroundColor: "red" }}
@@ -63,7 +57,7 @@ export default function TeamSelect({
           </Button>
           <Button
             onClick={() => {
-              joinSMBlue(activePlayer);
+              joinTeam(activePlayer, "blue", "spymaster");
             }}
             variant="outlined"
             sx={{ color: "black", backgroundColor: "blue" }}
