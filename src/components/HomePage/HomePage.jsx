@@ -11,7 +11,7 @@ function HomePage() {
   const [lobby, setLobby] = useState("");
   const [name, setName] = useState("");
   const lobbyError = useMemo(() => lobby.length <= 3, [lobby]);
-  const nameError = useMemo(() => name.length < 0, [name]);
+  const nameError = useMemo(() => name.length == 0, [name]);
   return (
     <Grid
       container
@@ -31,6 +31,7 @@ function HomePage() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          <div>Must have a name</div>
         </div>
         <div>
           <TextField
@@ -40,6 +41,7 @@ function HomePage() {
             value={lobby}
             onChange={(e) => setLobby(e.target.value)}
           />
+          <div>Must be 4 characters or click CREATE LOBBY</div>
         </div>
         <Button
           variant="outlined"
@@ -53,7 +55,7 @@ function HomePage() {
         </Button>
         <Button
           variant="outlined"
-          disabled={nameError || lobbyError}
+          disabled={nameError || !(!nameError && lobbyError)}
           onClick={(e) => {
             let lobby = (Math.random() + 1).toString(36).substring(7);
             setActivePlayer({ name, isHost: true, team: null });
