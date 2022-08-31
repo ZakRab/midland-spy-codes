@@ -30,3 +30,8 @@ a.active {
 a:hover {
   color: orangered;
 }
+
+.spy-icon {
+  height: 50px;
+  width: 50px;
+}
