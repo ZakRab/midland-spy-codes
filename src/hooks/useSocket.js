@@ -3,7 +3,8 @@ import useGameContext from "../../src/context/GameContext";
 import { useEffect, useRef } from "react";
 
 export default function useSocket(lobby) {
-  const { activePlayer, setPlayers, players } = useGameContext();
+  const { activePlayer, setPlayers, players, setActivePlayer } =
+    useGameContext();
   const socketRef = useRef;
   useEffect(() => {
     socketRef.current = io("http://localhost:8080", {
@@ -15,8 +16,6 @@ export default function useSocket(lobby) {
     });
 
     socketRef.current.on("user connect", ({ name, isHost }) => {
-      console.log("user connecting");
-      console.log(name, isHost);
       if (activePlayer.isHost) {
         setPlayers((curr) => {
           let newPlayers = [...curr, { name, isHost, team: null }];
@@ -26,11 +25,38 @@ export default function useSocket(lobby) {
       }
     });
     socketRef.current.on("update players", (newPlayers) => {
-      console.log("sadfasdfz");
       if (!activePlayer.isHost) {
         setPlayers(newPlayers);
       }
     });
+
+    socketRef.current.on("join team", ({ player, team, role }) => {
+      if (activePlayer.isHost) {
+        console.log(player, team, role);
+        setPlayers((curr) => {
+          let newPlayers = curr.map((p) => {
+            if (p.name === player.name) {
+              p.team = team;
+              p.role = role;
+              console.log(p);
+            }
+            return p;
+          });
+          socketRef.current.emit("update players", newPlayers);
+          return newPlayers;
+        });
+      }
+    });
   }, []);
-  return {};
+
+  function joinTeam(player, team, role) {
+    setActivePlayer((curr) => ({ ...curr, role, team }));
+    socketRef.current.emit("join team", {
+      player,
+      team,
+      role,
+    });
+  }
+
+  return { joinTeam };
 }

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Aaron Locatis",
+    "bio": "",
+    "photo": "",
+    "linkedIn": "",
+    "github": ""
+  },
+  {
+    "name": "Aidee Hernandez",
+    "bio": "",
+    "photo": "",
+    "linkedIn": "",
+    "github": ""
+  },
+  {
+    "name": "Chris Hegarty",
+    "bio": "",
+    "photo": "",
+    "linkedIn": "",
+    "github": ""
+  },
+  {
+    "name": "Donella Cooper",
+    "bio": "",
+    "photo": "",
+    "linkedIn": "",
+    "github": ""
+  },
+  {
+    "name": "Ethan Haneklaus",
+    "bio": "My journey with coding started from being a chef and wanting more out of my life. I aspire to become a team lead in the field of AI for my career.",
+    "photo": "./team-photos/ethan.jpg",
+    "linkedIn": "ethan-haneklaus-0499a3126",
+    "github": "ethanhaneklaus"
+  },
+  { "name": "Zak Rab", "bio": "", "photo": "", "linkedIn": "", "github": "" }
+]
