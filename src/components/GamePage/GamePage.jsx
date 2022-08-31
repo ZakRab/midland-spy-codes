@@ -10,7 +10,7 @@ function GamePage() {
   return (
     <div>
       <h1>Game</h1>
-      <TeamSelect></TeamSelect>
+      <TeamSelect/>
       {(gameStatus == "started") && <Clue></Clue>}
       {(gameStatus == "started") && <GameBoard></GameBoard>}
     </div>
