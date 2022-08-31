@@ -47,7 +47,7 @@ function HomePage() {
           variant="outlined"
           disabled={nameError || lobbyError}
           onClick={(e) => {
-            setActivePlayer({ name, isHost: false, team: null });
+            setActivePlayer({ name, isHost: false, team: null, role: null });
             navigate(`/game/${lobby}`);
           }}
         >
@@ -58,7 +58,7 @@ function HomePage() {
           disabled={nameError || !(!nameError && lobbyError)}
           onClick={(e) => {
             let lobby = (Math.random() + 1).toString(36).substring(7);
-            setActivePlayer({ name, isHost: true, team: null });
+            setActivePlayer({ name, isHost: true, team: null, role: null });
             navigate(`/game/${lobby}`);
           }}
         >

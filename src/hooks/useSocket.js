@@ -3,7 +3,8 @@ import useGameContext from "../../src/context/GameContext";
 import { useEffect, useRef } from "react";
 
 export default function useSocket(lobby) {
-  const { activePlayer, setPlayers, players } = useGameContext();
+  const { activePlayer, setPlayers, players, setActivePlayer } =
+    useGameContext();
   const socketRef = useRef;
   useEffect(() => {
     socketRef.current = io("http://localhost:8080", {
@@ -24,7 +25,6 @@ export default function useSocket(lobby) {
       }
     });
     socketRef.current.on("update players", (newPlayers) => {
-      console.log("sadfasdfz");
       if (!activePlayer.isHost) {
         setPlayers(newPlayers);
       }
@@ -32,24 +32,25 @@ export default function useSocket(lobby) {
 
     socketRef.current.on("join team", ({ player, team, role }) => {
       if (activePlayer.isHost) {
-        console.log(player);
+        console.log(player, team, role);
         setPlayers((curr) => {
           let newPlayers = curr.map((p) => {
-            if (p.name === player.player.name) {
+            if (p.name === player.name) {
               p.team = team;
               p.role = role;
-              console.log("this is working");
+              console.log(p);
             }
             return p;
           });
           socketRef.current.emit("update players", newPlayers);
+          return newPlayers;
         });
       }
-      console.log(players);
     });
   }, []);
 
   function joinTeam(player, team, role) {
+    setActivePlayer((curr) => ({ ...curr, role, team }));
     socketRef.current.emit("join team", {
       player,
       team,

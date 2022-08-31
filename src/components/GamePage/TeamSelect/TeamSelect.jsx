@@ -8,11 +8,23 @@ export default function TeamSelect({ players, joinTeam }) {
   function gameStart() {
     console.log("game started");
   }
+  players.map((player) => {
+    if (player.team === "red" && player.role === "operative") {
+      disableButton("red", "operative");
+    }
+  });
+  function disableButton(team, role) {
+    return { team, role };
+  }
   return (
     <div>
       <div>
         <Stack direction="row" spacing={2}>
           <Button
+            disabled={
+              disableButton().role === "operative" &&
+              disableButton().team === "red"
+            }
             onClick={() => {
               joinTeam(activePlayer, "red", "operative");
             }}
@@ -58,6 +70,7 @@ export default function TeamSelect({ players, joinTeam }) {
           <Button
             onClick={() => {
               joinTeam(activePlayer, "blue", "spymaster");
+              console.log(players);
             }}
             variant="outlined"
             sx={{ color: "black", backgroundColor: "blue" }}

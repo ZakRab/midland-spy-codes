@@ -10,7 +10,7 @@ const socketConf = (io) => {
       console.log("updating players");
       io.to(lobby).emit("update players", players);
     });
-    socket.on("join team", (player, team, role) => {
+    socket.on("join team", ({ player, team, role }) => {
       io.to(lobby).emit("join team", { player, team, role });
     });
   });
