@@ -19,42 +19,30 @@ export function GameProvider(props) {
   const [selected, setSelected] = useState(null);
   const [isFaceUp, setIsFaceUp] = useState(false);
   const [words,setWords] = useState([])
+  const [type, setType] = useState(null)
+
 
   const getWords = useMemo( ()=> {
       let randomWords = require("random-words");
-      return randomWords(16);
+      return setWords(randomWords(16));
       
   },[gameStatus])
   console.log(words);
 
-  function addCards(e) {
-    e.preventDefault();
-    let newCard = {
-      words: getWords(),
-      type: type,
-      isFaceUp: isFaceUp,
-      selected: selected,
-    }
-    setCards((curr) => [...curr, newCard]);
-
-    setWords([]);
-    setType("");
-    setIsFaceUp("");
-    setUser("");
-    setSelected("")
-
+  function addCards(words) {
+    let newCard = {}
+      words.map((w,idx)=>(
+          newCard = {
+            word: words[w],
+            type: type,
+            isFaceUp: isFaceUp,
+            selected: selected,
+            key: idx
+          }
+      )
+    )
+    return setCards((curr) => [...curr, newCard]);
   }
-
-  // const makeCardsArray = useCallback( ()=>{
-  //      setCards((curr) => {
-  //       let newCard = current.map((c)=>(
-  //         c.word = word,
-  //         c.type = type,
-  //         c.isFaceUp = isFaceUp,
-  //         c.isSelected = isSelected
-  //      ))})
-  //   },[gameStatus]
-  // )
 
   return (
     <GameContext.Provider
