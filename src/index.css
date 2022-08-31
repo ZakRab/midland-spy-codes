@@ -12,6 +12,18 @@ code {
 		monospace;
 }
 
-*|*:any-link:not(svg|a) {
+/* *|*:any-link:not(svg|a) {
 	text-decoration: none !important;
+} */
+
+a:-webkit-any-link {
+	text-decoration: none;
+}
+
+a:-moz-any-link {
+	text-decoration: none;
+}
+
+a:any-link {
+	text-decoration: none;
 }
