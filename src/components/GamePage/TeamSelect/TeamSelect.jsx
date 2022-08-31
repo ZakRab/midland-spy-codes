@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useMemo } from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import useGameContext from "../../../context/GameContext";
@@ -8,23 +8,24 @@ export default function TeamSelect({ players, joinTeam }) {
   function gameStart() {
     console.log("game started");
   }
-  players.map((player) => {
-    if (player.team === "red" && player.role === "operative") {
-      disableButton("red", "operative");
-    }
-  });
-  function disableButton(team, role) {
-    return { team, role };
-  }
+  const hasRedSM = useMemo(
+    () =>
+      players.filter(() => {
+        let spymaster = players.role === "spymaster" || players.team === "red";
+        if (spymaster.length === 1) {
+          return true;
+        } else if (spymaster.length === 0) {
+          return false;
+        }
+      }),
+    [players]
+  );
   return (
     <div>
       <div>
         <Stack direction="row" spacing={2}>
           <Button
-            disabled={
-              disableButton().role === "operative" &&
-              disableButton().team === "red"
-            }
+            disabled={hasRedSM}
             onClick={() => {
               joinTeam(activePlayer, "red", "operative");
             }}
