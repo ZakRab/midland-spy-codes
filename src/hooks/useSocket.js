@@ -42,8 +42,35 @@ export default function useSocket(lobby) {
       });
     });
   }
-  function joinOPRed(activePlayer) {}
-  function joinSMBlue(activePlayer) {}
-  function joinOPBlue(activePlayer) {}
+  function joinOPRed(activePlayer) {
+    setPlayers((curr) => {
+      curr.map((player) => {
+        if (player.name == activePlayer.name) {
+          player.team == "red";
+          player.role == "operative";
+        }
+      });
+    });
+  }
+  function joinSMBlue(activePlayer) {
+    setPlayers((curr) => {
+      curr.map((player) => {
+        if (player.name == activePlayer.name) {
+          player.team == "blue";
+          player.role == "spymaster";
+        }
+      });
+    });
+  }
+  function joinOPBlue(activePlayer) {
+    setPlayers((curr) => {
+      curr.map((player) => {
+        if (player.name == activePlayer.name) {
+          player.team == "blue";
+          player.role == "spymaster";
+        }
+      });
+    });
+  }
   return { joinOPBlue, joinOPRed, joinSMBlue, joinSMRed };
 }
