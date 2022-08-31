@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 import useGameContext from "../../src/context/GameContext";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function useSocket(lobby) {
   const { activePlayer, setPlayers } = useGameContext();

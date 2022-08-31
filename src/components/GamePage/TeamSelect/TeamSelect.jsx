@@ -3,10 +3,12 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import useGameContext from "../../../context/GameContext";
 import { useParams } from "react-router-dom";
+import useSocket from "../../../hooks/useSocket";
 
 export default function TeamSelect() {
   const { activePlayer, players, setPlayers } = useGameContext();
   const { lobby } = useParams();
+  const {} = useSocket(lobby);
   function gameStart() {
     console.log("game started");
   }
