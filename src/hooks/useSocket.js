@@ -41,10 +41,12 @@ export default function useSocket(lobby) {
               p.role = role;
             }
             socketRef.current.emit("update players", newPlayers);
+
             return player;
           });
         });
       }
+      console.log(players);
     });
   }, []);
 
