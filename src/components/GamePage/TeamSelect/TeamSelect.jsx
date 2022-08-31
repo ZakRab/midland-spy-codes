@@ -5,11 +5,9 @@ import useGameContext from "../../../context/GameContext";
 
 export default function TeamSelect({ players }) {
   const { activePlayer } = useGameContext();
-  const { words, cards, setCards } = useGameContext();
-  function gameStart() {
-    setCards((curr)=>[...curr, words])
+  const { words, cards, setCards, makeCardsArray } = useGameContext();
+  function gameStart(cards) {
     console.log("game started");
-    console.log(cards);
   }
   return (
     <div>
@@ -31,6 +29,7 @@ export default function TeamSelect({ players }) {
       </div>
       {activePlayer.isHost && (
         <Button variant="contained" onClick={() => gameStart()}>
+          //ToDo: call card function here addCards()
           Start game
         </Button>
       )}
