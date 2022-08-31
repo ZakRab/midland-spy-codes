@@ -12,6 +12,7 @@ export function GameProvider(props) {
     name: null,
     isHost: false,
     team: null,
+    role: null,
   });
   const [gameStatus, setGameStatus] = useState(null);
   const [players, setPlayers] = useState([]);
@@ -35,4 +36,3 @@ export function GameProvider(props) {
     </GameContext.Provider>
   );
 }
-
