@@ -8,24 +8,27 @@ export default function TeamSelect({ players, joinTeam }) {
   function gameStart() {
     console.log("game started");
   }
-  const hasRedSM = useMemo(
-    () =>
-      players.filter(() => {
-        let spymaster = players.role === "spymaster" || players.team === "red";
-        if (spymaster.length === 1) {
-          return true;
-        } else if (spymaster.length === 0) {
-          return false;
-        }
-      }),
-    [players]
-  );
+  function redSMFilter(player) {
+    return player.role === "spymaster" && player.team === "red";
+  }
+  function blueSMFilter(player) {
+    return player.role === "spymaster" && player.team === "blue";
+  }
+  const hasRedSM = useMemo(() => {
+    let result = players.filter(redSMFilter);
+    return result.length !== 0;
+  }, [players]);
+
+  const hasBlueSM = useMemo(() => {
+    let result = players.filter(blueSMFilter);
+    return result.length !== 0;
+  }, [players]);
+
   return (
     <div>
       <div>
         <Stack direction="row" spacing={2}>
           <Button
-            disabled={hasRedSM}
             onClick={() => {
               joinTeam(activePlayer, "red", "operative");
             }}
@@ -60,6 +63,7 @@ export default function TeamSelect({ players, joinTeam }) {
       <div>
         <Stack direction="row" spacing={2}>
           <Button
+            disabled={hasRedSM}
             onClick={() => {
               joinTeam(activePlayer, "red", "spymaster");
             }}
@@ -69,6 +73,7 @@ export default function TeamSelect({ players, joinTeam }) {
             Join as Spymaster
           </Button>
           <Button
+            disabled={hasBlueSM}
             onClick={() => {
               joinTeam(activePlayer, "blue", "spymaster");
               console.log(players);
