@@ -15,7 +15,6 @@ function GameBoard({ sendSelectedCard }) {
     color: theme.palette.text.secondary,
   }));
   const { activePlayer, setSelectedCard, selectedCard } = useGameContext();
-
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>

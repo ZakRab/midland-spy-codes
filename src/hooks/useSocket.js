@@ -56,6 +56,14 @@ export default function useSocket(lobby) {
         });
       }
     });
+    socketRef.current.on("send cards", (cards) => {
+      if (!activePlayer.isHost) {
+        setCards(cards);
+        setGameStatus("started");
+        console.log(cards);
+      }
+    });
+
     socketRef.current.on("end turn", () =>
       setActiveTeam((curr) => {
         if (curr === "blue") {
@@ -100,6 +108,11 @@ export default function useSocket(lobby) {
     });
   }
 
+  function sendCards(cards) {
+    console.log(cards);
+    socketRef.current.emit("send cards", cards);
+  }
+
   function sendSelectedCard(card) {
     socketRef.current.emit("send selected card", card);
   }
@@ -112,5 +125,5 @@ export default function useSocket(lobby) {
     socketRef.current.emit("end game");
   }
   // delete me
-  return { joinTeam, sendSelectedCard, endTurn };
+  return { joinTeam, sendSelectedCard, sendCards, endGame, endTurn };
 }

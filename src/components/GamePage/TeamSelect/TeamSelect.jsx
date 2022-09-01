@@ -1,26 +1,28 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import useGameContext from "../../../context/GameContext";
+import randomWords from "random-words";
 
-export default function TeamSelect({ players, joinTeam }) {
-  const { activePlayer } = useGameContext();
+export default function TeamSelect({ players, joinTeam, sendCards }) {
+  const { activePlayer, createCards } = useGameContext();
+
   function gameStart() {
-    console.log("game started");
-  }
-  function redSMFilter(player) {
-    return player.role === "spymaster" && player.team === "red";
-  }
-  function blueSMFilter(player) {
-    return player.role === "spymaster" && player.team === "blue";
+    let words = randomWords(16);
+    let cards = createCards(words);
+    sendCards(cards);
   }
   const hasRedSM = useMemo(() => {
-    let result = players.filter(redSMFilter);
+    let result = players.filter(
+      (player) => player.role === "spymaster" && player.team === "red"
+    );
     return result.length !== 0;
   }, [players]);
 
   const hasBlueSM = useMemo(() => {
-    let result = players.filter(blueSMFilter);
+    let result = players.filter(
+      (player) => player.role === "spymaster" && player.team === "blue"
+    );
     return result.length !== 0;
   }, [players]);
 
@@ -49,8 +51,13 @@ export default function TeamSelect({ players, joinTeam }) {
         </Stack>
       </div>
       {activePlayer.isHost && (
-        <Button variant="contained" onClick={() => gameStart()}>
-          Start game
+        <Button
+          variant="contained"
+          onClick={() => {
+            gameStart();
+          }}
+        >
+          Start Game
         </Button>
       )}
       {players && (
