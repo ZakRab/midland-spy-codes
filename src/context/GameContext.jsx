@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useMemo, useCallback } from "react";
+import { type } from "@testing-library/user-event/dist/type";
+import React, { createContext, useContext, useState, useCallback } from "react";
 
 export const GameContext = createContext(null);
 
@@ -18,31 +19,36 @@ export function GameProvider(props) {
   const [players, setPlayers] = useState([]);
   const [activeTeam, setActiveTeam] = useState(null);
   const [selected, setSelected] = useState(null);
-  const [isFaceUp, setIsFaceUp] = useState(false);
-  const [words,setWords] = useState([])
-  const [type, setType] = useState(null)
 
+  let types = [
+    "red",
+    "blue",
+    "red",
+    "bomb",
+    "red",
+    "red",
+    "blue",
+    "safe",
+    "red",
+    "safe",
+    "blue",
+    "blue",
+    "blue",
+    "blue",
+    "red",
+    "safe",
+  ];
 
-  const getWords = useMemo( ()=> {
-      let randomWords = require("random-words");
-      return setWords(randomWords(16));
-      
-  },[gameStatus])
-  console.log(words);
-
-  function addCards(words) {
-    let newCard = {}
-      words.map((w,idx)=>(
-          newCard = {
-            word: words[w],
-            type: type,
-            isFaceUp: isFaceUp,
-            selected: selected,
-            key: idx
-          }
-      )
-    )
-    return setCards((curr) => [...curr, newCard]);
+  function createCards(words) {
+    words.map((word) => {
+      let newCard = {
+        key: word,
+        word: word,
+        type: types.pop(),
+        isFaceUp: false,
+      };
+      setCards((curr) => [...curr, newCard]);
+    });
   }
 
   return (
@@ -58,8 +64,7 @@ export function GameProvider(props) {
         setPlayers,
         activeTeam,
         setActiveTeam,
-        words,
-        addCards
+        createCards,
       }}
     >
       {props.children}

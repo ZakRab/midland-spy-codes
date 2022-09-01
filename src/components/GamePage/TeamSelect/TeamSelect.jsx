@@ -1,13 +1,17 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import useGameContext from "../../../context/GameContext";
+import randomWords from "random-words";
 
 export default function TeamSelect({ players, joinTeam }) {
-  const { activePlayer, words, cards, addCards } = useGameContext();
+  const { activePlayer, cards, createCards } = useGameContext();
+  let words = randomWords(16);
+  console.log(words);
+
   function gameStart() {
-    
-    console.log("game started");
+    createCards(words);
+    console.log(cards);
   }
   const hasRedSM = useMemo(() => {
     let result = players.filter(
@@ -50,12 +54,8 @@ export default function TeamSelect({ players, joinTeam }) {
       {activePlayer.isHost && (
         <Button
           variant="contained"
-          onClick={(e) => {
-            e.preventDefault();
+          onClick={() => {
             gameStart();
-            addCards(words);
-            console.log("what is here?", cards);
-            console.log(words);
           }}
         >
           Start Game
