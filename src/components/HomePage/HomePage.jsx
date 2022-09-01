@@ -11,58 +11,66 @@ function HomePage() {
   const [lobby, setLobby] = useState("");
   const [name, setName] = useState("");
   const lobbyError = useMemo(() => lobby.length <= 4, [lobby]);
-  const nameError = useMemo(() => name.length == 0, [name]);
+  const nameError = useMemo(() => name.length === 0, [name]);
 
   return (
-    <Grid>
-      <Grid>
+    <Grid
+      textAlign="center"
+      container
+      direction="row"
+      justifyContent="center"
+      rowSpacing={2}
+      alignItems="center"
+    >
+      <Grid item xs={12}>
         <h1 className="">Welcome to Codename</h1>
-        <div>
-          <TextField
-            id="Name"
-            label="Name"
-            variant="outlined"
-            value={name}
-            error={nameError}
-            helperText="Must have name"
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <TextField
-            id="Lobby"
-            label="Lobby"
-            variant="outlined"
-            value={lobby}
-            error={lobbyError}
-            helperText="Must be 5 characters"
-            onChange={(e) => setLobby(e.target.value)}
-          />
-        </div>
-        <div>
-          <Button
-            variant="outlined"
-            disabled={nameError || lobbyError}
-            onClick={(e) => {
-              setActivePlayer({ name, isHost: false, team: null, role: null });
-              navigate(`/game/${lobby}`);
-            }}
-          >
-            Go to Lobby
-          </Button>
-          <Button
-            variant="outlined"
-            disabled={nameError || !(!nameError && lobbyError)}
-            onClick={(e) => {
-              let lobby = (Math.random() + 1).toString(36).substring(7);
-              setActivePlayer({ name, isHost: true, team: null, role: null });
-              navigate(`/game/${lobby}`);
-            }}
-          >
-            Create Lobby
-          </Button>
-        </div>
-        <footer>Created by 1&&0</footer>
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          id="Name"
+          label="Name"
+          variant="outlined"
+          value={name}
+          error={nameError}
+          helperText="Must have name"
+          onChange={(e) => setName(e.target.value)}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          id="Lobby"
+          label="Lobby"
+          variant="outlined"
+          value={lobby}
+          error={lobbyError}
+          helperText="Must be 5 characters"
+          onChange={(e) => setLobby(e.target.value)}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <Button
+          variant="outlined"
+          disabled={nameError || lobbyError}
+          onClick={(e) => {
+            setActivePlayer({ name, isHost: false, team: null, role: null });
+            navigate(`/game/${lobby}`);
+          }}
+        >
+          Go to Lobby
+        </Button>
+      </Grid>
+      <Grid item xs={12}>
+        <Button
+          variant="outlined"
+          disabled={nameError || !(!nameError && lobbyError)}
+          onClick={(e) => {
+            let lobby = (Math.random() + 1).toString(36).substring(7);
+            setActivePlayer({ name, isHost: true, team: null, role: null });
+            navigate(`/game/${lobby}`);
+          }}
+        >
+          Create Lobby
+        </Button>
       </Grid>
     </Grid>
   );

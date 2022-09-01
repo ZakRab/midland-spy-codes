@@ -54,7 +54,7 @@ function NavMenu() {
               textDecoration: "none",
             }}
           >
-            <img className="spy-icon" src={spyIcon} />
+            <img className="spy-icon" src={spyIcon} alt="spy-icon" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -121,7 +121,7 @@ function NavMenu() {
               textDecoration: "none",
             }}
           >
-            <img className="spy-icon" src={spyIcon} />
+            <img className="spy-icon" src={spyIcon} alt="spy-icon" />
           </Typography>
 
           {/* desktop links: */}
