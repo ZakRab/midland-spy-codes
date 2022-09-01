@@ -46,6 +46,7 @@ export function GameProvider(props) {
 
     shuffleArray(cards);
     setCards(cards);
+    return cards;
   }, []);
   const [activeTeam, setActiveTeam] = useState("blue");
   const [selectedCard, setSelectedCard] = useState({});

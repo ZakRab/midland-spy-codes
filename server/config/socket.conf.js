@@ -18,7 +18,7 @@ const socketConf = (io) => {
 
     socket.on("send cards", (cards) => {
       io.to(lobby).emit("send cards", cards);
-      console.log("are cards updating?");
+      console.log(cards);
     });
 
     socket.on("send selected card", (card) => {

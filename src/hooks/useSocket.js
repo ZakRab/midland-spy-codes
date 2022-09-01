@@ -59,6 +59,8 @@ export default function useSocket(lobby) {
     socketRef.current.on("send cards", (cards) => {
       if (!activePlayer.isHost) {
         setCards(cards);
+        setGameStatus("started");
+        console.log(cards);
       }
     });
 
@@ -107,6 +109,7 @@ export default function useSocket(lobby) {
   }
 
   function sendCards(cards) {
+    console.log(cards);
     socketRef.current.emit("send cards", cards);
   }
 

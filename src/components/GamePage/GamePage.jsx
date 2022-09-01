@@ -13,7 +13,7 @@ function GamePage() {
   return (
     <div>
       <h1>Game</h1>
-      <TeamSelect joinTeam={joinTeam} players={players} />
+      <TeamSelect joinTeam={joinTeam} sendCards={sendCards} players={players} />
       {gameStatus == "started" && <Clue></Clue>}
       {gameStatus == "started" && (
         <GameBoard sendSelectedCard={sendSelectedCard}></GameBoard>
