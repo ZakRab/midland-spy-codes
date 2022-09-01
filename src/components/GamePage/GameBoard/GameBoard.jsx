@@ -13,6 +13,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function GameBoard() {
+	const {cards} = useSocket()
    return (
 			<Box sx={{ flexGrow: 1 }}>
 				<Grid
