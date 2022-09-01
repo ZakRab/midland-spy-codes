@@ -22,10 +22,10 @@
   },
   {
     "name": "Donella Cooper",
-    "bio": "",
-    "photo": "",
-    "linkedIn": "",
-    "github": ""
+    "bio": "Hey Everybody! I have always had a burning desire to break into the tech field and after 26 years of being creative as hairstylist I decided to take the plunge and here I am... Enjoy!",
+    "photo": "./team-photos/donella.jpeg",
+    "linkedIn": "donella-cooper-456361160",
+    "github": "Donellawc"
   },
   {
     "name": "Ethan Haneklaus",
@@ -34,5 +34,11 @@
     "linkedIn": "ethan-haneklaus-0499a3126",
     "github": "ethanhaneklaus"
   },
-  { "name": "Zak Rab", "bio": "", "photo": "", "linkedIn": "", "github": "" }
+  { 
+  "name": "Zak Rab", 
+  "bio": "", 
+  "photo": "", 
+  "linkedIn": "", 
+  "github": ""
+ }
 ]
