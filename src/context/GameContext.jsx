@@ -16,7 +16,7 @@ export function GameProvider(props) {
   });
   const [gameStatus, setGameStatus] = useState(null);
   const [players, setPlayers] = useState([]);
-  const [activeTeam, setActiveTeam] = useState(null);
+  const [activeTeam, setActiveTeam] = useState(blue);
   return (
     <GameContext.Provider
       value={{

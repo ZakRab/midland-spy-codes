@@ -13,6 +13,9 @@ const socketConf = (io) => {
     socket.on("join team", ({ player, team, role }) => {
       io.to(lobby).emit("join team", { player, team, role });
     });
+    socket.on("send selected card"), (card) => {
+      io.to(lobby).emit("send selected card", (card));
+    };
   });
 };
 module.exports = socketConf;

@@ -3,7 +3,7 @@ import useGameContext from "../../src/context/GameContext";
 import { useEffect, useRef } from "react";
 
 export default function useSocket(lobby) {
-  const { activePlayer, setPlayers, players, setActivePlayer } =
+  const { activePlayer, setPlayers, players, setActivePlayer, activeTeam } =
     useGameContext();
   const socketRef = useRef;
   useEffect(() => {
@@ -47,7 +47,21 @@ export default function useSocket(lobby) {
         });
       }
     });
+
+    socketRef.current.on("send selected card", (card) => {
+      if (card.type === activeTeam) {
+        //  continue turn
+      } else if (card.type === "bomb") {
+        // end game throw pop up
+      } else {
+        endTurn()
+      }
+    });
+
   }, []);
+
+
+  return
 
   function joinTeam(player, team, role) {
     setActivePlayer((curr) => ({ ...curr, role, team }));
@@ -58,5 +72,13 @@ export default function useSocket(lobby) {
     });
   }
 
-  return { joinTeam };
+  function sendSelectedCard(card) {
+    socketRef.current.emit("send selected card", (card));
+  }
+
+  function endTurn() {
+    socketRef.current.emit("end turn")
+  }
+
+  return { joinTeam, sendSelectedCard };
 }
