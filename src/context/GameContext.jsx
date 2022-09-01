@@ -17,6 +17,7 @@ export function GameProvider(props) {
   const [gameStatus, setGameStatus] = useState(null);
   const [players, setPlayers] = useState([]);
   const [activeTeam, setActiveTeam] = useState(null);
+  const [clue, setClue] = useState(null);
   return (
     <GameContext.Provider
       value={{
@@ -30,6 +31,8 @@ export function GameProvider(props) {
         setPlayers,
         activeTeam,
         setActiveTeam,
+        clue,
+        setClue,
       }}
     >
       {props.children}

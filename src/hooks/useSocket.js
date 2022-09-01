@@ -1,9 +1,10 @@
 import { io } from "socket.io-client";
 import useGameContext from "../../src/context/GameContext";
 import { useEffect, useRef } from "react";
+import { SettingsCellRounded } from "@mui/icons-material";
 
 export default function useSocket(lobby) {
-  const { activePlayer, setPlayers, players, setActivePlayer } =
+  const { activePlayer, setPlayers, players, setActivePlayer, setClue } =
     useGameContext();
   const socketRef = useRef;
   useEffect(() => {
@@ -47,6 +48,13 @@ export default function useSocket(lobby) {
         });
       }
     });
+
+    socketRef.current.on("send-clue", ({ clue, activePlayer }) => {
+      if (activePlayer.role === "operative") {
+        console.log(clue);
+        setClue(clue);
+      }
+    });
   }, []);
 
   function joinTeam(player, team, role) {
@@ -58,5 +66,12 @@ export default function useSocket(lobby) {
     });
   }
 
-  return { joinTeam };
+  function sendClue(clue, activePlayer) {
+    socketRef.current.emit("send-clue", {
+      clue,
+      activePlayer,
+    });
+  }
+
+  return { joinTeam, sendClue };
 }
