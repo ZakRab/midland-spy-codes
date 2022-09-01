@@ -11,38 +11,43 @@ function HomePage() {
   const [lobby, setLobby] = useState("");
   const [name, setName] = useState("");
   const lobbyError = useMemo(() => lobby.length <= 4, [lobby]);
-  const nameError = useMemo(() => name.length == 0, [name]);
+  const nameError = useMemo(() => name.length === 0, [name]);
+
   return (
     <Grid
+      textAlign="center"
       container
-      spacing={0}
-      direction="column"
+      direction="row"
+      justifyContent="center"
+      rowSpacing={2}
       alignItems="center"
-      justify="center"
-      style={{ minHeight: "100vh" }}
     >
-      <Grid item xs={3}>
+      <Grid item xs={12}>
         <h1 className="">Welcome to Codename</h1>
-        <div>
-          <TextField
-            id="Name"
-            label="Name"
-            variant="outlined"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <div>Must have a name</div>
-        </div>
-        <div>
-          <TextField
-            id="Lobby"
-            label="Lobby"
-            variant="outlined"
-            value={lobby}
-            onChange={(e) => setLobby(e.target.value)}
-          />
-          <div>Must be 4 characters or click CREATE LOBBY</div>
-        </div>
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          id="Name"
+          label="Name"
+          variant="outlined"
+          value={name}
+          error={nameError}
+          helperText="Must have name"
+          onChange={(e) => setName(e.target.value)}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          id="Lobby"
+          label="Lobby"
+          variant="outlined"
+          value={lobby}
+          error={lobbyError}
+          helperText="Must be 5 characters"
+          onChange={(e) => setLobby(e.target.value)}
+        />
+      </Grid>
+      <Grid item xs={12}>
         <Button
           variant="outlined"
           disabled={nameError || lobbyError}
@@ -53,6 +58,8 @@ function HomePage() {
         >
           Go to Lobby
         </Button>
+      </Grid>
+      <Grid item xs={12}>
         <Button
           variant="outlined"
           disabled={nameError || !(!nameError && lobbyError)}
@@ -64,7 +71,6 @@ function HomePage() {
         >
           Create Lobby
         </Button>
-        <footer>Created by 1&&0</footer>
       </Grid>
     </Grid>
   );

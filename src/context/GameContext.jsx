@@ -17,39 +17,38 @@ export function GameProvider(props) {
   });
   const [gameStatus, setGameStatus] = useState(null);
   const [players, setPlayers] = useState([]);
-  const [activeTeam, setActiveTeam] = useState(null);
-  const [selected, setSelected] = useState(null);
 
-  let types = [
-    "red",
-    "blue",
-    "red",
-    "bomb",
-    "red",
-    "red",
-    "blue",
-    "safe",
-    "red",
-    "safe",
-    "blue",
-    "blue",
-    "blue",
-    "blue",
-    "red",
-    "safe",
-  ];
+  const createCards = useCallback((words) => {
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
 
-  function createCards(words) {
-    words.map((word) => {
-      let newCard = {
-        key: word,
-        word: word,
-        type: types.pop(),
+    let cards = words.map((word, idx) => {
+      let type;
+      if (idx <= 5) {
+        type = "red";
+      } else if (idx <= 11) {
+        type = "blue";
+      } else if (idx === 12) {
+        type = "bomb";
+      } else {
+        type = "neutral";
+      }
+      return {
+        word,
+        type,
         isFaceUp: false,
       };
-      setCards((curr) => [...curr, newCard]);
     });
-  }
+
+    shuffleArray(cards);
+    setCards(cards);
+  }, []);
+  const [activeTeam, setActiveTeam] = useState("blue");
+  const [selectedCard, setSelectedCard] = useState({});
 
   return (
     <GameContext.Provider
@@ -65,6 +64,8 @@ export function GameProvider(props) {
         activeTeam,
         setActiveTeam,
         createCards,
+        setSelectedCard,
+        selectedCard,
       }}
     >
       {props.children}
