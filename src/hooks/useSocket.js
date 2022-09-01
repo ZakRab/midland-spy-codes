@@ -111,6 +111,6 @@ export default function useSocket(lobby) {
   function endGame() {
     socketRef.current.emit("end game");
   }
-
+  // delete me
   return { joinTeam, sendSelectedCard, endTurn };
 }
