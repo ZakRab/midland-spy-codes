@@ -23,9 +23,9 @@
   {
     "name": "Donella Cooper",
     "bio": "",
-    "photo": "",
-    "linkedIn": "",
-    "github": ""
+    "photo": "./team-photos/donella.jpeg",
+    "linkedIn": "donella-cooper-456361160",
+    "github": "Donellawc"
   },
   {
     "name": "Ethan Haneklaus",
@@ -34,5 +34,11 @@
     "linkedIn": "ethan-haneklaus-0499a3126",
     "github": "ethanhaneklaus"
   },
-  { "name": "Zak Rab", "bio": "", "photo": "", "linkedIn": "", "github": "" }
+  { 
+  "name": "Zak Rab", 
+  "bio": "", 
+  "photo": "", 
+  "linkedIn": "", 
+  "github": ""
+ }
 ]
