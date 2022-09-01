@@ -6,12 +6,11 @@ import randomWords from "random-words";
 
 export default function TeamSelect({ players, joinTeam }) {
   const { activePlayer, cards, createCards } = useGameContext();
-  let words = randomWords(16);
   console.log(words);
 
   function gameStart() {
+    let words = randomWords(16);
     createCards(words);
-    console.log(cards);
   }
   const hasRedSM = useMemo(() => {
     let result = players.filter(
