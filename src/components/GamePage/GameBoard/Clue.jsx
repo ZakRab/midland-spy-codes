@@ -22,7 +22,7 @@ function Clue({ sendClue }) {
       <Button variant="contained" onClick={() => sendClue(clue, activePlayer)}>
         Send Clue
       </Button>
-      {activePlayer.role === "operative" && <p>{clue}</p>}
+      {activePlayer.role === "operative" && <h3>{clue}</h3>}
     </div>
   );
 }
