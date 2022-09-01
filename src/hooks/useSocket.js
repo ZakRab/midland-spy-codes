@@ -3,8 +3,17 @@ import useGameContext from "../../src/context/GameContext";
 import { useEffect, useRef } from "react";
 
 export default function useSocket(lobby) {
-  const { activePlayer, setPlayers, players, setActivePlayer, activeTeam } =
-    useGameContext();
+  const {
+    activePlayer,
+    setPlayers,
+    players,
+    setActivePlayer,
+    activeTeam,
+    cards,
+    setCards,
+    setActiveTeam,
+    setGameStatus,
+  } = useGameContext();
   const socketRef = useRef;
   useEffect(() => {
     socketRef.current = io("http://localhost:8080", {
@@ -47,21 +56,40 @@ export default function useSocket(lobby) {
         });
       }
     });
+    socketRef.current.on("end turn", () =>
+      setActiveTeam((curr) => {
+        if (curr === "blue") {
+          return "red";
+        } else {
+          return "blue";
+        }
+      })
+    );
+    socketRef.current.on("end game", () => setGameStatus("game over"));
 
     socketRef.current.on("send selected card", (card) => {
       if (card.type === activeTeam) {
-        //  continue turn
+        setCards((curr) =>
+          curr.map((c) => {
+            if (c === card) {
+              c.isFaceUp = true;
+            }
+          })
+        );
       } else if (card.type === "bomb") {
-        // end game throw pop up
+        endGame();
       } else {
-        endTurn()
+        setCards((curr) =>
+          curr.map((c) => {
+            if (c === card) {
+              c.isFaceUp = true;
+            }
+          })
+        );
+        endTurn();
       }
     });
-
   }, []);
-
-
-  return
 
   function joinTeam(player, team, role) {
     setActivePlayer((curr) => ({ ...curr, role, team }));
@@ -73,12 +101,16 @@ export default function useSocket(lobby) {
   }
 
   function sendSelectedCard(card) {
-    socketRef.current.emit("send selected card", (card));
+    socketRef.current.emit("send selected card", card);
   }
 
   function endTurn() {
-    socketRef.current.emit("end turn")
+    socketRef.current.emit("end turn");
   }
 
-  return { joinTeam, sendSelectedCard };
+  function endGame() {
+    socketRef.current.emit("end game");
+  }
+
+  return { joinTeam, sendSelectedCard, endTurn };
 }

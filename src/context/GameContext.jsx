@@ -16,7 +16,9 @@ export function GameProvider(props) {
   });
   const [gameStatus, setGameStatus] = useState(null);
   const [players, setPlayers] = useState([]);
-  const [activeTeam, setActiveTeam] = useState(blue);
+  const [activeTeam, setActiveTeam] = useState("blue");
+  const [selectedCard, setSelectedCard] = useState({});
+
   return (
     <GameContext.Provider
       value={{
@@ -30,6 +32,8 @@ export function GameProvider(props) {
         setPlayers,
         activeTeam,
         setActiveTeam,
+        setSelectedCard,
+        selectedCard,
       }}
     >
       {props.children}
