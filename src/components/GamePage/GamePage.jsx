@@ -8,14 +8,18 @@ import useSocket from "../../hooks/useSocket";
 
 function GamePage() {
   const { lobby } = useParams();
-  const { joinTeam, sendClue } = useSocket(lobby);
+
+  const { joinTeam, sendClue, sendCards, sendSelectedCard } = useSocket(lobby);
+
   const { gameStatus, players } = useGameContext();
   return (
     <div>
       <h1>Game</h1>
-      <TeamSelect joinTeam={joinTeam} players={players} />
+      <TeamSelect joinTeam={joinTeam} sendCards={sendCards} players={players} />
       {gameStatus == "started" && <Clue sendClue={sendClue}></Clue>}
-      {gameStatus == "started" && <GameBoard></GameBoard>}
+      {gameStatus == "started" && (
+        <GameBoard sendSelectedCard={sendSelectedCard}></GameBoard>
+      )}
     </div>
   );
 }

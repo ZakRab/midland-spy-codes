@@ -1,11 +1,21 @@
 import { io } from "socket.io-client";
 import useGameContext from "../../src/context/GameContext";
 import { useEffect, useRef } from "react";
-import { SettingsCellRounded } from "@mui/icons-material";
 
 export default function useSocket(lobby) {
-  const { activePlayer, setPlayers, players, setActivePlayer, setClue } =
-    useGameContext();
+  const {
+    activePlayer,
+    setPlayers,
+    players,
+    setActivePlayer,
+    activeTeam,
+    setClue,
+    cards,
+    setCards,
+    setActiveTeam,
+    setGameStatus,
+  } = useGameContext();
+
   const socketRef = useRef;
   useEffect(() => {
     socketRef.current = io("http://localhost:8080", {
@@ -25,6 +35,7 @@ export default function useSocket(lobby) {
         });
       }
     });
+
     socketRef.current.on("update players", (newPlayers) => {
       if (!activePlayer.isHost) {
         setPlayers(newPlayers);
@@ -49,10 +60,52 @@ export default function useSocket(lobby) {
       }
     });
 
-    socketRef.current.on("send-clue", ({ clue, activePlayer }) => {
+    socketRef.current.on("send clue", ({ clue, activePlayer }) => {
       if (activePlayer.role === "operative") {
         console.log(clue);
         setClue(clue);
+      }
+    });
+
+    socketRef.current.on("send cards", (cards) => {
+      if (!activePlayer.isHost) {
+        setCards(cards);
+        setGameStatus("started");
+        console.log(cards);
+      }
+    });
+
+    socketRef.current.on("end turn", () =>
+      setActiveTeam((curr) => {
+        if (curr === "blue") {
+          return "red";
+        } else {
+          return "blue";
+        }
+      })
+    );
+    socketRef.current.on("end game", () => setGameStatus("game over"));
+
+    socketRef.current.on("send selected card", (card) => {
+      if (card.type === activeTeam) {
+        setCards((curr) =>
+          curr.map((c) => {
+            if (c === card) {
+              c.isFaceUp = true;
+            }
+          })
+        );
+      } else if (card.type === "bomb") {
+        endGame();
+      } else {
+        setCards((curr) =>
+          curr.map((c) => {
+            if (c === card) {
+              c.isFaceUp = true;
+            }
+          })
+        );
+        endTurn();
       }
     });
   }, []);
@@ -67,11 +120,28 @@ export default function useSocket(lobby) {
   }
 
   function sendClue(clue, activePlayer) {
-    socketRef.current.emit("send-clue", {
+    socketRef.current.emit("send clue", {
       clue,
       activePlayer,
     });
   }
 
-  return { joinTeam, sendClue };
+  function sendCards(cards) {
+    console.log(cards);
+    socketRef.current.emit("send cards", cards);
+  }
+
+  function sendSelectedCard(card) {
+    socketRef.current.emit("send selected card", card);
+  }
+
+  function endTurn() {
+    socketRef.current.emit("end turn");
+  }
+
+  function endGame() {
+    socketRef.current.emit("end game");
+  }
+  // delete me
+  return { joinTeam, sendSelectedCard, sendCards, endGame, endTurn, sendClue };
 }
