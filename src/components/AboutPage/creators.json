@@ -1,10 +1,10 @@
 [
   {
     "name": "Aaron Locatis",
-    "bio": "",
-    "photo": "",
-    "linkedIn": "",
-    "github": ""
+    "bio": "I got into computer coding because I drastically wanted a career change. I was inspired by my brother, who had done this exact same scenario 5 years prior. He has had great success in his career and is now a senior developer here in Omaha. I would like to eventually fit into a great company where I can contribute to a positive working environment and be a valueable asset with good work/life balance.",
+    "photo": "./team-photos/aaron.jpg",
+    "linkedIn": "aaron-locatis-a78b8a199",
+    "github": "AaronLocatis"
   },
   {
     "name": "Aidee Hernandez",
@@ -34,11 +34,11 @@
     "linkedIn": "ethan-haneklaus-0499a3126",
     "github": "ethanhaneklaus"
   },
-  { 
-  "name": "Zak Rab", 
-  "bio": "", 
-  "photo": "", 
-  "linkedIn": "", 
-  "github": ""
- }
+  {
+    "name": "Zak Rab",
+    "bio": "",
+    "photo": "",
+    "linkedIn": "",
+    "github": ""
+  }
 ]
