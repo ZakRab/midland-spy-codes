@@ -16,8 +16,8 @@ const socketConf = (io) => {
       io.to(lobby).emit("join team", { player, team, role });
     });
 
-    socket.on("send cards", ({ cards }) => {
-      io.to(lobby).emit("send cards", { cards });
+    socket.on("send cards", (cards) => {
+      io.to(lobby).emit("send cards", cards);
       console.log("are cards updating?");
     });
 

@@ -5,11 +5,11 @@ import useGameContext from "../../../context/GameContext";
 import randomWords from "random-words";
 
 export default function TeamSelect({ players, joinTeam, sendCards }) {
-  const { activePlayer, cards, createCards } = useGameContext();
+  const { activePlayer, createCards } = useGameContext();
 
   function gameStart() {
     let words = randomWords(16);
-    createCards(words);
+    let cards = createCards(words);
     sendCards(cards);
   }
   const hasRedSM = useMemo(() => {
