@@ -3,8 +3,17 @@ import useGameContext from "../../src/context/GameContext";
 import { useEffect, useRef } from "react";
 
 export default function useSocket(lobby) {
-  const { activePlayer, setPlayers, players, setActivePlayer } =
-    useGameContext();
+  const {
+    activePlayer,
+    setPlayers,
+    players,
+    setActivePlayer,
+    activeTeam,
+    cards,
+    setCards,
+    setActiveTeam,
+    setGameStatus,
+  } = useGameContext();
   const socketRef = useRef;
   useEffect(() => {
     socketRef.current = io("http://localhost:8080", {
@@ -47,6 +56,39 @@ export default function useSocket(lobby) {
         });
       }
     });
+    socketRef.current.on("end turn", () =>
+      setActiveTeam((curr) => {
+        if (curr === "blue") {
+          return "red";
+        } else {
+          return "blue";
+        }
+      })
+    );
+    socketRef.current.on("end game", () => setGameStatus("game over"));
+
+    socketRef.current.on("send selected card", (card) => {
+      if (card.type === activeTeam) {
+        setCards((curr) =>
+          curr.map((c) => {
+            if (c === card) {
+              c.isFaceUp = true;
+            }
+          })
+        );
+      } else if (card.type === "bomb") {
+        endGame();
+      } else {
+        setCards((curr) =>
+          curr.map((c) => {
+            if (c === card) {
+              c.isFaceUp = true;
+            }
+          })
+        );
+        endTurn();
+      }
+    });
   }, []);
 
   function joinTeam(player, team, role) {
@@ -58,5 +100,17 @@ export default function useSocket(lobby) {
     });
   }
 
-  return { joinTeam };
+  function sendSelectedCard(card) {
+    socketRef.current.emit("send selected card", card);
+  }
+
+  function endTurn() {
+    socketRef.current.emit("end turn");
+  }
+
+  function endGame() {
+    socketRef.current.emit("end game");
+  }
+  // delete me
+  return { joinTeam, sendSelectedCard, endTurn };
 }
