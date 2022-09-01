@@ -4,13 +4,13 @@ import Stack from "@mui/material/Stack";
 import useGameContext from "../../../context/GameContext";
 import randomWords from "random-words";
 
-export default function TeamSelect({ players, joinTeam }) {
+export default function TeamSelect({ players, joinTeam, sendCards }) {
   const { activePlayer, cards, createCards } = useGameContext();
-  console.log(words);
 
   function gameStart() {
     let words = randomWords(16);
     createCards(words);
+    sendCards(cards);
   }
   const hasRedSM = useMemo(() => {
     let result = players.filter(

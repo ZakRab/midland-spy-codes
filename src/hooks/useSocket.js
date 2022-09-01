@@ -56,7 +56,7 @@ export default function useSocket(lobby) {
         });
       }
     });
-    socketRef.current.on("send cards", ({ cards }) => {
+    socketRef.current.on("send cards", (cards) => {
       if (activePlayer.isHost) {
         setCards((curr) => {
           let cards = curr.map((c) => {
@@ -113,8 +113,7 @@ export default function useSocket(lobby) {
     });
   }
 
-  function sendCards(card) {
-    setCards((curr) => ({ ...curr, card }));
+  function sendCards(cards) {
     socketRef.current.emit("send cards", { card });
   }
 
