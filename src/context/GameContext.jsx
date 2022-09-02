@@ -18,6 +18,8 @@ export function GameProvider(props) {
   const [gameStatus, setGameStatus] = useState(null);
   const [players, setPlayers] = useState([]);
 
+  const [clue, setClue] = useState("");
+
   const createCards = useCallback((words) => {
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -48,9 +50,8 @@ export function GameProvider(props) {
     setCards(cards);
     return cards;
   }, []);
-  const [activeTeam, setActiveTeam] = useState("blue");
+  const [activeTeam, setActiveTeam] = useState("red");
   const [selectedCard, setSelectedCard] = useState({});
-
   return (
     <GameContext.Provider
       value={{
@@ -64,6 +65,10 @@ export function GameProvider(props) {
         setPlayers,
         activeTeam,
         setActiveTeam,
+
+        clue,
+        setClue,
+
         createCards,
         setSelectedCard,
         selectedCard,

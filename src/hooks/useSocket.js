@@ -9,11 +9,13 @@ export default function useSocket(lobby) {
     players,
     setActivePlayer,
     activeTeam,
+    setClue,
     cards,
     setCards,
     setActiveTeam,
     setGameStatus,
   } = useGameContext();
+
   const socketRef = useRef;
   useEffect(() => {
     socketRef.current = io("http://localhost:8080", {
@@ -33,6 +35,7 @@ export default function useSocket(lobby) {
         });
       }
     });
+
     socketRef.current.on("update players", (newPlayers) => {
       if (!activePlayer.isHost) {
         setPlayers(newPlayers);
@@ -56,6 +59,12 @@ export default function useSocket(lobby) {
         });
       }
     });
+
+    socketRef.current.on("send clue", (clue) => {
+      console.log(clue);
+      setClue(clue);
+    });
+
     socketRef.current.on("send cards", (cards) => {
       if (!activePlayer.isHost) {
         setCards(cards);
@@ -108,6 +117,10 @@ export default function useSocket(lobby) {
     });
   }
 
+  function sendClue(clue) {
+    console.log(clue);
+    socketRef.current.emit("send clue", clue);
+  }
   function sendCards(cards) {
     console.log(cards);
     socketRef.current.emit("send cards", cards);
@@ -125,5 +138,5 @@ export default function useSocket(lobby) {
     socketRef.current.emit("end game");
   }
   // delete me
-  return { joinTeam, sendSelectedCard, sendCards, endGame, endTurn };
+  return { joinTeam, sendSelectedCard, sendCards, endGame, endTurn, sendClue };
 }
