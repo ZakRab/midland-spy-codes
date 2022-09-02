@@ -12,6 +12,10 @@ a:hover {
 
 body {
   background-color: rgba(213, 64, 32, 1);
+  background-image: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-attachment: fixed;
 }
 
 .picture1 {
