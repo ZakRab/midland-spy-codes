@@ -98,9 +98,10 @@ function HomePage() {
           </Button>
         </Grid>
       </Grid>
-      {/* <div className="picture1">
+      <div className="picture1">
+        //{" "}
         <img src="https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png"></img>
-      </div> */}
+      </div>
       {/* <div>
         <img
           // style="float: right"

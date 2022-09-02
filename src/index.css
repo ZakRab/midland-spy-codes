@@ -11,14 +11,20 @@ a:hover {
 }
 
 body {
-  background-color: rgba(213, 64, 32, 1);
-  background-image: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png");
-  background-repeat: no-repeat;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+
+  /* background-image: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png"); */
+  /* background-repeat: no-repeat;
   background-position: right;
-  background-attachment: fixed;
+  background-attachment: fixed; */
 }
 
 .picture1 {
-  background-position: bottom right;
-  background-attachment: fixed;
+  position: bottom right;
 }

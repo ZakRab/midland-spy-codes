@@ -14,7 +14,9 @@ function GamePage() {
   const { gameStatus, players } = useGameContext();
   return (
     <div>
-      <h1>Game</h1>
+      <div className="">
+        <img src="https://czechgames.com/for-press/codenames/codenames-13.png"></img>
+      </div>
       <TeamSelect joinTeam={joinTeam} sendCards={sendCards} players={players} />
       {gameStatus == "started" && <Clue sendClue={sendClue}></Clue>}
       {gameStatus == "started" && (
