@@ -5,9 +5,11 @@ import useGameContext from "../../../context/GameContext";
 import randomWords from "random-words";
 
 export default function TeamSelect({ players, joinTeam, sendCards }) {
-  const { activePlayer, createCards } = useGameContext();
+  const { activePlayer, createCards, setGameStatus, setActivePlayer } =
+    useGameContext();
 
   function gameStart() {
+    setGameStatus("started");
     let words = randomWords(16);
     let cards = createCards(words);
     sendCards(cards);
@@ -33,6 +35,12 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
           <Button
             onClick={() => {
               joinTeam(activePlayer, "red", "operative");
+              setActivePlayer({
+                name: activePlayer.name,
+                isHost: activePlayer.isHost,
+                role: "operative",
+                team: "red",
+              });
             }}
             variant="outlined"
             sx={{ color: "black", backgroundColor: "red" }}
@@ -42,6 +50,12 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
           <Button
             onClick={() => {
               joinTeam(activePlayer, "blue", "operative");
+              setActivePlayer({
+                name: activePlayer.name,
+                isHost: activePlayer.isHost,
+                role: "operative",
+                team: "blue",
+              });
             }}
             variant="outlined"
             sx={{ color: "black", backgroundColor: "blue" }}
@@ -73,6 +87,12 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
             disabled={hasRedSM}
             onClick={() => {
               joinTeam(activePlayer, "red", "spymaster");
+              setActivePlayer({
+                name: activePlayer.name,
+                isHost: activePlayer.isHost,
+                role: "spymaster",
+                team: "red",
+              });
             }}
             variant="outlined"
             sx={{ color: "black", backgroundColor: "red" }}
@@ -83,6 +103,13 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
             disabled={hasBlueSM}
             onClick={() => {
               joinTeam(activePlayer, "blue", "spymaster");
+              setActivePlayer({
+                name: activePlayer.name,
+                isHost: activePlayer.isHost,
+                role: "spymaster",
+                team: "blue",
+              });
+
               console.log(players);
             }}
             variant="outlined"

@@ -60,11 +60,9 @@ export default function useSocket(lobby) {
       }
     });
 
-    socketRef.current.on("send clue", ({ clue, activePlayer }) => {
-      if (activePlayer.role === "operative") {
-        console.log(clue);
-        setClue(clue);
-      }
+    socketRef.current.on("send clue", (clue) => {
+      console.log(clue);
+      setClue(clue);
     });
 
     socketRef.current.on("send cards", (cards) => {
@@ -119,13 +117,10 @@ export default function useSocket(lobby) {
     });
   }
 
-  function sendClue(clue, activePlayer) {
-    socketRef.current.emit("send clue", {
-      clue,
-      activePlayer,
-    });
+  function sendClue(clue) {
+    console.log(clue);
+    socketRef.current.emit("send clue", clue);
   }
-
   function sendCards(cards) {
     console.log(cards);
     socketRef.current.emit("send cards", cards);

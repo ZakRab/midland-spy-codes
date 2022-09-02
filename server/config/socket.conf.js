@@ -1,6 +1,5 @@
 const socketConf = (io) => {
   io.on("connection", (socket) => {
-    console.log("connected");
     const { name, lobby } = socket.handshake.query;
     let { isHost } = socket.handshake.query;
     isHost = isHost === "true";
@@ -8,7 +7,6 @@ const socketConf = (io) => {
     io.to(lobby).emit("user connect", { name, isHost });
 
     socket.on("update players", (players) => {
-      console.log("updating players");
       io.to(lobby).emit("update players", players);
     });
 
@@ -16,13 +14,13 @@ const socketConf = (io) => {
       io.to(lobby).emit("join team", { player, team, role });
     });
 
-    socket.on("send clue", (clue, activePlayer) => {
-      io.to(lobby).emit("send clue", { clue, activePlayer });
+    socket.on("send clue", (clue) => {
+      console.log(clue);
+      io.to(lobby).emit("send clue", clue);
     });
 
     socket.on("send cards", (cards) => {
       io.to(lobby).emit("send cards", cards);
-      console.log(cards);
     });
 
     socket.on("send selected card", (card) => {
