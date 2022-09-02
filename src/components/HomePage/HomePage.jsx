@@ -11,7 +11,10 @@ function HomePage() {
   const [lobby, setLobby] = useState("");
   const [name, setName] = useState("");
   const lobbyError = useMemo(() => lobby.length <= 4, [lobby]);
-  const nameError = useMemo(() => name.length === 0, [name]);
+  const nameError = useMemo(
+    () => name.length === 0 || name.length > 10,
+    [name]
+  );
 
   return (
     <Grid
@@ -32,7 +35,7 @@ function HomePage() {
           variant="outlined"
           value={name}
           error={nameError}
-          helperText="Must have name"
+          helperText="Must be less than 10 characters"
           onChange={(e) => setName(e.target.value)}
         />
       </Grid>
