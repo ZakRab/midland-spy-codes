@@ -40,27 +40,39 @@ function GamePage() {
         justifyContent="space-evenly"
         alignItems="center"
       >
-        <Grid item xs={2} alignSelf="flex-start">
-          <TeamDisplay team="Red" players={redTeam} />
-        </Grid>
-        <Grid item xs={8}>
-          {gameStatus !== "started" && (
+        {gameStatus !== "started" && (
+          <Grid item xs={12} md={8} order={{ xs: 1, md: 2 }}>
             <TeamSelect
               joinTeam={joinTeam}
               sendCards={sendCards}
               players={players}
             />
-          )}
-          {gameStatus == "started" && (
-            <>
-              <GameBoard sendSelectedCard={sendSelectedCard} />
-              <Clue sendClue={sendClue} />
-            </>
-          )}
+          </Grid>
+        )}
+        <Grid
+          item
+          xs={6}
+          md={2}
+          order={{ xs: 2, md: 1 }}
+          alignSelf="flex-start"
+        >
+          <TeamDisplay team="Red" players={redTeam} />
         </Grid>
-        <Grid item xs={2} alignSelf="flex-start">
+        <Grid
+          item
+          xs={6}
+          md={2}
+          alignSelf="flex-start"
+          order={{ xs: 3, md: 3 }}
+        >
           <TeamDisplay team="Blue" players={blueTeam} />
         </Grid>
+        {gameStatus == "started" && (
+          <Grid item xs={12} md={8} order={{ xs: 1, md: 2 }}>
+            <GameBoard sendSelectedCard={sendSelectedCard} />
+            <Clue sendClue={sendClue} />
+          </Grid>
+        )}
       </Grid>
     </div>
   );
