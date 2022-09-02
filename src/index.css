@@ -9,3 +9,12 @@ a:hover {
   height: 50px;
   width: 50px;
 }
+
+body {
+  background-color: rgba(213, 64, 32, 1);
+}
+
+.picture1 {
+  background-position: bottom right;
+  background-attachment: fixed;
+}
