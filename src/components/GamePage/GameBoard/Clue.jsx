@@ -8,7 +8,7 @@ function Clue({ sendClue }) {
   const { activePlayer, setClue, clue, activeTeam } = useGameContext();
   const [hasClicked, setHasClicked] = useState(false);
   return (
-    <div>
+    <div style={{ margin: "5px" }}>
       <div>
         {activePlayer.role === "spymaster" && (
           <Grid mt={1} container justifyContent="space-between" spacing={1}>
