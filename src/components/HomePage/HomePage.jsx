@@ -134,7 +134,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import useGameContext from "../../context/GameContext";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -148,6 +148,16 @@ function HomePage() {
   );
 
   return (
+    // <Box
+    //   component="img"
+    //   sx={{
+    //     height: 250,
+    //     width: 250,
+    //     backgroundRepeat: "no-repeat",
+    //     backgroundPosition: "right",
+    //   }}
+    //   src="https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png"
+    // >
     <Grid
       textAlign="center"
       container
@@ -209,6 +219,7 @@ function HomePage() {
         </Button>
       </Grid>
     </Grid>
+    // </Box>
   );
 }
 

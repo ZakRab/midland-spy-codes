@@ -31,8 +31,9 @@ body {
   top: 10%;
 }
 
-/* .homepage-wrapper {
+.homepage-wrapper {
   background-image: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png");
   background-repeat: no-repeat;
-  background-position: 100% 10%;
-} */
+  background-position: 100% 30%;
+  background-size: 400px 500px;
+}
