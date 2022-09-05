@@ -11,13 +11,17 @@ a:hover {
 }
 
 body {
+  /* background-image: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png");
+  background-position: 100% 5%;
+  background-repeat: no-repeat; */
   background: rgb(2, 0, 36);
   color: white;
+  background: rgb(2, 0, 36);
   background: linear-gradient(
     90deg,
     rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
+    rgba(228, 8, 8, 0.6993172268907564) 31%,
+    rgba(1, 28, 246, 1) 100%
   );
 
   /* background-image: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png"); */
@@ -31,9 +35,20 @@ body {
   top: 10%;
 }
 
-.homepage-wrapper {
+/* .homepage-wrapper {
   background-image: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png");
   background-repeat: no-repeat;
+  background-position: 50% 30%;
+  background-size: 200px 200px;
+} */
+
+.full-screen {
+  position: absolute;
+  width: 100%;
+  height: auto;
   background-position: 100% 30%;
-  background-size: 400px 500px;
+}
+
+.bg-home {
+  background-image: "https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png";
 }
