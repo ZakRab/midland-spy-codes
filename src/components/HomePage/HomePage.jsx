@@ -6,15 +6,16 @@ import useGameContext from "../../context/GameContext";
 import { Grid, Typography } from "@mui/material";
 
 function HomePage() {
-  const navigate = useNavigate();
-  const { setActivePlayer } = useGameContext();
-  const [lobby, setLobby] = useState("");
-  const [name, setName] = useState("");
-  const lobbyError = useMemo(() => lobby.length <= 4, [lobby]);
-  const nameError = useMemo(
-    () => name.length === 0 || name.length > 10,
-    [name]
-  );
+	const navigate = useNavigate();
+	const { setActivePlayer } = useGameContext();
+	const [lobby, setLobby] = useState("");
+	const [name, setName] = useState("");
+	const lobbyError = useMemo(() => lobby.length <= 4, [lobby]);
+	const nameError = useMemo(
+		() => name.length === 0 || name.length > 10,
+		[name],
+	);
+
 
   return (
     <div>
@@ -117,6 +118,7 @@ function HomePage() {
       </div>
     </div>
   );
+
 }
 
 export default HomePage;
