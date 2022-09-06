@@ -37,44 +37,21 @@ function GamePage() {
     [players]
   );
   useEffect(() => {
-    let blueCards = cards.filter((card) => {
-      return card.type === "blue";
-    });
-    let redCards = cards.filter((card) => {
-      return card.type === "red";
-    });
-
-    let blueFaceUps = [];
-    let redFaceUps = [];
-
-    blueCards.map((bcard) => {
-      if (bcard.isFaceUp) {
-        blueFaceUps.push(true);
-      } else {
-        blueFaceUps.push(false);
-      }
-    });
-    redCards.map((rcard) => {
-      if (rcard.isFaceUp) {
-        redFaceUps.push(true);
-      } else {
-        redFaceUps.push(false);
-      }
-    });
-
-    function allAreEqual(arr) {
-      const result = arr.every((element) => {
-        if (element === true) {
-          return true;
+    let faceUpByColor = cards.reduce(
+      (acc, curr) => {
+        if (curr.isFaceUp) {
+          acc[curr.type]++;
         }
-      });
-
-      return result;
+        return acc;
+      },
+      { blue: 0, red: 0, bomb: 0 }
+    );
+    if (faceUpByColor.blue === 6) {
+      endGame("blue");
+    } else if (faceUpByColor.red === 6) {
+      endGame("red");
     }
-    setWinningTeam(null);
-    allAreEqual(blueFaceUps) && endGame("blue");
-    allAreEqual(redFaceUps) && endGame("red");
-  }, [cards && activeTeam]);
+  }, [cards, activeTeam]);
 
   return (
     <div>
