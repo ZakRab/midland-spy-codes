@@ -61,10 +61,11 @@ body,
 .image::before {
   content: "";
   background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(228, 8, 8, 0.6993172268907564) 31%,
-    rgba(1, 28, 246, 1) 100%
+    27deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 0, 0, 1) 31%,
+    rgba(37, 15, 208, 1) 62%,
+    rgba(0, 0, 0, 1) 100%
   );
   position: absolute;
   top: 0px;
