@@ -23,9 +23,9 @@ const App = () => {
         <Route exact path="/home" element={<HomePage />}></Route>
         <Route exact path="*" element={<Navigate to="/home" />} />
       </Routes>
-      <Typography mt={2} variant="h6" align={"center"}>
+      {/* <Typography mt={2} variant="h6" align={"center"}>
         Created by 1&&0
-      </Typography>
+      </Typography> */}
     </Router>
   );
 };
