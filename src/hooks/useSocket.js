@@ -85,12 +85,14 @@ export default function useSocket(lobby) {
     socketRef.current.on("end game", () => setGameStatus("game over"));
 
     socketRef.current.on("send selected card", (card) => {
+      console.log(card);
       if (card.type === activeTeam) {
         setCards((curr) =>
           curr.map((c) => {
-            if (c === card) {
+            if (c.word === card.word) {
               c.isFaceUp = true;
             }
+            return c;
           })
         );
       } else if (card.type === "bomb") {
@@ -98,9 +100,10 @@ export default function useSocket(lobby) {
       } else {
         setCards((curr) =>
           curr.map((c) => {
-            if (c === card) {
+            if (c.word === card.word) {
               c.isFaceUp = true;
             }
+            return c;
           })
         );
         endTurn();
