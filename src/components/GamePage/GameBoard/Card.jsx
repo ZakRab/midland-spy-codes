@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useGameContext from "../../../context/GameContext";
 
 function Card({ card }) {
-  const { activePlayer, setSelectedCard } = useGameContext();
+  const { activePlayer, setSelectedCard, selectedCard } = useGameContext();
 
   return (
     <div onClick={() => setSelectedCard(card)}>
@@ -14,6 +14,7 @@ function Card({ card }) {
       {activePlayer.role === "operative" && (
         <div>{!card.isFaceUp && <p>{card.word}</p>}</div>
       )}
+      {selectedCard.word}
     </div>
   );
 }

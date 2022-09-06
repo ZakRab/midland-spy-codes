@@ -27,7 +27,7 @@ function GameBoard({ sendSelectedCard }) {
       >
         {cards.map((card, index) => (
           <Grid flexGrow={1} item xs={2} sm={3} md={3} key={index}>
-            <Item>
+            <Item onClick={() => setSelectedCard(card)}>
               <Card card={card}></Card>
             </Item>
           </Grid>
