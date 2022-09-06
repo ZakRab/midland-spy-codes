@@ -7,15 +7,23 @@ import { useParams } from "react-router-dom";
 import useSocket from "../../hooks/useSocket";
 import { Grid, Typography, Button } from "@mui/material";
 import TeamDisplay from "./TeamDisplay/TeamDisplay";
+import Modal from "@mui/material/Modal";
+import { useNavigate } from "react-router-dom";
+import Box from "@mui/material/Box";
 
 function GamePage() {
   const { lobby } = useParams();
+  
 
+
+
+const navigate = useNavigate();
   const { joinTeam, sendClue, sendCards, endGame, sendSelectedCard, endTurn } =
     useSocket(lobby);
 
   const {
     gameStatus,
+    setGameStatus,
     players,
     activeTeam,
     cards,
@@ -36,6 +44,20 @@ function GamePage() {
         .sort((a, b) => (a.role === "spymaster" ? -1 : 0)),
     [players]
   );
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+    textAlign: "center",
+  };
+
   useEffect(() => {
     let faceUpByColor = cards.reduce(
       (acc, curr) => {
@@ -53,8 +75,18 @@ function GamePage() {
     }
   }, [cards, activeTeam]);
 
+
   return (
     <div>
+      <Modal open={gameStatus === "game over"}>
+        <Box sx={style}>
+          <Typography>GAME OVER</Typography>
+          <Typography>{winningTeam + "won"}</Typography>
+          <Button onClick={() => (setGameStatus(null), navigate("/home"))}>
+            Reset Game
+          </Button>
+        </Box>
+      </Modal>
       <Typography variant="h3" align="center" m={2}>
 
         <div className="picture1">
