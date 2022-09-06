@@ -31,8 +31,8 @@ const socketConf = (io) => {
       io.to(lobby).emit("end turn");
     });
 
-    socket.on("end game", () => {
-      io.to(lobby).emit("end game");
+    socket.on("end game", (winningTeam) => {
+      io.to(lobby).emit("end game", winningTeam);
     });
   });
 };

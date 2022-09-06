@@ -14,8 +14,14 @@ function GamePage() {
   const { joinTeam, sendClue, sendCards, endGame, sendSelectedCard, endTurn } =
     useSocket(lobby);
 
-  const { gameStatus, players, activePlayer, activeTeam, cards } =
-    useGameContext();
+  const {
+    gameStatus,
+    players,
+    activeTeam,
+    cards,
+    winningTeam,
+    setWinningTeam,
+  } = useGameContext();
   const redTeam = useMemo(
     () =>
       players
@@ -65,12 +71,14 @@ function GamePage() {
 
       return result;
     }
-    allAreEqual(blueFaceUps) && endGame();
-    allAreEqual(redFaceUps) && endGame();
+    setWinningTeam(null);
+    allAreEqual(blueFaceUps) && endGame("blue");
+    allAreEqual(redFaceUps) && endGame("red");
   }, [cards && activeTeam]);
 
   return (
     <div>
+      {winningTeam}
       <Typography variant="h3" align="center" m={2}>
         Game {activeTeam}
       </Typography>

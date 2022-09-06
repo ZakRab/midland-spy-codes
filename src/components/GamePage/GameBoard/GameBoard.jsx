@@ -15,14 +15,8 @@ function GameBoard({ sendSelectedCard, endTurn }) {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
-  const {
-    activePlayer,
-    setSelectedCard,
-    activeTeam,
-    setActiveTeam,
-    selectedCard,
-    cards,
-  } = useGameContext();
+  const { activePlayer, setSelectedCard, activeTeam, selectedCard, cards } =
+    useGameContext();
 
   const [btnCounter, setBtnCounter] = useState(0);
   useEffect(() => {
