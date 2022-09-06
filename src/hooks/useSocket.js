@@ -6,14 +6,15 @@ export default function useSocket(lobby) {
   const {
     activePlayer,
     setPlayers,
-    players,
+    setWinningTeam,
     setActivePlayer,
     activeTeam,
-    cards,
+    setClue,
     setCards,
     setActiveTeam,
     setGameStatus,
   } = useGameContext();
+
   const socketRef = useRef;
   useEffect(() => {
     socketRef.current = io("http://localhost:8080", {
@@ -33,6 +34,7 @@ export default function useSocket(lobby) {
         });
       }
     });
+
     socketRef.current.on("update players", (newPlayers) => {
       if (!activePlayer.isHost) {
         setPlayers(newPlayers);
@@ -56,6 +58,20 @@ export default function useSocket(lobby) {
         });
       }
     });
+
+    socketRef.current.on("send clue", (clue) => {
+      console.log(clue);
+      setClue(clue);
+    });
+
+    socketRef.current.on("send cards", (cards) => {
+      if (!activePlayer.isHost) {
+        setCards(cards);
+        setGameStatus("started");
+        console.log(cards);
+      }
+    });
+
     socketRef.current.on("end turn", () =>
       setActiveTeam((curr) => {
         if (curr === "blue") {
@@ -65,31 +81,44 @@ export default function useSocket(lobby) {
         }
       })
     );
-    socketRef.current.on("end game", () => setGameStatus("game over"));
+    socketRef.current.on("end game", (winningTeam) => {
+      setGameStatus("game over");
+      setWinningTeam(winningTeam);
+    });
 
     socketRef.current.on("send selected card", (card) => {
+      console.log(card);
       if (card.type === activeTeam) {
         setCards((curr) =>
           curr.map((c) => {
-            if (c === card) {
+            if (c.word === card.word) {
               c.isFaceUp = true;
             }
+            return c;
           })
         );
       } else if (card.type === "bomb") {
-        endGame();
+        endGame(flipTeam());
       } else {
         setCards((curr) =>
           curr.map((c) => {
-            if (c === card) {
+            if (c.word === card.word) {
               c.isFaceUp = true;
             }
+            return c;
           })
         );
         endTurn();
       }
     });
   }, []);
+  function flipTeam(params) {
+    if (activeTeam === "blue") {
+      return "red";
+    } else {
+      return "blue";
+    }
+  }
 
   function joinTeam(player, team, role) {
     setActivePlayer((curr) => ({ ...curr, role, team }));
@@ -100,6 +129,15 @@ export default function useSocket(lobby) {
     });
   }
 
+  function sendClue(clue) {
+    console.log(clue);
+    socketRef.current.emit("send clue", clue);
+  }
+  function sendCards(cards) {
+    console.log(cards);
+    socketRef.current.emit("send cards", cards);
+  }
+
   function sendSelectedCard(card) {
     socketRef.current.emit("send selected card", card);
   }
@@ -108,9 +146,9 @@ export default function useSocket(lobby) {
     socketRef.current.emit("end turn");
   }
 
-  function endGame() {
-    socketRef.current.emit("end game");
+  function endGame(winningTeam) {
+    socketRef.current.emit("end game", winningTeam);
   }
   // delete me
-  return { joinTeam, sendSelectedCard, endTurn };
+  return { joinTeam, sendSelectedCard, sendCards, endGame, endTurn, sendClue };
 }

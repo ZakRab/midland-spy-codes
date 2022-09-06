@@ -1,90 +1,148 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import useGameContext from "../../../context/GameContext";
+import randomWords from "random-words";
+import TeamDisplay from "../TeamDisplay/TeamDisplay";
 
-export default function TeamSelect({ players, joinTeam }) {
-  const { activePlayer } = useGameContext();
+export default function TeamSelect({ players, joinTeam, sendCards }) {
+  const { activePlayer, createCards, setGameStatus, setActivePlayer } =
+    useGameContext();
+
   function gameStart() {
-    console.log("game started");
+    setGameStatus("started");
+    let words = randomWords(16);
+    let cards = createCards(words);
+    sendCards(cards);
   }
-  function redSMFilter(player) {
-    return player.role === "spymaster" && player.team === "red";
-  }
-  function blueSMFilter(player) {
-    return player.role === "spymaster" && player.team === "blue";
-  }
-  const hasRedSM = useMemo(() => {
-    let result = players.filter(redSMFilter);
-    return result.length !== 0;
+
+  const teams = useMemo(() => {
+    return players.reduce((prev, curr) => {
+      if (!prev[curr.team]) {
+        prev[curr.team] = {};
+      }
+      prev[curr.team][curr.role] = true;
+      return prev;
+    }, {});
   }, [players]);
 
-  const hasBlueSM = useMemo(() => {
-    let result = players.filter(blueSMFilter);
-    return result.length !== 0;
-  }, [players]);
+  const unassigned = useMemo(
+    () => players.filter((v) => v.team == null),
+    [players]
+  );
+
+  const gameReady = useMemo(() => {
+    if (!teams.red || !teams.blue) return false;
+    return (
+      teams.red.spymaster &&
+      teams.red.operative &&
+      teams.red.operative &&
+      teams.blue.operative
+    );
+  }, [teams]);
 
   return (
     <div>
-      <div>
-        <Stack direction="row" spacing={2}>
-          <Button
-            onClick={() => {
-              joinTeam(activePlayer, "red", "operative");
-            }}
-            variant="outlined"
-            sx={{ color: "black", backgroundColor: "red" }}
-          >
-            Join as Operative
-          </Button>
-          <Button
-            onClick={() => {
-              joinTeam(activePlayer, "blue", "operative");
-            }}
-            variant="outlined"
-            sx={{ color: "black", backgroundColor: "blue" }}
-          >
-            Join as Operative
-          </Button>
-        </Stack>
-      </div>
-      {activePlayer.isHost && (
-        <Button variant="contained" onClick={() => gameStart()}>
-          Start game
+      <Stack
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="center"
+        spacing={2}
+        m={2}
+      >
+        <Button
+          onClick={() => {
+            joinTeam(activePlayer, "red", "operative");
+            setActivePlayer({
+              name: activePlayer.name,
+              isHost: activePlayer.isHost,
+              role: "operative",
+              team: "red",
+            });
+          }}
+          variant="contained"
+          color="error"
+        >
+          Join as Operative
         </Button>
+        <Button
+          onClick={() => {
+            joinTeam(activePlayer, "blue", "operative");
+            setActivePlayer({
+              name: activePlayer.name,
+              isHost: activePlayer.isHost,
+              role: "operative",
+              team: "blue",
+            });
+          }}
+          variant="contained"
+          color="primary"
+        >
+          Join as Operative
+        </Button>
+      </Stack>
+
+      <Stack direction="row" spacing={2} justifyContent="center" m={2}>
+        <Button
+          // TODO UNCOMMENT NEXT LINE WHEN READY TO FULLY TEST
+          // disabled={!activePlayer.isHost || !gameReady}
+          //TODO DELETE NEXT LINE WHEN READY TO FULLY TEST
+          disabled={!activePlayer.isHost}
+          variant="contained"
+          onClick={() => {
+            gameStart();
+          }}
+        >
+          Start Game
+        </Button>
+      </Stack>
+
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="space-evenly"
+        alignItems="center"
+        m={2}
+      >
+        <Button
+          disabled={teams.red && teams.red.spymaster}
+          onClick={() => {
+            joinTeam(activePlayer, "red", "spymaster");
+            setActivePlayer({
+              name: activePlayer.name,
+              isHost: activePlayer.isHost,
+              role: "spymaster",
+              team: "red",
+            });
+          }}
+          variant="contained"
+          color="error"
+        >
+          Join as Spymaster
+        </Button>
+
+        <Button
+          disabled={teams.blue && teams.blue.spymaster}
+          onClick={() => {
+            joinTeam(activePlayer, "blue", "spymaster");
+            setActivePlayer({
+              name: activePlayer.name,
+              isHost: activePlayer.isHost,
+              role: "spymaster",
+              team: "blue",
+            });
+
+            console.log(players);
+          }}
+          variant="contained"
+          color="primary"
+        >
+          Join as Spymaster
+        </Button>
+      </Stack>
+      {players && unassigned.length > 0 && (
+        <TeamDisplay team="Unassigned" players={unassigned} />
       )}
-      {players && (
-        <div>
-          {players.map((player, idx) => {
-            return <div key={idx}>{player.name}</div>;
-          })}
-        </div>
-      )}
-      <div>
-        <Stack direction="row" spacing={2}>
-          <Button
-            disabled={hasRedSM}
-            onClick={() => {
-              joinTeam(activePlayer, "red", "spymaster");
-            }}
-            variant="outlined"
-            sx={{ color: "black", backgroundColor: "red" }}
-          >
-            Join as Spymaster
-          </Button>
-          <Button
-            disabled={hasBlueSM}
-            onClick={() => {
-              joinTeam(activePlayer, "blue", "spymaster");
-              console.log(players);
-            }}
-            variant="outlined"
-            sx={{ color: "black", backgroundColor: "blue" }}
-          >
-            Join as Spymaster
-          </Button>
-        </Stack>
-      </div>
     </div>
   );
 }
