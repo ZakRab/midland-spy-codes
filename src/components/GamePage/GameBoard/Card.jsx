@@ -8,11 +8,11 @@ function Card({ card }) {
 		<div onClick={() => setSelectedCard(card)}>
 			{activePlayer.role === "spymaster" && (
 				<div style={{ backgroundColor: card.color }}>
-					{!isFaceUp && <p>{card.word}</p>}
+					{!card.isFaceUp && <p>{card.word}</p>}
 				</div>
 			)}
 			{activePlayer.role === "operative" && (
-				<div>{!isFaceUp && <p>{card.word}</p>}</div>
+				<div>{!card.isFaceUp && <p>{card.word}</p>}</div>
 			)}
 		</div>
 	);
