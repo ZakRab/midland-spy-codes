@@ -34,12 +34,7 @@ function AboutPage() {
       </Grid>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {creators.map((c, idx) => (
-          <div
-            key={idx}
-            style={{ flexBasis: "calc(100% / 3 - 10px)", margin: "5px" }}
-          >
-            <CreatorInfo creator={c} />
-          </div>
+          <CreatorInfo key={idx} creator={c} />
         ))}
       </div>
     </>
