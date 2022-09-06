@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import useSocket from "../../hooks/useSocket";
 import { Button, Grid, Typography } from "@mui/material";
 import TeamDisplay from "./TeamDisplay/TeamDisplay";
-import Modal from '@mui/material/Modal';
+import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 
@@ -16,7 +16,7 @@ function GamePage() {
   const navigate = useNavigate();
   const { joinTeam, sendClue, sendCards, sendSelectedCard } = useSocket(lobby);
 
-  const { gameStatus, setGameStatus, players } = useGameContext();
+  const { gameStatus, setGameStatus, players, winningTeam } = useGameContext();
   const redTeam = useMemo(
     () =>
       players
@@ -32,28 +32,29 @@ function GamePage() {
     [players]
   );
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    bgcolor: "background.paper",
+    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
-    textAlign: 'center',
+    textAlign: "center",
   };
-  
-      
-    
-  
-        
+
   return (
     <div>
-      <Modal open={ gameStatus === "game over"}><Box sx={style}><Typography>GAME OVER</Typography><Button onClick={() => (setGameStatus(null), navigate("/home"))}>Reset Game</Button></Box></Modal>
-      
-
-      <Button onClick={ ()=> setGameStatus("game over") }>Test Game Over</Button>
+      <Modal open={gameStatus === "game over"}>
+        <Box sx={style}>
+          <Typography>GAME OVER</Typography>
+          <Typography>{winningTeam + "won"}</Typography>
+          <Button onClick={() => (setGameStatus(null), navigate("/home"))}>
+            Reset Game
+          </Button>
+        </Box>
+      </Modal>
       <Typography variant="h3" align="center" m={2}>
         Game
       </Typography>
