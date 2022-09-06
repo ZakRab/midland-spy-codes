@@ -1,11 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import useGameContext from "../../context/GameContext";
 import Clue from "./GameBoard/Clue";
 import GameBoard from "./GameBoard/GameBoard";
 import TeamSelect from "./TeamSelect/TeamSelect";
 import { useParams } from "react-router-dom";
 import useSocket from "../../hooks/useSocket";
-import { Button, Grid, Typography } from "@mui/material";
+import { Grid, Typography, Button } from "@mui/material";
 import TeamDisplay from "./TeamDisplay/TeamDisplay";
 import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
@@ -13,10 +13,23 @@ import Box from "@mui/material/Box";
 
 function GamePage() {
   const { lobby } = useParams();
-  const navigate = useNavigate();
-  const { joinTeam, sendClue, sendCards, sendSelectedCard } = useSocket(lobby);
+  
 
-  const { gameStatus, setGameStatus, players, winningTeam } = useGameContext();
+
+
+const navigate = useNavigate();
+  const { joinTeam, sendClue, sendCards, endGame, sendSelectedCard, endTurn } =
+    useSocket(lobby);
+
+  const {
+    gameStatus,
+    setGameStatus,
+    players,
+    activeTeam,
+    cards,
+    winningTeam,
+    setWinningTeam,
+  } = useGameContext();
   const redTeam = useMemo(
     () =>
       players
@@ -31,6 +44,7 @@ function GamePage() {
         .sort((a, b) => (a.role === "spymaster" ? -1 : 0)),
     [players]
   );
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -44,6 +58,24 @@ function GamePage() {
     textAlign: "center",
   };
 
+  useEffect(() => {
+    let faceUpByColor = cards.reduce(
+      (acc, curr) => {
+        if (curr.isFaceUp) {
+          acc[curr.type]++;
+        }
+        return acc;
+      },
+      { blue: 0, red: 0, bomb: 0 }
+    );
+    if (faceUpByColor.blue === 6) {
+      endGame("blue");
+    } else if (faceUpByColor.red === 6) {
+      endGame("red");
+    }
+  }, [cards, activeTeam]);
+
+
   return (
     <div>
       <Modal open={gameStatus === "game over"}>
@@ -56,7 +88,13 @@ function GamePage() {
         </Box>
       </Modal>
       <Typography variant="h3" align="center" m={2}>
-        Game
+
+        <div className="picture1">
+          <img src="https://czechgames.com/for-press/codenames/codenames-13.png"></img>
+        </div>
+        <div>
+           Game {activeTeam}
+        </div>
       </Typography>
       <Grid
         container
@@ -94,7 +132,7 @@ function GamePage() {
         </Grid>
         {gameStatus == "started" && (
           <Grid item xs={12} md={8} order={{ xs: 1, md: 2 }}>
-            <GameBoard sendSelectedCard={sendSelectedCard} />
+            <GameBoard sendSelectedCard={sendSelectedCard} endTurn={endTurn} />
             <Clue sendClue={sendClue} />
           </Grid>
         )}

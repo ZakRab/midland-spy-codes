@@ -13,6 +13,7 @@
     "express": "^4.18.1",
     "random-words": "^1.2.0",
     "react": "^18.2.0",
+    "react-best-gradient-color-picker": "^2.0.16",
     "react-countdown-circle-timer": "^3.0.9",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",

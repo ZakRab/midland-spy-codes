@@ -15,23 +15,31 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
     let cards = createCards(words);
     sendCards(cards);
   }
-  const hasRedSM = useMemo(() => {
-    let result = players.filter(
-      (player) => player.role === "spymaster" && player.team === "red"
-    );
-    return result.length !== 0;
+
+  const teams = useMemo(() => {
+    return players.reduce((prev, curr) => {
+      if (!prev[curr.team]) {
+        prev[curr.team] = {};
+      }
+      prev[curr.team][curr.role] = true;
+      return prev;
+    }, {});
   }, [players]);
 
   const unassigned = useMemo(
     () => players.filter((v) => v.team == null),
     [players]
   );
-  const hasBlueSM = useMemo(() => {
-    let result = players.filter(
-      (player) => player.role === "spymaster" && player.team === "blue"
+
+  const gameReady = useMemo(() => {
+    if (!teams.red || !teams.blue) return false;
+    return (
+      teams.red.spymaster &&
+      teams.red.operative &&
+      teams.red.operative &&
+      teams.blue.operative
     );
-    return result.length !== 0;
-  }, [players]);
+  }, [teams]);
 
   return (
     <div>
@@ -76,17 +84,16 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
 
       <Stack direction="row" spacing={2} justifyContent="center" m={2}>
         <Button
-          disabled={!activePlayer.role}
+          // TODO UNCOMMENT NEXT LINE WHEN READY TO FULLY TEST
+          // disabled={!activePlayer.isHost || !gameReady}
+          //TODO DELETE NEXT LINE WHEN READY TO FULLY TEST
+          disabled={!activePlayer.isHost}
           variant="contained"
           onClick={() => {
-            if (activePlayer.isHost) {
-              gameStart();
-            } else {
-              //TODO Add ready check
-            }
+            gameStart();
           }}
         >
-          {activePlayer.isHost ? "Start Game" : "Ready"}
+          Start Game
         </Button>
       </Stack>
 
@@ -98,7 +105,7 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
         m={2}
       >
         <Button
-          disabled={hasRedSM}
+          disabled={teams.red && teams.red.spymaster}
           onClick={() => {
             joinTeam(activePlayer, "red", "spymaster");
             setActivePlayer({
@@ -115,7 +122,7 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
         </Button>
 
         <Button
-          disabled={hasBlueSM}
+          disabled={teams.blue && teams.blue.spymaster}
           onClick={() => {
             joinTeam(activePlayer, "blue", "spymaster");
             setActivePlayer({

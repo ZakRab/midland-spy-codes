@@ -18,6 +18,12 @@ function Clue({ sendClue }) {
                 id="Clue"
                 label="Enter Clue to Send"
                 variant="outlined"
+                sx={{
+                  borderRadius: "10px",
+                  fontWeight: "bold",
+                  color: "#212121",
+                  backgroundColor: "#e0e0e0",
+                }}
                 value={clue}
                 onChange={(e) => setClue(e.target.value)}
               />
@@ -27,6 +33,12 @@ function Clue({ sendClue }) {
                 fullWidth
                 endIcon={<SendIcon />}
                 variant="contained"
+                size="large"
+                sx={{
+                  fontWeight: "bold",
+                  color: "#d50000",
+                  backgroundColor: "#212121",
+                }}
                 disabled={
                   activePlayer.team !== activeTeam ||
                   hasClicked ||
