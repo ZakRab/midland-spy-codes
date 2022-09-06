@@ -55,9 +55,14 @@ function GamePage() {
 
   return (
     <div>
-      {winningTeam}
       <Typography variant="h3" align="center" m={2}>
-        Game {activeTeam}
+
+        <div className="picture1">
+          <img src="https://czechgames.com/for-press/codenames/codenames-13.png"></img>
+        </div>
+        <div>
+           Game {activeTeam}
+        </div>
       </Typography>
       <Grid
         container
