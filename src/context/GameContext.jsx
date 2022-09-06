@@ -17,7 +17,7 @@ export function GameProvider(props) {
   });
   const [gameStatus, setGameStatus] = useState(null);
   const [players, setPlayers] = useState([]);
-
+  const [winningTeam, setWinningTeam] = useState(null);
   const [clue, setClue] = useState("");
 
   const createCards = useCallback((words) => {
@@ -30,18 +30,24 @@ export function GameProvider(props) {
 
     let cards = words.map((word, idx) => {
       let type;
+      let color;
       if (idx <= 5) {
         type = "red";
+        color = "red";
       } else if (idx <= 11) {
         type = "blue";
+        color = "blue";
       } else if (idx === 12) {
         type = "bomb";
+        color = "gray";
       } else {
         type = "neutral";
+        color = "beige";
       }
       return {
         word,
         type,
+        color,
         isFaceUp: false,
       };
     });
@@ -65,10 +71,10 @@ export function GameProvider(props) {
         setPlayers,
         activeTeam,
         setActiveTeam,
-
+        setWinningTeam,
+        winningTeam,
         clue,
         setClue,
-
         createCards,
         setSelectedCard,
         selectedCard,
