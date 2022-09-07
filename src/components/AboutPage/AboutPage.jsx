@@ -16,12 +16,17 @@ function AboutPage() {
 
   return (
     <>
-      <Grid textAlign="center" justifyContent="center" alignItems="center">
-        <Typography mt={2} variant="h4" align={"center"}>
+      <Grid
+        textAlign="center"
+        justifyContent="center"
+        alignItems="center"
+        align={"center"}
+      >
+        <Typography mt={2} mb={2} variant="h4" align={"center"}>
           About Page
         </Typography>
-        <h3>Read about our project!</h3>
-        <p>
+        <Typography variant="h5">Read about our project!</Typography>
+        <Typography paragraph={true} m={5} pb={5}>
           First and for most, thank you for taking the time to look at our
           project! This group project was our final for The Midland Code Academy
           to show off our newly gained knowledge and skills developed in the
@@ -30,16 +35,18 @@ function AboutPage() {
           each of us and why we decide to get into coding as well as our Career
           goals. Please feel free to connect with us on our included social
           networks.
-        </p>
+        </Typography>
       </Grid>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          textAlign: "center",
+          justifyContent: "space-evenly",
+        }}
+      >
         {creators.map((c, idx) => (
-          <div
-            key={idx}
-            style={{ flexBasis: "calc(100% / 3 - 10px)", margin: "5px" }}
-          >
-            <CreatorInfo creator={c} />
-          </div>
+          <CreatorInfo key={idx} creator={c} />
         ))}
       </div>
     </>
