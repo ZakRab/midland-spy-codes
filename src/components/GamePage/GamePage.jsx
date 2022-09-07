@@ -97,8 +97,8 @@ function GamePage() {
         )}
         {gameStatus === "started" && activeTeam === "blue" && (
           <Typography
-            className="background-card flip-horizontal-top margin-auto width400px"
-            sx={{ color: "blue", fontSize: 40 }}
+            className="background-card flip-horizontal-bottom margin-auto width400px"
+            sx={{ color: "#1976d2", fontSize: 40 }}
           >
             Blue's Turn
           </Typography>

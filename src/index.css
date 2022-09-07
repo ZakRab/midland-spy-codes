@@ -34,6 +34,7 @@ a:hover {
 }
 
 .flip-horizontal-top{animation:flip-horizontal-top .4s cubic-bezier(.455,.03,.515,.955) reverse both}
+.flip-horizontal-bottom{animation:flip-horizontal-bottom .4s cubic-bezier(.455,.03,.515,.955) reverse both}
 
 /* body {
   background: rgb(2, 0, 36);
@@ -111,3 +112,4 @@ body,
 }
 
 @keyframes flip-horizontal-top{0%{transform:rotateX(0)}100%{transform:rotateX(180deg)}}
+@keyframes flip-horizontal-bottom{0%{transform:rotateX(0)}100%{transform:rotateX(-180deg)}}
