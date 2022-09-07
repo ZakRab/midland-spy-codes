@@ -6,6 +6,12 @@ import Button from "@mui/material/Button";
 import useGameContext from "../../../context/GameContext";
 import Card from "./Card";
 
+import { PlayCircleFilledWhiteOutlined } from "@mui/icons-material";
+import { ButtonGroup } from "@mui/material";
+import { Box } from "@mui/system";
+
+
+
 function GameBoard({ sendSelectedCard, endTurn }) {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -60,10 +66,12 @@ function GameBoard({ sendSelectedCard, endTurn }) {
           Flip Card
         </Button>
       )}
-      {activePlayer.role === "operative" &&
-        activePlayer.team === activeTeam && (
-          <Button onClick={() => endTurn()}> End Turn</Button>
-        )}
+      {activePlayer.role === "operative" && activePlayer.team === activeTeam && (
+        <Button variant="contained" onClick={() => endTurn()}>
+          {" "}
+          End Turn
+        </Button>
+      )}
     </>
   );
 }
