@@ -10,7 +10,7 @@ import TeamDisplay from "./TeamDisplay/TeamDisplay";
 import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
-import resetGame from '../../context/GameContext';
+
 
 function GamePage() {
   const { lobby } = useParams();
@@ -30,6 +30,8 @@ const navigate = useNavigate();
     cards,
     winningTeam,
     setWinningTeam,
+    resetGame
+
   } = useGameContext();
   const redTeam = useMemo(
     () =>
@@ -82,8 +84,8 @@ const navigate = useNavigate();
       <Modal open={gameStatus === "game over"}size="lg">
         <Box sx={style}>
           <Typography>GAME OVER</Typography>
-          <Typography>{winningTeam + "won"}</Typography>
-          <Button onClick={() => (resetGame(), navigate("/home"))}>
+          <Typography>The {winningTeam} team won!</Typography>
+          <Button onClick={() => {resetGame(); navigate("/home")}}>
             Reset Game
           </Button>
         </Box>
