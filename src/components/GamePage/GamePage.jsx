@@ -13,11 +13,11 @@ import Box from "@mui/material/Box";
 
 function GamePage() {
   const { lobby } = useParams();
-  
 
 
 
-const navigate = useNavigate();
+
+  const navigate = useNavigate();
   const { joinTeam, sendClue, sendCards, endGame, sendSelectedCard, endTurn } =
     useSocket(lobby);
 
@@ -93,7 +93,7 @@ const navigate = useNavigate();
           <img src="https://czechgames.com/for-press/codenames/codenames-13.png"></img>
         </div>
         <div>
-           Game {activeTeam}
+          Game {activeTeam}
         </div>
       </Typography>
       <Grid
@@ -132,8 +132,8 @@ const navigate = useNavigate();
         </Grid>
         {gameStatus == "started" && (
           <Grid item xs={12} md={8} order={{ xs: 1, md: 2 }}>
-            <GameBoard sendSelectedCard={sendSelectedCard} endTurn={endTurn} />
             <Clue sendClue={sendClue} />
+            <GameBoard sendSelectedCard={sendSelectedCard} endTurn={endTurn} />
           </Grid>
         )}
       </Grid>
