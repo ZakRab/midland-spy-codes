@@ -128,8 +128,8 @@ function GamePage() {
             md={8}
             order={{ xs: 1, md: 2 }}
           >
-            <GameBoard sendSelectedCard={sendSelectedCard} endTurn={endTurn} />
             <Clue sendClue={sendClue} />
+            <GameBoard sendSelectedCard={sendSelectedCard} endTurn={endTurn} />
           </Grid>
         )}
       </Grid>
