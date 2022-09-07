@@ -77,8 +77,8 @@ const navigate = useNavigate();
 
 
   return (
-    <div>
-      <Modal open={gameStatus === "game over"}>
+    <div style={{ marginTop: 20, width: 340 }}>
+      <Modal open={gameStatus === "game over"}size="lg">
         <Box sx={style}>
           <Typography>GAME OVER</Typography>
           <Typography>{winningTeam + "won"}</Typography>
@@ -130,7 +130,7 @@ const navigate = useNavigate();
         >
           <TeamDisplay team="Blue" players={blueTeam} />
         </Grid>
-        {gameStatus == "started" && (
+        {gameStatus === "started" && (
           <Grid item xs={12} md={8} order={{ xs: 1, md: 2 }}>
             <GameBoard sendSelectedCard={sendSelectedCard} endTurn={endTurn} />
             <Clue sendClue={sendClue} />
