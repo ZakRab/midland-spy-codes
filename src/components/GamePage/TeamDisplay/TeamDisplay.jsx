@@ -13,7 +13,7 @@ function TeamDisplay({ team, players }) {
     }
   }, [team]);
   return (
-    <>
+    <div className="background-card margin-auto width70p">
       <Typography
         align="center"
         variant={team !== "Unassigned" ? "h4" : "h6"}
@@ -32,7 +32,7 @@ function TeamDisplay({ team, players }) {
           {v.name}
         </Typography>
       ))}
-    </>
+    </div>
   );
 }
 

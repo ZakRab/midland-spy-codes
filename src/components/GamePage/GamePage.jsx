@@ -87,9 +87,20 @@ function GamePage() {
         <div className="picture1">
           <img src="https://czechgames.com/for-press/codenames/codenames-13.png"></img>
         </div>
-        {gameStatus === "started" && (
-          <Typography sx={{ color: activeTeam, fontSize: 50 }}>
-            {activeTeam} team's turn
+        {gameStatus === "started" && activeTeam === "red" && (
+          <Typography
+            className="background-card margin-auto width400px"
+            sx={{ color: "red", fontSize: 40 }}
+          >
+            Red's Turn
+          </Typography>
+        )}
+        {gameStatus === "started" && activeTeam === "blue" && (
+          <Typography
+            className="background-card margin-auto width400px"
+            sx={{ color: "blue", fontSize: 40 }}
+          >
+            Blue's Turn
           </Typography>
         )}
       </Typography>
@@ -99,6 +110,7 @@ function GamePage() {
         alignContent={"flex-start"}
         justifyContent="space-evenly"
         alignItems="center"
+        className=""
       >
         {gameStatus !== "started" && (
           <Grid item xs={12} md={8} order={{ xs: 1, md: 2 }}>
@@ -128,7 +140,13 @@ function GamePage() {
           <TeamDisplay team="Blue" players={blueTeam} />
         </Grid>
         {gameStatus == "started" && (
-          <Grid item xs={12} md={8} order={{ xs: 1, md: 2 }}>
+          <Grid
+            className="background-card"
+            item
+            xs={12}
+            md={8}
+            order={{ xs: 1, md: 2 }}
+          >
             <GameBoard sendSelectedCard={sendSelectedCard} endTurn={endTurn} />
             <Clue sendClue={sendClue} />
           </Grid>
