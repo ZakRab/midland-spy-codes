@@ -17,7 +17,7 @@ export function GameProvider(props) {
   });
   const [gameStatus, setGameStatus] = useState(null);
   const [players, setPlayers] = useState([]);
-
+  const [winningTeam, setWinningTeam] = useState(null);
   const [clue, setClue] = useState("");
 
   const createCards = useCallback((words) => {
@@ -71,10 +71,10 @@ export function GameProvider(props) {
         setPlayers,
         activeTeam,
         setActiveTeam,
-
+        setWinningTeam,
+        winningTeam,
         clue,
         setClue,
-
         createCards,
         setSelectedCard,
         selectedCard,

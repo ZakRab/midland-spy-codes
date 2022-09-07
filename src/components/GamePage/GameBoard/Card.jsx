@@ -2,18 +2,28 @@ import React, { useState } from "react";
 import useGameContext from "../../../context/GameContext";
 
 function Card({ card }) {
-  const { activePlayer, setSelectedCard } = useGameContext();
+  const { activePlayer, setSelectedCard, selectedCard } = useGameContext();
 
   return (
     <div onClick={() => setSelectedCard(card)}>
       {activePlayer.role === "spymaster" && (
         <div style={{ backgroundColor: card.color }}>
-          <p>{card.word}</p>
+          {!card.isFaceUp ? <p>{card.word}</p> : <p>fliped</p>}
         </div>
       )}
-      {activePlayer.role === "operative" && (
-        <div>
-          <p>{card.word}</p>
+      {activePlayer.role === "operative" && selectedCard !== card && (
+        <div>{!card.isFaceUp ? <p>{card.word}</p> : <p>fliped</p>}</div>
+      )}
+      {activePlayer.role === "operative" &&
+        selectedCard === card &&
+        !card.isFaceUp && (
+          <div style={{ border: "2px solid green" }}>
+            {!card.isFaceUp ? <p>{card.word}</p> : <p>fliped</p>}
+          </div>
+        )}
+      {activePlayer.role === "operative" && card.isFaceUp && (
+        <div style={{ backgroundColor: card.color }}>
+          {!card.isFaceUp ? <p>{card.word}</p> : <p>fliped</p>}
         </div>
       )}
     </div>
