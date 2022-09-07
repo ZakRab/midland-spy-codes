@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useGameContext from "../../../context/GameContext";
 
 function Card({ card }) {

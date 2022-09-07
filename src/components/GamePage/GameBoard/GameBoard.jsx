@@ -5,9 +5,12 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import useGameContext from "../../../context/GameContext";
 import Card from "./Card";
+
 import { PlayCircleFilledWhiteOutlined } from "@mui/icons-material";
 import { ButtonGroup } from "@mui/material";
 import { Box } from "@mui/system";
+
+
 
 function GameBoard({ sendSelectedCard, endTurn }) {
   const Item = styled(Paper)(({ theme }) => ({
@@ -27,7 +30,7 @@ function GameBoard({ sendSelectedCard, endTurn }) {
       endTurn();
       setBtnCounter(0);
     }
-  }, [btnCounter]);
+  }, [btnCounter, endTurn]);
 
   return (
     <>

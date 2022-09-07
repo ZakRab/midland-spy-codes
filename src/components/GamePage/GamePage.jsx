@@ -11,22 +11,16 @@ import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 
+
 function GamePage() {
   const { lobby } = useParams();
 
   const navigate = useNavigate();
   const { joinTeam, sendClue, sendCards, endGame, sendSelectedCard, endTurn } =
     useSocket(lobby);
+  const { gameStatus, setGameStatus, players, activeTeam, cards, winningTeam,  resetGame } =
+    useGameContext();
 
-  const {
-    gameStatus,
-    setGameStatus,
-    players,
-    activeTeam,
-    cards,
-    winningTeam,
-    setWinningTeam,
-  } = useGameContext();
   const redTeam = useMemo(
     () =>
       players
@@ -70,15 +64,16 @@ function GamePage() {
     } else if (faceUpByColor.red === 6) {
       endGame("red");
     }
-  }, [cards, activeTeam]);
+  }, [cards, activeTeam, endGame]);
 
   return (
-    <div>
-      <Modal open={gameStatus === "game over"}>
+    <div style={{ marginTop: 20, width: 340 }}>
+      <Modal open={gameStatus === "game over"}size="lg">
         <Box sx={style}>
           <Typography>GAME OVER</Typography>
-          <Typography>{winningTeam + "won"}</Typography>
-          <Button onClick={() => (setGameStatus(null), navigate("/home"))}>
+          <Typography>The {winningTeam} team won!</Typography>
+          <Button onClick={() => {resetGame(); navigate("/home")}}>
+
             Reset Game
           </Button>
         </Box>
@@ -120,7 +115,8 @@ function GamePage() {
         >
           <TeamDisplay team="Blue" players={blueTeam} activeTeam={activeTeam} />
         </Grid>
-        {gameStatus == "started" && (
+        {gameStatus === "started" && (
+
           <Grid
             className="background-card bg-white"
             item
