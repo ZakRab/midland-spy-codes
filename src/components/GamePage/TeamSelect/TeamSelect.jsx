@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import useGameContext from "../../../context/GameContext";
@@ -7,13 +7,8 @@ import TeamDisplay from "../TeamDisplay/TeamDisplay";
 import { Grid } from "@mui/material";
 
 export default function TeamSelect({ players, joinTeam, sendCards }) {
-  const {
-    activePlayer,
-    createCards,
-    setGameStatus,
-    setActivePlayer,
-    activeTeam,
-  } = useGameContext();
+  const { activePlayer, createCards, setGameStatus, setActivePlayer } =
+    useGameContext();
 
   function gameStart() {
     setGameStatus("started");
@@ -58,7 +53,8 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
         alignItems="center"
       >
         <Grid
-          md={6}
+          item
+          md={8}
           sx={{
             padding: "50px",
             borderRadius: "10px",
