@@ -82,6 +82,7 @@ function RulesPage() {
         required to finish your teams' turn. Or you can make a quess on the
         first and/or second and end your teams' turn on the third without a
         guess.
+        {/*  */}
       </Typography>
     </>
   );
