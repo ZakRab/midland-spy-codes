@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import creators from "./creators.json";
 import CreatorInfo from "./CreatorInfo";
+import { Grid, Typography } from "@mui/material";
 
 function AboutPage() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -15,17 +16,22 @@ function AboutPage() {
 
   return (
     <>
-      <h1>AboutPage</h1>
-      <h3>Read about our project!</h3>
-      <p>
-        First and for most, thank you for taking the time to look at our
-        project! This group project was our final for The Midland Code Academy
-        to show off our newly gained knowledge and skills developed in the
-        program. We hope you enjoy playing over version of Codename that we have
-        worked very hard on. Below you will find small sections about each of
-        us and why we decide to get into coding as well as our Career goals.
-        Please feel free to connect with us on our included social networks.
-      </p>
+      <Grid textAlign="center" justifyContent="center" alignItems="center">
+        <Typography mt={2} variant="h4" align={"center"}>
+          About Page
+        </Typography>
+        <h3>Read about our project!</h3>
+        <p>
+          First and for most, thank you for taking the time to look at our
+          project! This group project was our final for The Midland Code Academy
+          to show off our newly gained knowledge and skills developed in the
+          program. We hope you enjoy playing over version of Codename that we
+          have worked very hard on. Below you will find small sections about
+          each of us and why we decide to get into coding as well as our Career
+          goals. Please feel free to connect with us on our included social
+          networks.
+        </p>
+      </Grid>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {creators.map((c, idx) => (
           <div
