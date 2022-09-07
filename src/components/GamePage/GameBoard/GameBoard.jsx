@@ -5,13 +5,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import useGameContext from "../../../context/GameContext";
 import Card from "./Card";
-import { Box } from "@mui/material";
-
-import { PlayCircleFilledWhiteOutlined } from "@mui/icons-material";
-import { ButtonGroup } from "@mui/material";
-import { Box } from "@mui/system";
-
-
+import Box from "@mui/material/Box";
 
 function GameBoard({ sendSelectedCard, endTurn }) {
   const Item = styled(Paper)(({ theme }) => ({
