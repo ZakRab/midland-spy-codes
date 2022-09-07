@@ -5,23 +5,29 @@ function Card({ card }) {
 	const { activePlayer, setSelectedCard, selectedCard } = useGameContext();
 	const spyStyle = {
 		backgroundColor: card.color,
-		aspectRatio: "1/1",
+		aspectRatio: "3/2.5",
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
-		fontSize: "1.5em",
+		fontSize: "1.2em",
 		color: "#fff",
 		textTransform: "uppercase",
 		fontFamily: "Poppins, sans serif",
+		fontWeight: "semibold",
+		hyphens: "auto",
 	};
 	const opStyle = {
-		aspectRatio: "1/1",
+		aspectRatio: "3/2.5",
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
-		fontSize: "1.5em",
+		fontSize: "1.2em",
 		color: "#212020",
 		textTransform: "uppercase",
+		backgroundColor: "#eedece",
+		fontWeight: "semibold",
+		hyphens: "auto",
+		fontFamily: "Poppins, sans serif",
 	};
 	return (
 		<div onClick={() => setSelectedCard(card)}>
