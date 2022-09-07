@@ -4,11 +4,9 @@ import { Grid, TextField, Typography } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import useGameContext from "../../../context/GameContext";
 
-
 function Clue({ sendClue }) {
   const { activePlayer, setClue, clue, activeTeam } = useGameContext();
   const [hasClicked, setHasClicked] = useState(false);
-
 
   useEffect(() => {
     setHasClicked(false);
@@ -59,9 +57,15 @@ function Clue({ sendClue }) {
           </Grid>
         )}
       </div>
-      {activePlayer.role === "operative" && <h1>{clue}</h1>}
-      {activePlayer.role === "operative" && activePlayer.team === activeTeam && clue === "" && <h1> Waiting on clue </h1>}
-      {activePlayer.team !== activeTeam && <h1>Waiting on other Team!</h1>}
+      {activePlayer.role === "operative" && (
+        <h1 style={{ color: "black" }}>{clue}</h1>
+      )}
+      {activePlayer.role === "operative" &&
+        activePlayer.team === activeTeam &&
+        clue === "" && <h1 style={{ color: "black" }}> Waiting on clue </h1>}
+      {activePlayer.team !== activeTeam && (
+        <h1 style={{ color: "black" }}>Waiting on other Team!</h1>
+      )}
     </div>
   );
 }

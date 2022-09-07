@@ -30,6 +30,7 @@ function TeamDisplay({ team, players, activeTeam }) {
       </Typography>
       {players.map((v, idx) => (
         <Typography
+          color={v.team === "blue" ? "black" : "normal"}
           key={idx}
           align="center"
           variant="body1"
