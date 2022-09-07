@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import { Grid, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
@@ -7,6 +7,11 @@ import useGameContext from "../../../context/GameContext";
 function Clue({ sendClue }) {
   const { activePlayer, setClue, clue, activeTeam } = useGameContext();
   const [hasClicked, setHasClicked] = useState(false);
+
+  useEffect(() => {
+    setHasClicked(false);
+  }, [activeTeam]);
+
   return (
     <div style={{ margin: "5px" }}>
       <div>

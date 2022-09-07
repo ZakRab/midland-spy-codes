@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import React, { useMemo } from "react";
 
-function TeamDisplay({ team, players }) {
+function TeamDisplay({ team, players, activeTeam }) {
   const color = useMemo(() => {
     switch (team) {
       case "Red":
@@ -9,11 +9,17 @@ function TeamDisplay({ team, players }) {
       case "Blue":
         return "primary";
       default:
-        return "warning";
+        return "black";
     }
   }, [team]);
   return (
-    <>
+    <div
+      className={
+        activeTeam === team.toLowerCase()
+          ? "bg-gray background-card min-height150px margin-auto width70p"
+          : "bg-white background-card min-height150px margin-auto width70p"
+      }
+    >
       <Typography
         align="center"
         variant={team !== "Unassigned" ? "h4" : "h6"}
@@ -32,7 +38,7 @@ function TeamDisplay({ team, players }) {
           {v.name}
         </Typography>
       ))}
-    </>
+    </div>
   );
 }
 

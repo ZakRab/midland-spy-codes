@@ -9,38 +9,43 @@ a:hover {
   height: 50px;
   width: 50px;
 }
-
-/* body {
-  background: rgb(2, 0, 36);
-  color: white;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(228, 8, 8, 0.6993172268907564) 31%,
-    rgba(1, 28, 246, 1) 100%
-  );
-} */
-
-/* .image {
-  background-color: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(228, 8, 8, 0.6993172268907564) 31%,
-    rgba(1, 28, 246, 1) 100%
-  );
-  background-image: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png"),
-  url("https://cdn.pixabay.com/photo/2018/08/15/14/11/audit-3608131_960_720.png");
-  background-repeat: no-repeat, no-repeat;
-  background-size: auto 80%, auto 80%;
-  background-position: 5% 50%, 95% 50%;
-  height: 100vh;
+.d-none{
+  visibility: hidden
 }
-html,
-body,
-#root {
-  height: 100%;
-} */
+
+.background-card{
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.498) 0px 5px 15px;
+  padding: 5px;
+  width:max-content
+}
+.bg-gray{
+  background-color: rgb(81, 81, 81);
+}
+.bg-white{
+  background-color: rgb(255, 255, 255);
+}
+
+.width400px{
+  width: 400px;
+}
+.width70p{
+  width: 70%;
+}
+.min-height150px{
+  min-height: 150px;
+}
+.margin-auto{
+  margin:auto  !important ;
+}
+.animate-right{
+  animation: slideright linear 1s 1s
+}
+
+.flip-horizontal-top{animation:flip-horizontal-top .4s cubic-bezier(.455,.03,.515,.955) reverse both}
+.flip-horizontal-bottom{animation:flip-horizontal-bottom .4s cubic-bezier(.455,.03,.515,.955) reverse both}
+
+
 
 .image {
   background: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png"),
@@ -58,29 +63,30 @@ body,
   margin: 0;
 }
 
-.image::before {
-  content: "";
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(228, 8, 8, 0.6993172268907564) 31%,
-    rgba(1, 28, 246, 1) 100%
-  );
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-}
-
-/* linear-gradient(
-  90deg,
-  rgba(2, 0, 36, 1) 0%,
-  rgba(228, 8, 8, 0.6993172268907564) 31%,
-  rgba(1, 28, 246, 1) 100%
-); */
 
 .spacing {
   margin-top: 40px;
+}
+
+@keyframes flip-horizontal-top{0%{transform:rotateX(0)}100%{transform:rotateX(180deg)}}
+@keyframes flip-horizontal-bottom{0%{transform:rotateX(0)}100%{transform:rotateX(-180deg)}}
+.picture1 img {
+  width: 500px;
+}
+
+.picture2 img {
+  width: 800px;
+}
+
+body {
+  background: rgb(2, 0, 36);
+  color: white;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    27deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 0, 0, 1) 31%,
+    rgba(37, 15, 208, 1) 62%,
+    rgba(0, 0, 0, 1) 100%
+  );
 }
