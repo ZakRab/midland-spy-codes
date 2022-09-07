@@ -11,14 +11,13 @@ import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 
-
 function GamePage() {
   const { lobby } = useParams();
 
   const navigate = useNavigate();
   const { joinTeam, sendClue, sendCards, endGame, sendSelectedCard, endTurn } =
     useSocket(lobby);
-  const { gameStatus, setGameStatus, players, activeTeam, cards, winningTeam,  resetGame } =
+  const { gameStatus, players, activeTeam, cards, winningTeam, resetGame } =
     useGameContext();
 
   const redTeam = useMemo(
@@ -67,19 +66,25 @@ function GamePage() {
   }, [cards, activeTeam, endGame]);
 
   return (
-    <div style={{ marginTop: 20, width: 340 }}>
-      <Modal open={gameStatus === "game over"}size="lg">
+    <>
+      <Modal open={gameStatus === "game over"} size="lg">
+        {/* <div style={{ marginTop: 20, width: 340 }}> */}
         <Box sx={style}>
-          <Typography>GAME OVER</Typography>
-          <Typography>The {winningTeam} team won!</Typography>
-          <Button onClick={() => {resetGame(); navigate("/home")}}>
-
-            Reset Game
+          <Typography color={"black"}>GAME OVER</Typography>
+          <Typography color={winningTeam}>
+            The {winningTeam} team won!
+          </Typography>
+          <Button
+            onClick={() => {
+              resetGame();
+              navigate("/home");
+            }}
+          >
+            Exit Game
           </Button>
         </Box>
+        {/* </div> */}
       </Modal>
-      <hr className="d-none"></hr>
-      <hr className="d-none"></hr>
       <Grid
         container
         direction="row"
@@ -116,7 +121,6 @@ function GamePage() {
           <TeamDisplay team="Blue" players={blueTeam} activeTeam={activeTeam} />
         </Grid>
         {gameStatus === "started" && (
-
           <Grid
             className="background-card bg-white"
             item
@@ -129,7 +133,7 @@ function GamePage() {
           </Grid>
         )}
       </Grid>
-    </div>
+    </>
   );
 }
 
