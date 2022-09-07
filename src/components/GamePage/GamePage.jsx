@@ -89,7 +89,7 @@ function GamePage() {
         </div>
         {gameStatus === "started" && activeTeam === "red" && (
           <Typography
-            className="background-card margin-auto width400px"
+            className="background-card margin-auto flip-horizontal-top width400px"
             sx={{ color: "red", fontSize: 40 }}
           >
             Red's Turn
@@ -97,7 +97,7 @@ function GamePage() {
         )}
         {gameStatus === "started" && activeTeam === "blue" && (
           <Typography
-            className="background-card margin-auto width400px"
+            className="background-card flip-horizontal-top margin-auto width400px"
             sx={{ color: "blue", fontSize: 40 }}
           >
             Blue's Turn
