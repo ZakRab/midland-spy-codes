@@ -9,15 +9,15 @@ function TeamDisplay({ team, players, activeTeam }) {
       case "Blue":
         return "primary";
       default:
-        return "warning";
+        return "black";
     }
   }, [team]);
   return (
     <div
       className={
         activeTeam === team.toLowerCase()
-          ? "bg-white background-card min-height150px margin-auto width70p"
-          : "bg-gray background-card min-height150px margin-auto width70p"
+          ? "bg-gray background-card min-height150px margin-auto width70p"
+          : "bg-white background-card min-height150px margin-auto width70p"
       }
     >
       <Typography
