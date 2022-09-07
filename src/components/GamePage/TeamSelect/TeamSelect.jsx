@@ -4,6 +4,7 @@ import Stack from "@mui/material/Stack";
 import useGameContext from "../../../context/GameContext";
 import randomWords from "random-words";
 import TeamDisplay from "../TeamDisplay/TeamDisplay";
+import { Grid } from "@mui/material";
 
 export default function TeamSelect({ players, joinTeam, sendCards }) {
   const { activePlayer, createCards, setGameStatus, setActivePlayer } =
@@ -43,103 +44,126 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
 
   return (
     <div>
-      <Stack
+      <Grid
+        textAlign="center"
+        container
         direction="row"
-        justifyContent="space-evenly"
+        justifyContent="center"
+        rowSpacing={2}
         alignItems="center"
-        spacing={2}
-        m={2}
       >
-        <Button
-          onClick={() => {
-            joinTeam(activePlayer, "red", "operative");
-            setActivePlayer({
-              name: activePlayer.name,
-              isHost: activePlayer.isHost,
-              role: "operative",
-              team: "red",
-            });
+        <Grid
+          md={6}
+          sx={{
+            backdropFilter: "brightness(50%)",
+            padding: "50px",
+            borderRadius: "10px",
           }}
-          variant="contained"
-          color="error"
         >
-          Join as Operative
-        </Button>
-        <Button
-          onClick={() => {
-            joinTeam(activePlayer, "blue", "operative");
-            setActivePlayer({
-              name: activePlayer.name,
-              isHost: activePlayer.isHost,
-              role: "operative",
-              team: "blue",
-            });
-          }}
-          variant="contained"
-          color="primary"
-        >
-          Join as Operative
-        </Button>
-      </Stack>
+          <Stack
+            direction="row"
+            justifyContent="space-evenly"
+            alignItems="center"
+            spacing={2}
+            m={6}
+          >
+            <Button
+              onClick={() => {
+                joinTeam(activePlayer, "red", "operative");
+                setActivePlayer({
+                  name: activePlayer.name,
+                  isHost: activePlayer.isHost,
+                  role: "operative",
+                  team: "red",
+                });
+              }}
+              variant="contained"
+              color="error"
+              size="large"
+            >
+              Join as Operative
+            </Button>
+            <Button
+              onClick={() => {
+                joinTeam(activePlayer, "blue", "operative");
+                setActivePlayer({
+                  name: activePlayer.name,
+                  isHost: activePlayer.isHost,
+                  role: "operative",
+                  team: "blue",
+                });
+              }}
+              variant="contained"
+              color="primary"
+              size="large"
+            >
+              Join as Operative
+            </Button>
+          </Stack>
 
-      <Stack direction="row" spacing={2} justifyContent="center" m={2}>
-        <Button
-          // TODO UNCOMMENT NEXT LINE WHEN READY TO FULLY TEST
-          // disabled={!activePlayer.isHost || !gameReady}
-          //TODO DELETE NEXT LINE WHEN READY TO FULLY TEST
-          disabled={!activePlayer.isHost}
-          variant="contained"
-          onClick={() => {
-            gameStart();
-          }}
-        >
-          Start Game
-        </Button>
-      </Stack>
+          <Stack direction="row" spacing={2} justifyContent="center" m={4}>
+            <Button
+              // TODO UNCOMMENT NEXT LINE WHEN READY TO FULLY TEST
+              // disabled={!activePlayer.isHost || !gameReady}
+              //TODO DELETE NEXT LINE WHEN READY TO FULLY TEST
+              disabled={!activePlayer.isHost}
+              variant="contained"
+              size="large"
+              onClick={() => {
+                gameStart();
+              }}
+            >
+              Start Game
+            </Button>
+          </Stack>
 
-      <Stack
-        direction="row"
-        spacing={2}
-        justifyContent="space-evenly"
-        alignItems="center"
-        m={2}
-      >
-        <Button
-          disabled={teams.red && teams.red.spymaster}
-          onClick={() => {
-            joinTeam(activePlayer, "red", "spymaster");
-            setActivePlayer({
-              name: activePlayer.name,
-              isHost: activePlayer.isHost,
-              role: "spymaster",
-              team: "red",
-            });
-          }}
-          variant="contained"
-          color="error"
-        >
-          Join as Spymaster
-        </Button>
+          <Stack
+            direction="row"
+            spacing={2}
+            justifyContent="space-evenly"
+            alignItems="center"
+            m={2}
+          >
+            <Button
+              disabled={teams.red && teams.red.spymaster}
+              onClick={() => {
+                joinTeam(activePlayer, "red", "spymaster");
+                setActivePlayer({
+                  name: activePlayer.name,
+                  isHost: activePlayer.isHost,
+                  role: "spymaster",
+                  team: "red",
+                });
+              }}
+              variant="contained"
+              color="error"
+              size="large"
+            >
+              Join as Spymaster
+            </Button>
 
-        <Button
-          disabled={teams.blue && teams.blue.spymaster}
-          onClick={() => {
-            joinTeam(activePlayer, "blue", "spymaster");
-            setActivePlayer({
-              name: activePlayer.name,
-              isHost: activePlayer.isHost,
-              role: "spymaster",
-              team: "blue",
-            });
+            <Button
+              disabled={teams.blue && teams.blue.spymaster}
+              onClick={() => {
+                joinTeam(activePlayer, "blue", "spymaster");
+                setActivePlayer({
+                  name: activePlayer.name,
+                  isHost: activePlayer.isHost,
+                  role: "spymaster",
+                  team: "blue",
+                });
 
-            console.log(players);
-          }}
-          variant="contained"
-          color="primary"
-        >
-          Join as Spymaster
-        </Button>
-      </Stack>
+                console.log(players);
+              }}
+              variant="contained"
+              color="primary"
+              size="large"
+            >
+              Join as Spymaster
+            </Button>
+          </Stack>
+        </Grid>
+      </Grid>
       {players && unassigned.length > 0 && (
         <TeamDisplay team="Unassigned" players={unassigned} />
       )}
