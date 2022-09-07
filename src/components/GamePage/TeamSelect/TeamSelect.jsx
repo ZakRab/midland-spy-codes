@@ -7,8 +7,13 @@ import TeamDisplay from "../TeamDisplay/TeamDisplay";
 import { Grid } from "@mui/material";
 
 export default function TeamSelect({ players, joinTeam, sendCards }) {
-  const { activePlayer, createCards, setGameStatus, setActivePlayer } =
-    useGameContext();
+  const {
+    activePlayer,
+    createCards,
+    setGameStatus,
+    setActivePlayer,
+    activeTeam,
+  } = useGameContext();
 
   function gameStart() {
     setGameStatus("started");
@@ -55,7 +60,6 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
         <Grid
           md={6}
           sx={{
-            backdropFilter: "brightness(50%)",
             padding: "50px",
             borderRadius: "10px",
           }}

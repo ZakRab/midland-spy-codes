@@ -83,27 +83,8 @@ function GamePage() {
           </Button>
         </Box>
       </Modal>
-      <Typography variant="h3" align="center" m={2}>
-        <div className="picture1">
-          <img src="https://czechgames.com/for-press/codenames/codenames-13.png"></img>
-        </div>
-        {gameStatus === "started" && activeTeam === "red" && (
-          <Typography
-            className="background-card margin-auto flip-horizontal-top width400px"
-            sx={{ color: "red", fontSize: 40 }}
-          >
-            Red's Turn
-          </Typography>
-        )}
-        {gameStatus === "started" && activeTeam === "blue" && (
-          <Typography
-            className="background-card flip-horizontal-bottom margin-auto width400px"
-            sx={{ color: "#1976d2", fontSize: 40 }}
-          >
-            Blue's Turn
-          </Typography>
-        )}
-      </Typography>
+      <hr className="d-none"></hr>
+      <hr className="d-none"></hr>
       <Grid
         container
         direction="row"
@@ -128,7 +109,7 @@ function GamePage() {
           order={{ xs: 2, md: 1 }}
           alignSelf="flex-start"
         >
-          <TeamDisplay team="Red" players={redTeam} />
+          <TeamDisplay team="Red" players={redTeam} activeTeam={activeTeam} />
         </Grid>
         <Grid
           item
@@ -137,11 +118,11 @@ function GamePage() {
           alignSelf="flex-start"
           order={{ xs: 3, md: 3 }}
         >
-          <TeamDisplay team="Blue" players={blueTeam} />
+          <TeamDisplay team="Blue" players={blueTeam} activeTeam={activeTeam} />
         </Grid>
         {gameStatus == "started" && (
           <Grid
-            className="background-card"
+            className="background-card bg-white"
             item
             xs={12}
             md={8}
