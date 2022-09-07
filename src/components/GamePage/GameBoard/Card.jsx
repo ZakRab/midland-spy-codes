@@ -29,25 +29,57 @@ function Card({ card }) {
 		hyphens: "auto",
 		fontFamily: "Poppins, sans serif",
 	};
+	const opStyleSelected = {
+		backgroundColor: "#eedece",
+		aspectRatio: "3/2.5",
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		fontSize: "1.2em",
+		color: "#212020",
+		textTransform: "uppercase",
+		fontWeight: "semibold",
+		hyphens: "auto",
+		fontFamily: "Poppins, sans serif",
+		border: "3px solid yellow",
+	};
+	const opStyleFlipped = {
+		backgroundColor: card.color,
+		aspectRatio: "3/2.5",
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		fontSize: "1.2em",
+		color: "#212020",
+		textTransform: "uppercase",
+		fontWeight: "semibold",
+		hyphens: "auto",
+		fontFamily: "Poppins, sans serif",
+		border: "3px solid yellow",
+	};
 	return (
 		<div onClick={() => setSelectedCard(card)}>
 			{activePlayer.role === "spymaster" && (
 				<div style={spyStyle}>
-					{!card.isFaceUp ? <p>{card.word}</p> : <p>fliped</p>}
+					{!card.isFaceUp ? <p>{card.word}</p> : <p>Flipped</p>}
 				</div>
 			)}
 			{activePlayer.role === "operative" && selectedCard !== card && (
 				<div style={opStyle}>
-					{!card.isFaceUp ? <p>{card.word}</p> : <p>fliped</p>}
+					{!card.isFaceUp ? <p>{card.word}</p> : <p>Flipped</p>}
 				</div>
 			)}
 			{activePlayer.role === "operative" &&
 				selectedCard === card &&
 				!card.isFaceUp && (
-					<div>{!card.isFaceUp ? <p>{card.word}</p> : <p>fliped</p>}</div>
+					<div style={opStyleSelected}>
+						{!card.isFaceUp ? <p>{card.word}</p> : <p>Flipped</p>}
+					</div>
 				)}
 			{activePlayer.role === "operative" && card.isFaceUp && (
-				<div>{!card.isFaceUp ? <p>{card.word}</p> : <p>fliped</p>}</div>
+				<div style={opStyleFlipped}>
+					{!card.isFaceUp ? <p>{card.word}</p> : <p>Flipped</p>}
+				</div>
 			)}
 		</div>
 	);
