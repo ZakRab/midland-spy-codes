@@ -5,7 +5,6 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import useGameContext from "../../../context/GameContext";
 import Card from "./Card";
-import { PlayCircleFilledWhiteOutlined } from "@mui/icons-material";
 
 function GameBoard({ sendSelectedCard, endTurn }) {
   const Item = styled(Paper)(({ theme }) => ({
@@ -16,16 +15,23 @@ function GameBoard({ sendSelectedCard, endTurn }) {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
-  const { activePlayer, setSelectedCard, activeTeam, selectedCard, cards } =
-    useGameContext();
+  const {
+    activePlayer,
+    setSelectedCard,
+    activeTeam,
+    selectedCard,
+    cards,
+    setBtnCounter,
+    btnCounter,
+  } = useGameContext();
 
-  const [btnCounter, setBtnCounter] = useState(0);
   useEffect(() => {
-    if (btnCounter === 3) {
+    if (btnCounter === 0) {
       endTurn();
-      setBtnCounter(0);
+      setBtnCounter(3);
     }
-  }, [btnCounter]);
+    return;
+  }, [activeTeam]);
 
   return (
     <>
@@ -55,11 +61,14 @@ function GameBoard({ sendSelectedCard, endTurn }) {
           variant="contained"
           onClick={() => {
             sendSelectedCard(selectedCard);
-            setBtnCounter((curr) => curr + 1);
+            setBtnCounter((curr) => curr - 1);
           }}
         >
           Flip Card
         </Button>
+      )}
+      {activePlayer.role === "operative" && (
+        <h3 style={{ color: "black" }}>{btnCounter}</h3>
       )}
       {activePlayer.role === "operative" &&
         activePlayer.team === activeTeam && (

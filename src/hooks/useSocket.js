@@ -13,6 +13,7 @@ export default function useSocket(lobby) {
     setCards,
     setActiveTeam,
     setGameStatus,
+    setBtnCounter,
   } = useGameContext();
 
   const socketRef = useRef;
@@ -72,22 +73,22 @@ export default function useSocket(lobby) {
       }
     });
 
-    socketRef.current.on("end turn", () =>
+    socketRef.current.on("end turn", () => {
+      setBtnCounter(3);
       setActiveTeam((curr) => {
         if (curr === "blue") {
           return "red";
-        } else {
-          return "blue";
         }
-      })
-    );
+        return "blue";
+      });
+    });
+
     socketRef.current.on("end game", (winningTeam) => {
       setGameStatus("game over");
       setWinningTeam(winningTeam);
     });
 
     socketRef.current.on("send selected card", (card) => {
-      console.log(card);
       if (card.type === activeTeam) {
         setCards((curr) =>
           curr.map((c) => {
@@ -98,7 +99,7 @@ export default function useSocket(lobby) {
           })
         );
       } else if (card.type === "bomb") {
-        endGame(flipTeam());
+        endGame();
       } else {
         setCards((curr) =>
           curr.map((c) => {
@@ -112,13 +113,6 @@ export default function useSocket(lobby) {
       }
     });
   }, []);
-  function flipTeam(params) {
-    if (activeTeam === "blue") {
-      return "red";
-    } else {
-      return "blue";
-    }
-  }
 
   function joinTeam(player, team, role) {
     setActivePlayer((curr) => ({ ...curr, role, team }));
