@@ -44,13 +44,11 @@ export default function useSocket(lobby) {
 
     socketRef.current.on("join team", ({ player, team, role }) => {
       if (activePlayer.isHost) {
-        console.log(player, team, role);
         setPlayers((curr) => {
           let newPlayers = curr.map((p) => {
             if (p.name === player.name) {
               p.team = team;
               p.role = role;
-              console.log(p);
             }
             return p;
           });
@@ -75,12 +73,7 @@ export default function useSocket(lobby) {
 
     socketRef.current.on("end turn", () => {
       setBtnCounter(3);
-      setActiveTeam((curr) => {
-        if (curr === "blue") {
-          return "red";
-        }
-        return "blue";
-      });
+      setActiveTeam((curr) => (curr === "blue" ? "red" : "blue"));
     });
 
     socketRef.current.on("end game", (winningTeam) => {
@@ -89,26 +82,20 @@ export default function useSocket(lobby) {
     });
 
     socketRef.current.on("send selected card", (card) => {
-      if (card.type === activeTeam) {
-        setCards((curr) =>
-          curr.map((c) => {
-            if (c.word === card.word) {
-              c.isFaceUp = true;
-            }
-            return c;
-          })
-        );
-      } else if (card.type === "bomb") {
-        endGame();
-      } else {
-        setCards((curr) =>
-          curr.map((c) => {
-            if (c.word === card.word) {
-              c.isFaceUp = true;
-            }
-            return c;
-          })
-        );
+      if (card.type === "bomb") {
+        return endGame();
+      }
+
+      setBtnCounter((curr) => curr - 1);
+      setCards((curr) =>
+        curr.map((c) => {
+          if (c.word === card.word) {
+            c.isFaceUp = true;
+          }
+          return c;
+        })
+      );
+      if (card.type !== activeTeam && activePlayer.isHost) {
         endTurn();
       }
     });
@@ -124,11 +111,9 @@ export default function useSocket(lobby) {
   }
 
   function sendClue(clue) {
-    console.log(clue);
     socketRef.current.emit("send clue", clue);
   }
   function sendCards(cards) {
-    console.log(cards);
     socketRef.current.emit("send cards", cards);
   }
 

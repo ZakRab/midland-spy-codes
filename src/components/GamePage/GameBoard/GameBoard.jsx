@@ -21,20 +21,17 @@ function GameBoard({ sendSelectedCard, endTurn }) {
     activeTeam,
     selectedCard,
     cards,
-    setBtnCounter,
     btnCounter,
   } = useGameContext();
 
   useEffect(() => {
-    if (btnCounter === 0) {
+    if (btnCounter === 0 && activePlayer.isHost) {
       endTurn();
-      setBtnCounter(3);
     }
-    return;
-  }, [activeTeam]);
-
+  }, [activePlayer, btnCounter]);
   return (
     <>
+      {activePlayer.name}, {activeTeam}
       <Grid
         justifyContent="center"
         container
@@ -61,7 +58,6 @@ function GameBoard({ sendSelectedCard, endTurn }) {
           variant="contained"
           onClick={() => {
             sendSelectedCard(selectedCard);
-            setBtnCounter((curr) => curr - 1);
           }}
         >
           Flip Card
