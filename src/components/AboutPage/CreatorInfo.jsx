@@ -8,9 +8,8 @@ import IconButton from "@mui/material/IconButton";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import Collapse from "@mui/material/Collapse";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { Grid } from "@mui/material";
 
 export default function CreatorInfo({ creator }) {
   const { name, photo, bio, linkedIn, github } = creator;
@@ -53,14 +52,22 @@ export default function CreatorInfo({ creator }) {
           >
             <LinkedInIcon fontSize="large" />
           </IconButton>
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
+          {expanded && (
+            <ExpandLess
+              sx={{ cursor: "pointer" }}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show less"
+            />
+          )}
+          {!expanded && (
+            <ExpandMore
+              sx={{ cursor: "pointer" }}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show less"
+            />
+          )}
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>

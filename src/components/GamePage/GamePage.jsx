@@ -18,15 +18,8 @@ function GamePage() {
   const { joinTeam, sendClue, sendCards, endGame, sendSelectedCard, endTurn } =
     useSocket(lobby);
 
-  const {
-    gameStatus,
-    setGameStatus,
-    players,
-    activeTeam,
-    cards,
-    winningTeam,
-    setWinningTeam,
-  } = useGameContext();
+  const { gameStatus, setGameStatus, players, activeTeam, cards, winningTeam } =
+    useGameContext();
   const redTeam = useMemo(
     () =>
       players
@@ -70,7 +63,7 @@ function GamePage() {
     } else if (faceUpByColor.red === 6) {
       endGame("red");
     }
-  }, [cards, activeTeam]);
+  }, [cards, activeTeam, endGame]);
 
   return (
     <div>
@@ -78,7 +71,12 @@ function GamePage() {
         <Box sx={style}>
           <Typography>GAME OVER</Typography>
           <Typography>{winningTeam + "won"}</Typography>
-          <Button onClick={() => (setGameStatus(null), navigate("/home"))}>
+          <Button
+            onClick={() => {
+              setGameStatus(null);
+              navigate("/home");
+            }}
+          >
             Reset Game
           </Button>
         </Box>
@@ -120,7 +118,7 @@ function GamePage() {
         >
           <TeamDisplay team="Blue" players={blueTeam} activeTeam={activeTeam} />
         </Grid>
-        {gameStatus == "started" && (
+        {gameStatus === "started" && (
           <Grid
             className="background-card bg-white"
             item
