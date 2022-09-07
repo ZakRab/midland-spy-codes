@@ -6,16 +6,15 @@ import useGameContext from "../../context/GameContext";
 import { Grid, Typography } from "@mui/material";
 
 function HomePage() {
-	const navigate = useNavigate();
-	const { setActivePlayer } = useGameContext();
-	const [lobby, setLobby] = useState("");
-	const [name, setName] = useState("");
-	const lobbyError = useMemo(() => lobby.length <= 4, [lobby]);
-	const nameError = useMemo(
-		() => name.length === 0 || name.length > 10,
-		[name],
-	);
-
+  const navigate = useNavigate();
+  const { setActivePlayer } = useGameContext();
+  const [lobby, setLobby] = useState("");
+  const [name, setName] = useState("");
+  const lobbyError = useMemo(() => lobby.length <= 4, [lobby]);
+  const nameError = useMemo(
+    () => name.length === 0 || name.length > 10,
+    [name]
+  );
 
   return (
     <div>
@@ -29,87 +28,106 @@ function HomePage() {
           alignItems="center"
         >
           <Grid item xs={12}>
-            <div className="spacing">
-              <img src="https://czechgames.com/for-press/codenames/codenames-13.png"></img>
+            <div className="spacing picture2">
+              <img alt="code-words logo" src="./images/codenames-13.png"></img>
             </div>
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="Name"
-              label="Name"
-              variant="filled"
-              size="small"
-              sx={{
-                borderRadius: "10px",
-                fontWeight: "bold",
-                color: "#212121",
-                backgroundColor: "#e0e0e0",
-              }}
-              value={name}
-              error={nameError}
-              helperText="Must be less than 10 characters"
-              onChange={(e) => setName(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="Lobby"
-              label="Lobby"
-              variant="filled"
-              size="small"
-              sx={{
-                borderRadius: "10px",
-                fontWeight: "bold",
-                color: "#212121",
-                backgroundColor: "#e0e0e0",
-              }}
-              value={lobby}
-              error={lobbyError}
-              helperText="Must be 5 characters"
-              onChange={(e) => setLobby(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                fontWeight: "bold",
-                color: "#d50000",
-                backgroundColor: "#212121",
-              }}
-              disabled={nameError || lobbyError}
-              onClick={(e) => {
-                setActivePlayer({
-                  name,
-                  isHost: false,
-                  team: null,
-                  role: null,
-                });
-                navigate(`/game/${lobby}`);
-              }}
-            >
-              Go to Lobby
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                fontWeight: "bold",
-                color: "#d50000",
-                backgroundColor: "#212121",
-              }}
-              disabled={nameError || !(!nameError && lobbyError)}
-              onClick={(e) => {
-                let lobby = (Math.random() + 1).toString(36).substring(7);
-                setActivePlayer({ name, isHost: true, team: null, role: null });
-                navigate(`/game/${lobby}`);
-              }}
-            >
-              Create Lobby
-            </Button>
+          <Grid
+            className="background-card bg-white"
+            md={4}
+            item
+            sx={{
+              padding: "50px",
+              borderRadius: "10px",
+            }}
+          >
+            <Grid item xs={12}>
+              <TextField
+                id="Name"
+                label="Name"
+                variant="filled"
+                size="small"
+                fullWidth
+                sx={{
+                  borderRadius: "10px",
+                  fontWeight: "bold",
+                  color: "#212121",
+                  backgroundColor: "#e0e0e0",
+                }}
+                value={name}
+                error={nameError}
+                helperText="Must be less than 10 characters"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="Lobby"
+                label="Lobby"
+                variant="filled"
+                size="small"
+                fullWidth
+                sx={{
+                  borderRadius: "10px",
+                  fontWeight: "bold",
+                  color: "#212121",
+                  backgroundColor: "#e0e0e0",
+                }}
+                value={lobby}
+                error={lobbyError}
+                helperText="Must be 5 characters"
+                onChange={(e) => setLobby(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                color="error"
+                size="large"
+                sx={{
+                  fontWeight: "bold",
+                  // color: "#212121",
+                  // backgroundColor: "#304ffe",
+                }}
+                disabled={nameError || lobbyError}
+                onClick={(e) => {
+                  setActivePlayer({
+                    name,
+                    isHost: false,
+                    team: null,
+                    role: null,
+                  });
+                  navigate(`/game/${lobby}`);
+                }}
+              >
+                Go to Lobby
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                color="error"
+                size="large"
+                sx={{
+                  fontWeight: "bold",
+                  // color: "#212121",
+                  // backgroundColor: "#304ffe",
+                }}
+                disabled={nameError || !(!nameError && lobbyError)}
+                onClick={(e) => {
+                  let lobby = (Math.random() + 1).toString(36).substring(7);
+                  setActivePlayer({
+                    name,
+                    isHost: true,
+                    team: null,
+                    role: null,
+                  });
+                  navigate(`/game/${lobby}`);
+                }}
+              >
+                Create Lobby
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
         <Typography mt={2} variant="h6" align={"center"}>
@@ -118,7 +136,6 @@ function HomePage() {
       </div>
     </div>
   );
-
 }
 
 export default HomePage;

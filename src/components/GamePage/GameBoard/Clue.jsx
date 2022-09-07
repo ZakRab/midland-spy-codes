@@ -15,7 +15,7 @@ function Clue({ sendClue }) {
   return (
     <div style={{ margin: "5px" }}>
       <div>
-        {activePlayer.role === "spymaster" && (
+        {activePlayer.role === "spymaster" && activeTeam === activePlayer.team && (
           <Grid mt={1} container justifyContent="space-between" spacing={1}>
             <Grid item xs={9}>
               <TextField
@@ -49,7 +49,10 @@ function Clue({ sendClue }) {
                   hasClicked ||
                   clue.length === 0
                 }
-                onClick={() => (setHasClicked(true), sendClue(clue))}
+                onClick={() => {
+                  setHasClicked(true);
+                  sendClue(clue);
+                }}
               >
                 Send
               </Button>
@@ -58,6 +61,10 @@ function Clue({ sendClue }) {
         )}
       </div>
       {activePlayer.role === "operative" && <h1>{clue}</h1>}
+      {activePlayer.role === "operative" &&
+        activePlayer.team === activeTeam &&
+        clue === "" && <h1> Waiting on clue </h1>}
+      {activePlayer.team !== activeTeam && <h1>Waiting on other Team!</h1>}
     </div>
   );
 }

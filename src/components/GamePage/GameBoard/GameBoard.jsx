@@ -24,7 +24,7 @@ function GameBoard({ sendSelectedCard, endTurn }) {
       endTurn();
       setBtnCounter(0);
     }
-  }, [btnCounter]);
+  }, [btnCounter, endTurn]);
 
   return (
     <>

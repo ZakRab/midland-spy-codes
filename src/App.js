@@ -10,7 +10,6 @@ import GamePage from "./components/GamePage/GamePage";
 import RulesPage from "./components/RulesPage/RulesPage";
 import HomePage from "./components/HomePage/HomePage";
 import Menu from "./components/Menu";
-import { Typography, Box } from "@mui/material";
 
 const App = () => {
   return (

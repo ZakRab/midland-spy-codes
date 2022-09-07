@@ -1,4 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type";
 import React, { createContext, useContext, useState, useCallback } from "react";
 
 export const GameContext = createContext(null);
