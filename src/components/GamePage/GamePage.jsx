@@ -86,6 +86,7 @@ function GamePage() {
         {/* </div> */}
       </Modal>
       <Grid
+        mt={1}
         container
         direction="row"
         alignContent={"flex-start"}
