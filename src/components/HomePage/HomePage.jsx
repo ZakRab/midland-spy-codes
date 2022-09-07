@@ -115,7 +115,8 @@ function HomePage() {
                 }}
                 disabled={nameError || !(!nameError && lobbyError)}
                 onClick={(e) => {
-                  let lobby = (Math.random() + 1).toString(36).substring(7);
+                  let lobby = Math.random().toString(36).slice(7);
+                  lobby += lobby.length < 5 ? "a" : "";
                   setActivePlayer({
                     name,
                     isHost: true,
