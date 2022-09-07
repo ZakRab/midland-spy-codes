@@ -33,9 +33,9 @@ function HomePage() {
             </div>
           </Grid>
           <Grid
+            className="background-card bg-white"
             md={4}
             sx={{
-              backdropFilter: "brightness(50%)",
               padding: "50px",
               borderRadius: "10px",
             }}

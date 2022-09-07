@@ -83,18 +83,15 @@ function GamePage() {
           </Button>
         </Box>
       </Modal>
-      <Typography variant="h3" align="center" m={2}>
-        <div className="picture1">
-          <img src="https://czechgames.com/for-press/codenames/codenames-13.png"></img>
-        </div>
-        <div>Game {activeTeam}</div>
-      </Typography>
+      <hr className="d-none"></hr>
+      <hr className="d-none"></hr>
       <Grid
         container
         direction="row"
         alignContent={"flex-start"}
         justifyContent="space-evenly"
         alignItems="center"
+        className=""
       >
         {gameStatus !== "started" && (
           <Grid item xs={12} md={8} order={{ xs: 1, md: 2 }}>
@@ -112,7 +109,7 @@ function GamePage() {
           order={{ xs: 2, md: 1 }}
           alignSelf="flex-start"
         >
-          <TeamDisplay team="Red" players={redTeam} />
+          <TeamDisplay team="Red" players={redTeam} activeTeam={activeTeam} />
         </Grid>
         <Grid
           item
@@ -121,10 +118,16 @@ function GamePage() {
           alignSelf="flex-start"
           order={{ xs: 3, md: 3 }}
         >
-          <TeamDisplay team="Blue" players={blueTeam} />
+          <TeamDisplay team="Blue" players={blueTeam} activeTeam={activeTeam} />
         </Grid>
         {gameStatus == "started" && (
-          <Grid item xs={12} md={8} order={{ xs: 1, md: 2 }}>
+          <Grid
+            className="background-card bg-white"
+            item
+            xs={12}
+            md={8}
+            order={{ xs: 1, md: 2 }}
+          >
             <GameBoard sendSelectedCard={sendSelectedCard} endTurn={endTurn} />
             <Clue sendClue={sendClue} />
           </Grid>
