@@ -13,11 +13,8 @@ import Box from "@mui/material/Box";
 
 function GamePage() {
   const { lobby } = useParams();
-  
 
-
-
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const { joinTeam, sendClue, sendCards, endGame, sendSelectedCard, endTurn } =
     useSocket(lobby);
 
@@ -75,7 +72,6 @@ const navigate = useNavigate();
     }
   }, [cards, activeTeam]);
 
-
   return (
     <div>
       <Modal open={gameStatus === "game over"}>
@@ -88,13 +84,14 @@ const navigate = useNavigate();
         </Box>
       </Modal>
       <Typography variant="h3" align="center" m={2}>
-
         <div className="picture1">
           <img src="https://czechgames.com/for-press/codenames/codenames-13.png"></img>
         </div>
-        <div>
-           Game {activeTeam}
-        </div>
+        {gameStatus === "started" && (
+          <Typography sx={{ color: activeTeam, fontSize: 50 }}>
+            {activeTeam} team's turn
+          </Typography>
+        )}
       </Typography>
       <Grid
         container
