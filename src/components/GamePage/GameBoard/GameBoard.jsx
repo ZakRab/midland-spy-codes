@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import useGameContext from "../../../context/GameContext";
 import Card from "./Card";
+import { Box } from "@mui/material";
 
 import { PlayCircleFilledWhiteOutlined } from "@mui/icons-material";
 import { ButtonGroup } from "@mui/material";
@@ -56,21 +57,25 @@ function GameBoard({ sendSelectedCard, endTurn }) {
         ))}
       </Grid>
       {activePlayer.role === "operative" && activePlayer.team === activeTeam && (
-        <Button
-          variant="contained"
-          onClick={() => {
-            sendSelectedCard(selectedCard);
-            setBtnCounter((curr) => curr + 1);
-          }}
+        <Box
+          my={1}
+          display="flex"
+          flexDirection="row"
+          justifyContent="space-evenly"
         >
-          Flip Card
-        </Button>
-      )}
-      {activePlayer.role === "operative" && activePlayer.team === activeTeam && (
-        <Button variant="contained" onClick={() => endTurn()}>
-          {" "}
-          End Turn
-        </Button>
+          <Button
+            variant="contained"
+            onClick={() => {
+              sendSelectedCard(selectedCard);
+              setBtnCounter((curr) => curr + 1);
+            }}
+          >
+            Flip Card
+          </Button>
+          <Button variant="contained" color="error" onClick={() => endTurn()}>
+            End Turn
+          </Button>
+        </Box>
       )}
     </>
   );

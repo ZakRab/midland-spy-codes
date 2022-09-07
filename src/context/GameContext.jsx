@@ -6,7 +6,6 @@ export default function useGameContext() {
   return useContext(GameContext);
 }
 
-
 export function GameProvider(props) {
   const [cards, setCards] = useState([]);
   const [activePlayer, setActivePlayer] = useState({
@@ -27,7 +26,7 @@ export function GameProvider(props) {
         [array[i], array[j]] = [array[j], array[i]];
       }
     }
-    
+
     let cards = words.map((word, idx) => {
       let type;
       let color;
@@ -52,9 +51,6 @@ export function GameProvider(props) {
       };
     });
 
-   
-  
-
     shuffleArray(cards);
     setCards(cards);
     return cards;
@@ -63,14 +59,19 @@ export function GameProvider(props) {
   const [activeTeam, setActiveTeam] = useState("red");
   const [selectedCard, setSelectedCard] = useState({});
 
-  function resetGame (){
-    setCards(null);
-    setActivePlayer(null);
+  function resetGame() {
+    setCards([]);
+    setActivePlayer({
+      name: null,
+      isHost: false,
+      team: null,
+      role: null,
+    });
     setGameStatus(null);
-    setPlayers(null);
+    setPlayers([]);
     setWinningTeam(null);
-    setClue(null);
-   }
+    setClue("");
+  }
   return (
     <GameContext.Provider
       value={{
