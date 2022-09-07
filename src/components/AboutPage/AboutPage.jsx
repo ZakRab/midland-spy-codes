@@ -18,7 +18,8 @@ function AboutPage() {
 		<>
 			<Grid
 				mx={{
-					backgroundColor: "#d30000",
+					background:
+						"radial-gradient(circle, rgba(211,138,0,1) 0%, rgba(211,0,0,1) 72%, rgba(211,0,0,1) 73%)",
 					paddingY: "40px",
 				}}
 			>

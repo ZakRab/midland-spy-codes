@@ -10,7 +10,8 @@ function RulesPage() {
 				justifyContent="center"
 				alignItems="center"
 				sx={{
-					backgroundColor: "#d30000",
+					background:
+						"radial-gradient(circle, rgba(211,138,0,1) 0%, rgba(211,0,0,1) 100%)",
 					paddingY: "40px",
 					paddingX: "80px",
 				}}
@@ -42,15 +43,26 @@ function RulesPage() {
 						Teams
 					</Typography>
 					<Typography variant="body1" ml={2} mr={2} align={"left"}>
-						Codenames is a game for two teams. There is a grid of 16 words.
-						There are (6) red cards, (6) blue cards, (3) neutral cards, and (1)
-						bomb. <br></br>
-						<br></br>Each team has one SpyMaster and one Operative, only
-						Spymasters see which cards belonging to which teams. Spymasters take
-						turns giving clues to their teammates (Operatives) based on the
-						words that appear on the card, trying to lead them to guessing their
-						teams' cards. The team that guesses all their cards first wins the
-						game.
+						<p>
+							Codenames is a game for two teams. There is a grid of 16 words.
+							There are:{" "}
+						</p>
+						<ul>
+							<li>(6) red cards</li>
+							<li>(6) blue cards</li>
+							<li>(3) neutral cards</li>
+							<li>One bomb. </li>
+						</ul>
+						<p>
+							Each team has one SpyMaster and one Operative, and only Spymasters
+							see which cards belonging to which teams.
+						</p>
+						<p>
+							Spymasters take turns giving clues to their teammates (Operatives)
+							based on the words that appear on the card, trying to lead them to
+							guessing their teams' cards. The team that guesses all their cards
+							first wins the game.
+						</p>
 					</Typography>
 
 					<Typography variant="h5" my={2} align={"center"}>
