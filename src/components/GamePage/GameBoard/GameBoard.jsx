@@ -29,29 +29,27 @@ function GameBoard({ sendSelectedCard, endTurn }) {
 
   return (
     <>
-      <div style={{ boxShadow: "0 0 25px #060a42" }}>
-        <Grid
-          justifyContent="center"
-          container
-          // spacing={{ xs: 0, md: 1 }}
-          columns={{ xs: 1, sm: 9, md: 12 }}
-        >
-          {cards.map((card, index) => (
-            <Grid flexGrow={1} item xs={2} sm={3} md={3} key={index}>
-              <Item
-                sx={{ cursor: "pointer" }}
-                onClick={() =>
-                  card === selectedCard
-                    ? setSelectedCard(null)
-                    : setSelectedCard(card)
-                }
-              >
-                <Card card={card}></Card>
-              </Item>
-            </Grid>
-          ))}
-        </Grid>
-      </div>
+      <Grid
+        justifyContent="center"
+        container
+        // spacing={{ xs: 0, md: 1 }}
+        columns={{ xs: 1, sm: 9, md: 12 }}
+      >
+        {cards.map((card, index) => (
+          <Grid flexGrow={1} item xs={2} sm={3} md={3} key={index}>
+            <Item
+              sx={{ cursor: "pointer" }}
+              onClick={() =>
+                card === selectedCard
+                  ? setSelectedCard(null)
+                  : setSelectedCard(card)
+              }
+            >
+              <Card card={card}></Card>
+            </Item>
+          </Grid>
+        ))}
+      </Grid>
       {activePlayer.role === "operative" && activePlayer.team === activeTeam && (
         <Button
           variant="contained"
