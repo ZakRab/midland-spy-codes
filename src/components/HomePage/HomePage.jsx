@@ -4,15 +4,18 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import useGameContext from "../../context/GameContext";
 import { Grid, Typography } from "@mui/material";
+import lobbyCode from "../../shared/functions/lobbyCode";
 
 function HomePage() {
   const navigate = useNavigate();
   const { setActivePlayer } = useGameContext();
   const [lobby, setLobby] = useState("");
+  const [lobbyTouched, setLobbyTouched] = useState(false);
+  const [userTouched, setUserTouched] = useState(false);
   const [name, setName] = useState("");
-  const lobbyError = useMemo(() => lobby.length !== 0 && lobby.length !== 5[lobby]);
+  const lobbyError = useMemo(() => lobby.length < 5, [lobby]);
   const nameError = useMemo(
-    () => name.length === 1 || name.length > 10,
+    () => name.length === 0 || name.length > 10,
     [name]
   );
 
@@ -55,9 +58,12 @@ function HomePage() {
                   margin: "10px 0",
                 }}
                 value={name}
-                error={nameError}
+                error={nameError && userTouched}
                 helperText="Must be less than 10 characters"
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {
+                  setUserTouched(true);
+                  setName(e.target.value);
+                }}
               />
             </Grid>
             <Button
@@ -70,9 +76,9 @@ function HomePage() {
                 // color: "#212121",
                 // backgroundColor: "#304ffe",
               }}
-              disabled={nameError || (!nameError && lobbyError)}
+              disabled={nameError || (!nameError && !lobbyError)}
               onClick={(e) => {
-                let lobby = (Math.random() * 5).toString(36).substring(7);
+                let lobby = lobbyCode(5);
                 setActivePlayer({
                   name,
                   isHost: true,
@@ -99,9 +105,12 @@ function HomePage() {
                   margin: "10px 0",
                 }}
                 value={lobby}
-                error={lobbyError}
+                error={lobbyError && lobbyTouched}
                 helperText="Must be 5 characters"
-                onChange={(e) => setLobby(e.target.value)}
+                onChange={(e) => {
+                  setLobbyTouched(true);
+                  setLobby(e.target.value);
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -115,7 +124,7 @@ function HomePage() {
                   // color: "#212121",
                   // backgroundColor: "#304ffe",
                 }}
-                disabled={name.length === 0 || (nameError || !lobbyError)}
+                disabled={nameError || (!nameError && lobbyError)}
                 onClick={(e) => {
                   setActivePlayer({
                     name,
