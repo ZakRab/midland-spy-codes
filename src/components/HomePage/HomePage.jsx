@@ -12,7 +12,7 @@ function HomePage() {
   const [name, setName] = useState("");
   const lobbyError = useMemo(() => lobby.length <= 4, [lobby]);
   const nameError = useMemo(
-    () => name.length === 0 || name.length > 10,
+    () => name.length === 1 || name.length > 10,
     [name]
   );
 
@@ -70,9 +70,9 @@ function HomePage() {
                 // color: "#212121",
                 // backgroundColor: "#304ffe",
               }}
-              disabled={nameError || !(!nameError && lobbyError)}
+              disabled={name.length === 0 || nameError || !(!nameError && lobbyError)}
               onClick={(e) => {
-                let lobby = (Math.random() + 1).toString(36).substring(7);
+                let lobby = (Math.random() * 5).toString(36).substring(7);
                 setActivePlayer({
                   name,
                   isHost: true,
@@ -115,7 +115,7 @@ function HomePage() {
                   // color: "#212121",
                   // backgroundColor: "#304ffe",
                 }}
-                disabled={nameError || lobbyError}
+                disabled={name.length === 0 || (nameError || lobbyError)}
                 onClick={(e) => {
                   setActivePlayer({
                     name,
