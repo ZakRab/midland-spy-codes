@@ -29,13 +29,12 @@ function HomePage() {
         >
           <Grid item xs={12}>
             <div className="spacing picture2">
-              <img alt="code-words logo" src="./images/codenames-13.png"></img>
+              <img src="https://czechgames.com/for-press/codenames/codenames-13.png"></img>
             </div>
           </Grid>
           <Grid
             className="background-card bg-white"
             md={4}
-            item
             sx={{
               padding: "50px",
               borderRadius: "10px",
@@ -53,6 +52,7 @@ function HomePage() {
                   fontWeight: "bold",
                   color: "#212121",
                   backgroundColor: "#e0e0e0",
+                  margin: "10px 0",
                 }}
                 value={name}
                 error={nameError}
@@ -60,6 +60,30 @@ function HomePage() {
                 onChange={(e) => setName(e.target.value)}
               />
             </Grid>
+            <Button
+              variant="contained"
+              color="error"
+              size="large"
+              fullWidth
+              sx={{
+                fontWeight: "bold",
+                // color: "#212121",
+                // backgroundColor: "#304ffe",
+              }}
+              disabled={nameError || !(!nameError && lobbyError)}
+              onClick={(e) => {
+                let lobby = (Math.random() + 1).toString(36).substring(7);
+                setActivePlayer({
+                  name,
+                  isHost: true,
+                  team: null,
+                  role: null,
+                });
+                navigate(`/game/${lobby}`);
+              }}
+            >
+              Create Lobby
+            </Button>
             <Grid item xs={12}>
               <TextField
                 id="Lobby"
@@ -72,6 +96,7 @@ function HomePage() {
                   fontWeight: "bold",
                   color: "#212121",
                   backgroundColor: "#e0e0e0",
+                  margin: "10px 0",
                 }}
                 value={lobby}
                 error={lobbyError}
@@ -84,6 +109,7 @@ function HomePage() {
                 variant="contained"
                 color="error"
                 size="large"
+                fullWidth
                 sx={{
                   fontWeight: "bold",
                   // color: "#212121",
@@ -103,32 +129,7 @@ function HomePage() {
                 Go to Lobby
               </Button>
             </Grid>
-            <Grid item xs={12}>
-              <Button
-                variant="contained"
-                color="error"
-                size="large"
-                sx={{
-                  fontWeight: "bold",
-                  // color: "#212121",
-                  // backgroundColor: "#304ffe",
-                }}
-                disabled={nameError || !(!nameError && lobbyError)}
-                onClick={(e) => {
-                  let lobby = Math.random().toString(36).slice(7);
-                  lobby += lobby.length < 5 ? "a" : "";
-                  setActivePlayer({
-                    name,
-                    isHost: true,
-                    team: null,
-                    role: null,
-                  });
-                  navigate(`/game/${lobby}`);
-                }}
-              >
-                Create Lobby
-              </Button>
-            </Grid>
+            <Grid item xs={12}></Grid>
           </Grid>
         </Grid>
         <Typography mt={2} variant="h6" align={"center"}>
