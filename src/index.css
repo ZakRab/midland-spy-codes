@@ -12,7 +12,12 @@ a:hover {
 .box-sizing {
   box-sizing: border-box;
 }
-
+.text-black {
+  color: black;  
+}
+.about-width {
+  width: 90vw !important
+}
 .spy-icon {
   height: 50px;
   width: 50px;
