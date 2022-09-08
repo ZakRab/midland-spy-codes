@@ -1,14 +1,15 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import useGameContext from "../../context/GameContext";
 import { Grid, Typography } from "@mui/material";
+
 import lobbyCode from "../../shared/functions/lobbyCode";
 
 function HomePage() {
   const navigate = useNavigate();
-  const { setActivePlayer } = useGameContext();
+  const { setActivePlayer, resetGame } = useGameContext();
   const [lobby, setLobby] = useState("");
   const [lobbyTouched, setLobbyTouched] = useState(false);
   const [userTouched, setUserTouched] = useState(false);
@@ -18,6 +19,10 @@ function HomePage() {
     () => name.length === 0 || name.length > 10,
     [name]
   );
+
+  useEffect(() => {
+    resetGame();
+  }, []);
 
   return (
     <div>
@@ -31,13 +36,12 @@ function HomePage() {
           alignItems="center"
         >
           <Grid item xs={12}>
-            <div className="spacing picture2">
-              <img src="https://czechgames.com/for-press/codenames/codenames-13.png"></img>
-            </div>
+            <h1 className="game-title">SPY CODE</h1>
           </Grid>
           <Grid
             className="background-card bg-white"
             md={4}
+            item
             sx={{
               padding: "50px",
               borderRadius: "10px",
@@ -142,10 +146,10 @@ function HomePage() {
           </Grid>
         </Grid>
         <Typography mt={2} variant="h6" align={"center"}>
-          Created by 1&&0
+          Created by
         </Typography>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 

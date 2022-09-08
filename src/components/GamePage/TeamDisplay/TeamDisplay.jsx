@@ -16,8 +16,8 @@ function TeamDisplay({ team, players, activeTeam }) {
     <div
       className={
         activeTeam === team.toLowerCase()
-          ? "bg-gray background-card min-height150px margin-auto width70p"
-          : "bg-white background-card min-height150px margin-auto width70p"
+          ? "bg-white activeTeamBorder background-card min-height150px width70p margin-top box-sizing"
+          : "bg-white background-card min-height150px width70p margin-top box-sizing"          
       }
     >
       <Typography
@@ -30,7 +30,7 @@ function TeamDisplay({ team, players, activeTeam }) {
       </Typography>
       {players.map((v, idx) => (
         <Typography
-          color={v.team === "blue" ? "black" : "normal"}
+          color="black"
           key={idx}
           align="center"
           variant="body1"

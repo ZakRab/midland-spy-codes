@@ -1,14 +1,23 @@
 a.active {
   text-decoration: underline;
 }
+
 a:hover {
   color: orangered;
+}
+.margin-top {
+  margin: 8px auto;
+}
+
+.box-sizing {
+  box-sizing: border-box;
 }
 
 .spy-icon {
   height: 50px;
   width: 50px;
 }
+
 .d-none {
   visibility: hidden;
 }
@@ -19,93 +28,77 @@ a:hover {
   padding: 5px;
   width: max-content;
 }
+
 .bg-gray {
   background-color: rgb(81, 81, 81);
 }
+
 .bg-white {
   background-color: rgb(255, 255, 255);
+}
+
+.activeTeamBorder {
+  border-color: orange;
+  border-style: solid;
+  border-width: 5px;
 }
 
 .width400px {
   width: 400px;
 }
+
 .width70p {
   width: 70%;
 }
+
 .min-height150px {
   min-height: 150px;
 }
+
 .margin-auto {
-  margin: auto !important ;
+  margin: auto !important;
 }
+
 .animate-right {
   animation: slideright linear 1s 1s;
 }
 
-.flip-horizontal-top {
-  animation: flip-horizontal-top 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955)
-    reverse both;
-}
-.flip-horizontal-bottom {
-  animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955)
-    reverse both;
-}
-
-/* .image {
-	background: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png"),
-		url("https://cdn.pixabay.com/photo/2018/08/15/14/11/audit-3608131_960_720.png");
-
-	background-repeat: no-repeat, no-repeat;
-	background-size: auto 75%, auto 75%;
-	background-position: 5% 50%, 95% 50%;
-	height: 90vh;
-} */
 @media screen and (min-width: 1150px) {
   .image {
     background: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png"),
-      url("https://cdn.pixabay.com/photo/2018/08/15/14/11/audit-3608131_960_720.png");
-    background-repeat: no-repeat, no-repeat;
-    background-size: auto 25vw, auto 25vw;
-    background-position: 5% 70%, 95% 70%;
+      url("https://cdn.pixabay.com/photo/2018/08/15/14/11/audit-3608131_960_720.png"),
+      url("https://i.postimg.cc/d05VdBGs/gaming-logo4-4.png");
+
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: auto 30vw, auto 30vw, auto 10vw;
+    background-position: 5% 70%, 95% 70%, 50% 100%;
     height: 90vh;
   }
 }
+
 html,
 body,
 #root {
   height: 100%;
   margin: 0;
 }
+
 .spacing1 {
   margin-top: 40px;
 }
 
-@keyframes flip-horizontal-top {
-  0% {
-    transform: rotateX(0);
-  }
-  100% {
-    transform: rotateX(180deg);
-  }
-}
-@keyframes flip-horizontal-bottom {
-  0% {
-    transform: rotateX(0);
-  }
-  100% {
-    transform: rotateX(-180deg);
-  }
-}
 .picture2 img {
   width: 60vw;
   margin: 20px 0;
 }
+
 .picture3 img {
   width: 150px;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
+
 @media screen and (max-width: 600px) {
   .picture2 img {
     width: 200px;
@@ -125,4 +118,47 @@ body {
     rgba(37, 15, 208, 1) 62%,
     rgba(234, 235, 241, 100) 100%
   );
+}
+
+@media (min-width: 600px) {
+  .word-card {
+    height: 100px;
+  }
+}
+@media (max-width: 600px) {
+  .word-card {
+    height: 57px;
+  }
+}
+
+.word-card {
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: semibold;
+  hyphens: auto;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+.spy-card {
+  color: #fff;
+}
+
+.op-selected {
+  color: #212020;
+  border: 3px solid yellow;
+}
+
+.op-card {
+  color: #212020;
+}
+.game-title {
+  font-family: "Rubik Dirt", cursive;
+  font-size: 60px;
+  font-weight: normal;
 }
