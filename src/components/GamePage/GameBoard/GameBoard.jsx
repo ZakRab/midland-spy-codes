@@ -51,13 +51,6 @@ function GameBoard({ sendSelectedCard, endTurn }) {
           </Button>
         </Box>
       )}
-
-      {/* {activePlayer.role === "operative" && (
-        <h3 style={{ color: "black" }}>{btnCounter} guesses left</h3>
-      )} */}
-      {activePlayer.role === "operative" && (
-        <h3 style={{ color: "black" }}>{btnCounter} guesses left</h3>
-      )}
     </>
   );
 }
