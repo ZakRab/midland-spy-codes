@@ -8,22 +8,8 @@ import Card from "./Card";
 import Box from "@mui/material/Box";
 
 function GameBoard({ sendSelectedCard, endTurn }) {
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: "5px",
-    margin: "5px",
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
-  const {
-    activePlayer,
-    setSelectedCard,
-    activeTeam,
-    selectedCard,
-    cards,
-    btnCounter,
-  } = useGameContext();
+  const { activePlayer, activeTeam, selectedCard, cards, btnCounter } =
+    useGameContext();
 
   useEffect(() => {
     if (btnCounter === 0 && activePlayer.isHost) {
@@ -33,7 +19,6 @@ function GameBoard({ sendSelectedCard, endTurn }) {
 
   return (
     <>
-      {activePlayer.name}, {activeTeam}
       <Grid
         justifyContent="center"
         container
@@ -42,16 +27,7 @@ function GameBoard({ sendSelectedCard, endTurn }) {
       >
         {cards.map((card, index) => (
           <Grid flexGrow={1} item xs={2} sm={3} md={3} key={index}>
-            <Item
-              sx={{ cursor: "pointer" }}
-              onClick={() =>
-                card === selectedCard
-                  ? setSelectedCard(null)
-                  : setSelectedCard(card)
-              }
-            >
-              <Card card={card}></Card>
-            </Item>
+            <Card card={card}></Card>
           </Grid>
         ))}
       </Grid>
@@ -74,9 +50,6 @@ function GameBoard({ sendSelectedCard, endTurn }) {
             End Turn
           </Button>
         </Box>
-      )}
-      {activePlayer.role === "operative" && (
-        <h3 style={{ color: "black" }}>{btnCounter} guesses left</h3>
       )}
     </>
   );

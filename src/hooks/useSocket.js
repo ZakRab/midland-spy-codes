@@ -12,6 +12,7 @@ export default function useSocket(lobby) {
     setClue,
     setCards,
     setActiveTeam,
+    setSelectedCard,
     setGameStatus,
     setBtnCounter,
   } = useGameContext();
@@ -83,7 +84,7 @@ export default function useSocket(lobby) {
       if (card.type === "bomb") {
         return endGame();
       }
-
+      setSelectedCard(null);
       setBtnCounter((curr) => curr - 1);
       setCards((curr) =>
         curr.map((c) => {

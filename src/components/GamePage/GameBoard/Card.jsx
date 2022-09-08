@@ -1,86 +1,41 @@
-import React from "react";
+import React, { useMemo } from "react";
 import useGameContext from "../../../context/GameContext";
 
 function Card({ card }) {
-  const { activePlayer, setSelectedCard, selectedCard } = useGameContext();
-  const spyStyle = {
-    backgroundColor: card.color,
-    aspectRatio: "3/2.5",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: "1.2em",
-    color: "#fff",
-    textTransform: "uppercase",
-    fontFamily: "Poppins, sans serif",
-    fontWeight: "semibold",
-    hyphens: "auto",
-  };
-  const opStyle = {
-    aspectRatio: "3/2.5",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: "1.2em",
-    color: "#212020",
-    textTransform: "uppercase",
-    backgroundColor: "#eedece",
-    fontWeight: "semibold",
-    hyphens: "auto",
-    fontFamily: "Poppins, sans serif",
-  };
-  const opStyleSelected = {
-    boxSizing: "border-box",
-    backgroundColor: "#eedece",
-    aspectRatio: "3/2.5",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: "1.2em",
-    color: "#212020",
-    textTransform: "uppercase",
-    fontWeight: "semibold",
-    hyphens: "auto",
-    fontFamily: "Poppins, sans serif",
-    border: "3px solid yellow",
-  };
-  const opStyleFlipped = {
-    backgroundColor: card.color,
-    aspectRatio: "3/2.5",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: "1.2em",
-    color: "#212020",
-    textTransform: "uppercase",
-    fontWeight: "semibold",
-    hyphens: "auto",
-    fontFamily: "Poppins, sans serif",
-    // border: "3px solid yellow",
-  };
+  const { activePlayer, setSelectedCard, selectedCard, activeTeam } =
+    useGameContext();
+  const cardClasses = useMemo(() => {
+    let cardClass = "word-card ";
+    if (activePlayer.role === "spymaster") {
+      cardClass += "spy-card ";
+    } else {
+      cardClass += "op-card ";
+    }
+
+    if (card === selectedCard && activePlayer.role === "operative") {
+      cardClass += "op-selected";
+    }
+
+    return cardClass;
+  }, [activePlayer, selectedCard, card]);
   return (
-    <div onClick={() => setSelectedCard(!card.isFaceUp ? card : null)}>
-      {activePlayer.role === "spymaster" && (
-        <div style={spyStyle}>{!card.isFaceUp && <p>{card.word}</p>}</div>
-      )}
-
-      {activePlayer.role === "operative" &&
-        selectedCard !== card &&
-        !card.isFaceUp && (
-          <div style={opStyle}>{!card.isFaceUp && <p>{card.word}</p>}</div>
-        )}
-
-      {activePlayer.role === "operative" &&
-        selectedCard === card &&
-        !card.isFaceUp && (
-          <div style={opStyleSelected}>
-            {!card.isFaceUp && <p>{card.word}</p>}
-          </div>
-        )}
-
-      {activePlayer.role === "operative" && card.isFaceUp && (
-        <div style={opStyleFlipped}>{!card.isFaceUp && <p>{card.word}</p>}</div>
-      )}
+    <div
+      onClick={() => {
+        if (!card.isFaceUp && activePlayer.team === activeTeam) {
+          setSelectedCard(card);
+        } else {
+          setSelectedCard(null);
+        }
+      }}
+      className={cardClasses}
+      style={{
+        backgroundColor:
+          activePlayer.role === "spymaster" || card.isFaceUp
+            ? card.color
+            : "#eedece",
+      }}
+    >
+      {!card.isFaceUp && <p>{card.word}</p>}
     </div>
   );
 }

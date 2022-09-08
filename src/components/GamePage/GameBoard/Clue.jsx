@@ -3,14 +3,22 @@ import Button from "@mui/material/Button";
 import { Grid, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import useGameContext from "../../../context/GameContext";
+import { margin } from "@mui/system";
 
-function Clue({ sendClue }) {
-  const { activePlayer, setClue, clue, activeTeam } = useGameContext();
+function Clue({ sendClue, endTurn }) {
+  const { activePlayer, setClue, clue, activeTeam, btnCounter } =
+    useGameContext();
   const [hasClicked, setHasClicked] = useState(false);
 
   useEffect(() => {
     setHasClicked(false);
   }, [activeTeam]);
+
+  useEffect(() => {
+    if (btnCounter === 0 && activePlayer.isHost) {
+      endTurn();
+    }
+  }, [activePlayer, btnCounter, endTurn]);
 
   return (
     <div style={{ margin: "5px" }}>
@@ -64,20 +72,36 @@ function Clue({ sendClue }) {
       {activePlayer.role === "operative" && (
         <h1 style={{ color: "black" }}>{clue}</h1>
       )}
-      
-      {activePlayer.role === "operative" &&
-        activePlayer.team === activeTeam &&
-        clue === "" && <h1 style={{ color: "black" }}> Waiting on clue </h1>}
-        
-        
-      {activePlayer.team !== activeTeam && (
-        <h1 style={{ color: "black" }}>Waiting on other Team!</h1>
-      )}
-
-
-        
-        
-
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "0",
+        }}
+      >
+        <div>
+          {activePlayer.role === "operative" &&
+            activePlayer.team === activeTeam &&
+            clue === "" && (
+              <h1 style={{ color: "black", marginTop: "0", marginBottom: "0" }}>
+                {" "}
+                Waiting on clue{" "}
+              </h1>
+            )}
+          {activePlayer.team !== activeTeam && (
+            <h1 style={{ color: "black", marginTop: "0", paddingBottom: "0" }}>
+              Waiting on other Team!
+            </h1>
+          )}
+        </div>
+        <div tyle={{ marginTop: "0", paddingBottom: "0" }}>
+          {activePlayer.role === "operative" && (
+            <h1 style={{ color: "black", marginTop: "0", paddingBottom: "0" }}>
+              Flips remaining: {btnCounter}
+            </h1>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

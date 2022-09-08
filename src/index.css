@@ -43,7 +43,6 @@ a:hover {
   border-width: 5px;
 }
 
-
 .width400px {
   width: 400px;
 }
@@ -63,7 +62,6 @@ a:hover {
 .animate-right {
   animation: slideright linear 1s 1s;
 }
-
 
 @media screen and (min-width: 1150px) {
   .image {
@@ -113,22 +111,54 @@ body,
 
 body {
   color: white;
-  background: linear-gradient(27deg,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(255, 0, 0, 1) 31%,
-      rgba(37, 15, 208, 1) 62%,
-      rgba(234, 235, 241, 100) 100%);
+  background: linear-gradient(
+    27deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 0, 0, 1) 31%,
+    rgba(37, 15, 208, 1) 62%,
+    rgba(234, 235, 241, 100) 100%
+  );
 }
 
-
-* {
-  font-family: "Poppins", sans-serif;
+@media (min-width: 600px) {
+  .word-card {
+    height: 100px;
+  }
+}
+@media (max-width: 600px) {
+  .word-card {
+    height: 57px;
+  }
 }
 
+.word-card {
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: semibold;
+  hyphens: auto;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+.spy-card {
+  color: #fff;
+}
+
+.op-selected {
+  color: #212020;
+  border: 3px solid yellow;
+}
+
+.op-card {
+  color: #212020;
+}
 .game-title {
-  font-family: 'Rubik Dirt', cursive;
+  font-family: "Rubik Dirt", cursive;
   font-size: 60px;
   font-weight: normal;
-
 }
-
