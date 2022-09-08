@@ -65,8 +65,8 @@ a:hover {
 		background: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png"),
 			url("https://cdn.pixabay.com/photo/2018/08/15/14/11/audit-3608131_960_720.png");
 		background-repeat: no-repeat, no-repeat;
-		background-size: auto 75%, auto 75%;
-		background-position: 5% 50%, 95% 50%;
+		background-size: auto 25vw, auto 25vw;
+		background-position: 5% 70%, 95% 70%;
 		height: 90vh;
 	}
 }
@@ -76,8 +76,7 @@ body,
 	height: 100%;
 	margin: 0;
 }
-
-.spacing {
+.spacing1 {
 	margin-top: 40px;
 }
 
@@ -97,12 +96,24 @@ body,
 		transform: rotateX(-180deg);
 	}
 }
-.picture1 img {
-	width: 500px;
-}
-
 .picture2 img {
-	width: 800px;
+	width: 60vw;
+	margin: 20px 0;
+}
+.picture3 img {
+	width: 150px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+@media screen and (max-width: 600px) {
+	.picture2 img {
+		width: 200px;
+	}
+
+	.spacing {
+		margin: 20px 0;
+	}
 }
 
 body {
@@ -112,6 +123,6 @@ body {
 		rgba(0, 0, 0, 1) 0%,
 		rgba(255, 0, 0, 1) 31%,
 		rgba(37, 15, 208, 1) 62%,
-		rgba(0, 0, 0, 1) 100%
+		rgba(234, 235, 241, 100) 100%
 	);
 }

@@ -52,6 +52,7 @@ function HomePage() {
 									fontWeight: "bold",
 									color: "#212121",
 									backgroundColor: "#e0e0e0",
+									margin: "10px 0",
 								}}
 								value={name}
 								error={nameError}
@@ -59,6 +60,30 @@ function HomePage() {
 								onChange={(e) => setName(e.target.value)}
 							/>
 						</Grid>
+						<Button
+							variant="contained"
+							color="error"
+							size="large"
+							fullWidth
+							sx={{
+								fontWeight: "bold",
+								// color: "#212121",
+								// backgroundColor: "#304ffe",
+							}}
+							disabled={nameError || !(!nameError && lobbyError)}
+							onClick={(e) => {
+								let lobby = (Math.random() + 1).toString(36).substring(7);
+								setActivePlayer({
+									name,
+									isHost: true,
+									team: null,
+									role: null,
+								});
+								navigate(`/game/${lobby}`);
+							}}
+						>
+							Create Lobby
+						</Button>
 						<Grid item xs={12}>
 							<TextField
 								id="Lobby"
@@ -71,6 +96,7 @@ function HomePage() {
 									fontWeight: "bold",
 									color: "#212121",
 									backgroundColor: "#e0e0e0",
+									margin: "10px 0",
 								}}
 								value={lobby}
 								error={lobbyError}
@@ -83,6 +109,7 @@ function HomePage() {
 								variant="contained"
 								color="error"
 								size="large"
+								fullWidth
 								sx={{
 									fontWeight: "bold",
 									// color: "#212121",
@@ -102,31 +129,7 @@ function HomePage() {
 								Go to Lobby
 							</Button>
 						</Grid>
-						<Grid item xs={12}>
-							<Button
-								variant="contained"
-								color="error"
-								size="large"
-								sx={{
-									fontWeight: "bold",
-									// color: "#212121",
-									// backgroundColor: "#304ffe",
-								}}
-								disabled={nameError || !(!nameError && lobbyError)}
-								onClick={(e) => {
-									let lobby = (Math.random() + 1).toString(36).substring(7);
-									setActivePlayer({
-										name,
-										isHost: true,
-										team: null,
-										role: null,
-									});
-									navigate(`/game/${lobby}`);
-								}}
-							>
-								Create Lobby
-							</Button>
-						</Grid>
+						<Grid item xs={12}></Grid>
 					</Grid>
 				</Grid>
 				<Typography mt={2} variant="h6" align={"center"}>
