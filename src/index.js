@@ -4,12 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { GameProvider } from "./context/GameContext";
+import { ThemeProvider } from "@mui/system";
+import { spyTheme } from "./shared/CustomTheme";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<GameProvider>
-		<App />
-	</GameProvider>,
+  <ThemeProvider theme={spyTheme}>
+    <GameProvider>
+      <App />
+    </GameProvider>
+  </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
