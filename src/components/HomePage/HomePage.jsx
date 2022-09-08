@@ -28,9 +28,7 @@ function HomePage() {
           alignItems="center"
         >
           <Grid item xs={12}>
-            <div className="spacing picture2">
-              <img src="https://czechgames.com/for-press/codenames/codenames-13.png"></img>
-            </div>
+            <h1 className="game-title">SPY CODE</h1>
           </Grid>
           <Grid
             className="background-card bg-white"
@@ -135,8 +133,8 @@ function HomePage() {
         <Typography mt={2} variant="h6" align={"center"}>
           Created by 1&&0
         </Typography>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 
