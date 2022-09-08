@@ -31,9 +31,8 @@ function GameBoard({ sendSelectedCard, endTurn }) {
     }
   }, [activePlayer, btnCounter, endTurn]);
 
-return (
+  return (
     <>
-      {activePlayer.name}, {activeTeam}
       <Grid
         justifyContent="center"
         container
@@ -56,7 +55,6 @@ return (
         ))}
       </Grid>
       {activePlayer.role === "operative" && activePlayer.team === activeTeam && (
-
         <Box
           my={1}
           display="flex"
@@ -77,10 +75,9 @@ return (
         </Box>
       )}
 
-      {activePlayer.role === "operative" && (
+      {/* {activePlayer.role === "operative" && (
         <h3 style={{ color: "black" }}>{btnCounter} guesses left</h3>
-      )}
-
+      )} */}
     </>
   );
 }

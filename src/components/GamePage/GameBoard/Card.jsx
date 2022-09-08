@@ -15,8 +15,14 @@ function Card({ card }) {
     fontFamily: "Poppins, sans serif",
     fontWeight: "semibold",
     hyphens: "auto",
+    "@media (max-width: 600px)": {
+      aspectRatio: "initial",
+    },
   };
   const opStyle = {
+    "@media screen and (max-width: 600px)": {
+      aspectRatio: "initial",
+    },
     aspectRatio: "3/2.5",
     display: "flex",
     justifyContent: "center",
@@ -28,6 +34,7 @@ function Card({ card }) {
     fontWeight: "semibold",
     hyphens: "auto",
     fontFamily: "Poppins, sans serif",
+    border: "2px solid hotpink",
   };
   const opStyleSelected = {
     boxSizing: "border-box",
@@ -43,6 +50,9 @@ function Card({ card }) {
     hyphens: "auto",
     fontFamily: "Poppins, sans serif",
     border: "3px solid yellow",
+    "@media (max-width: 600px)": {
+      aspectRatio: "initial",
+    },
   };
   const opStyleFlipped = {
     backgroundColor: card.color,
@@ -56,12 +66,17 @@ function Card({ card }) {
     fontWeight: "semibold",
     hyphens: "auto",
     fontFamily: "Poppins, sans serif",
-    // border: "3px solid yellow",
+    "@media (max-width: 600px)": {
+      aspectRatio: "initial",
+      // border: "3px solid yellow",
+    },
   };
   return (
     <div onClick={() => setSelectedCard(!card.isFaceUp ? card : null)}>
       {activePlayer.role === "spymaster" && (
-        <div style={spyStyle}>{!card.isFaceUp && <p>{card.word}</p>}</div>
+        <div className="test" style={spyStyle}>
+          {!card.isFaceUp && <p>{card.word}</p>}
+        </div>
       )}
 
       {activePlayer.role === "operative" &&
