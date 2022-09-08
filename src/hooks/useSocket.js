@@ -59,7 +59,6 @@ export default function useSocket(lobby) {
     });
 
     socketRef.current.on("send clue", (clue) => {
-      console.log(clue);
       setClue(clue);
     });
 
@@ -67,7 +66,6 @@ export default function useSocket(lobby) {
       if (!activePlayer.isHost) {
         setCards(cards);
         setGameStatus("started");
-        console.log(cards);
       }
     });
 
@@ -81,7 +79,7 @@ export default function useSocket(lobby) {
       setWinningTeam(winningTeam);
     });
 
-    socketRef.current.on("send selected card", (card) => {
+    socketRef.current.on("send selected card", ({ card, activeTeam }) => {
       if (card.type === "bomb") {
         return endGame();
       }
@@ -118,7 +116,7 @@ export default function useSocket(lobby) {
   }
 
   function sendSelectedCard(card) {
-    socketRef.current.emit("send selected card", card);
+    socketRef.current.emit("send selected card", { card, activeTeam });
   }
 
   function endTurn() {
