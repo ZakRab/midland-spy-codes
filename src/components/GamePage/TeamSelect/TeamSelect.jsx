@@ -2,9 +2,9 @@ import React, { useMemo } from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import useGameContext from "../../../context/GameContext";
-import randomWords from "random-words";
 import TeamDisplay from "../TeamDisplay/TeamDisplay";
 import { Grid } from "@mui/material";
+import { generateSlug } from "random-word-slugs";
 
 export default function TeamSelect({ players, joinTeam, sendCards }) {
   const { activePlayer, createCards, setGameStatus, setActivePlayer } =
@@ -12,8 +12,31 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
 
   function gameStart() {
     setGameStatus("started");
-    let words = randomWords(16);
+    const slug = generateSlug(16, {
+      format: "kebab",
+      partsOfSpeech: [
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+      ],
+    });
+    const words = slug.split("-");
+    console.log(words);
     let cards = createCards(words);
+    console.log(cards);
     sendCards(cards);
   }
 

@@ -29,6 +29,7 @@ export function GameProvider(props) {
     }
 
     let cards = words.map((word, idx) => {
+      console.log(words);
       let type;
       let color;
       if (idx <= 5) {

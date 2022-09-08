@@ -18,7 +18,7 @@ export default function useSocket(lobby) {
 
   const socketRef = useRef;
   useEffect(() => {
-    socketRef.current = io("http://localhost:8080", {
+    socketRef.current = io(process.env.REACT_APP_SOCKET_SERVER, {
       query: {
         name: activePlayer.name,
         isHost: activePlayer.isHost,
