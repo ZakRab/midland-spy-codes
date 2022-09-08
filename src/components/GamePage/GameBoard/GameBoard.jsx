@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -31,7 +31,7 @@ function GameBoard({ sendSelectedCard, endTurn }) {
     }
   }, [activePlayer, btnCounter, endTurn]);
 
-return (
+  return (
     <>
       {activePlayer.name}, {activeTeam}
       <Grid

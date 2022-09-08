@@ -4,10 +4,13 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import useGameContext from "../../context/GameContext";
 import { Grid, Typography } from "@mui/material";
+import { useEffect } from "react";
+
+
 
 function HomePage() {
   const navigate = useNavigate();
-  const { setActivePlayer } = useGameContext();
+  const { setActivePlayer, resetGame } = useGameContext();
   const [lobby, setLobby] = useState("");
   const [name, setName] = useState("");
   const lobbyError = useMemo(() => lobby.length <= 4, [lobby]);
@@ -15,6 +18,10 @@ function HomePage() {
     () => name.length === 0 || name.length > 10,
     [name]
   );
+
+  useEffect(() => {
+    resetGame();
+  }, []);
 
   return (
     <div>
@@ -33,6 +40,7 @@ function HomePage() {
           <Grid
             className="background-card bg-white"
             md={4}
+            item
             sx={{
               padding: "50px",
               borderRadius: "10px",
