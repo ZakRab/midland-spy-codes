@@ -67,72 +67,86 @@ function GamePage() {
 
   return (
     <>
-      <Modal open={gameStatus === "game over"} size="lg">
-        {/* <div style={{ marginTop: 20, width: 340 }}> */}
-        <Box sx={style}>
-          <Typography color={"black"}>GAME OVER</Typography>
-          <Typography color={winningTeam}>
-            The {winningTeam} team won!
-          </Typography>
-          <Button
-            onClick={() => {
-              resetGame();
-              navigate("/home");
-            }}
-          >
-            Exit Game
-          </Button>
-        </Box>
-        {/* </div> */}
-      </Modal>
       <Grid
-        mt={1}
-        container
-        direction="row"
-        alignContent={"flex-start"}
-        justifyContent="space-evenly"
-        alignItems="center"
-        className=""
+        mx={{
+          background: "rgba(58, 21, 152, 1)",
+          paddingTop: "20px",
+        }}
       >
-        {gameStatus !== "started" && (
-          <Grid item xs={12} md={8} order={{ xs: 1, md: 2 }}>
-            <TeamSelect
-              joinTeam={joinTeam}
-              sendCards={sendCards}
-              players={players}
+        <Modal open={gameStatus === "game over"} size="lg">
+          {/* <div style={{ marginTop: 20, width: 340 }}> */}
+          <Box sx={style}>
+            <Typography color={"black"}>GAME OVER</Typography>
+            <Typography color={winningTeam}>
+              The {winningTeam} team won!
+            </Typography>
+            <Button
+              onClick={() => {
+                resetGame();
+                navigate("/home");
+              }}
+            >
+              Exit Game
+            </Button>
+          </Box>
+          {/* </div> */}
+        </Modal>
+        <Grid
+          mt={1}
+          container
+          direction="row"
+          alignContent={"flex-start"}
+          justifyContent="space-evenly"
+          alignItems="center"
+          className=""
+        >
+          {gameStatus !== "started" && (
+            <Grid item xs={12} md={8} order={{ xs: 1, md: 2 }}>
+              <TeamSelect
+                joinTeam={joinTeam}
+                sendCards={sendCards}
+                players={players}
+              />
+            </Grid>
+          )}
+          <Grid
+            item
+            xs={6}
+            md={2}
+            order={{ xs: 2, md: 1 }}
+            alignSelf="flex-start"
+          >
+            <TeamDisplay team="Red" players={redTeam} activeTeam={activeTeam} />
+          </Grid>
+          <Grid
+            item
+            xs={6}
+            md={2}
+            alignSelf="flex-start"
+            order={{ xs: 3, md: 3 }}
+          >
+            <TeamDisplay
+              team="Blue"
+              players={blueTeam}
+              activeTeam={activeTeam}
             />
           </Grid>
-        )}
-        <Grid
-          item
-          xs={6}
-          md={2}
-          order={{ xs: 2, md: 1 }}
-          alignSelf="flex-start"
-        >
-          <TeamDisplay team="Red" players={redTeam} activeTeam={activeTeam} />
+          {gameStatus === "started" && (
+            <Grid
+              className="background-card bg-white"
+              item
+              xs={12}
+              md={6}
+              order={{ xs: 1, md: 2 }}
+            >
+              <Clue sendClue={sendClue} />
+              <GameBoard
+                sendSelectedCard={sendSelectedCard}
+                endTurn={endTurn}
+              />
+            </Grid>
+          )}
         </Grid>
-        <Grid
-          item
-          xs={6}
-          md={2}
-          alignSelf="flex-start"
-          order={{ xs: 3, md: 3 }}
-        >
-          <TeamDisplay team="Blue" players={blueTeam} activeTeam={activeTeam} />
-        </Grid>
-        {gameStatus === "started" && (
-          <Grid
-            className="background-card bg-white"
-            item
-            xs={12}
-            md={6}
-            order={{ xs: 1, md: 2 }}
-          >
-            <Clue sendClue={sendClue} />
-            <GameBoard sendSelectedCard={sendSelectedCard} endTurn={endTurn} />
-          </Grid>
-        )}
       </Grid>
     </>
   );
