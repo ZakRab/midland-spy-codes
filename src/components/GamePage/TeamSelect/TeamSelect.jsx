@@ -152,8 +152,6 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
                   role: "spymaster",
                   team: "blue",
                 });
-
-                console.log(players);
               }}
               variant="contained"
               color="primary"

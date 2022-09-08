@@ -16,19 +16,24 @@ function GameBoard({ sendSelectedCard, endTurn }) {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
-  const { activePlayer, setSelectedCard, activeTeam, selectedCard, cards } =
-    useGameContext();
+  const {
+    activePlayer,
+    setSelectedCard,
+    activeTeam,
+    selectedCard,
+    cards,
+    btnCounter,
+  } = useGameContext();
 
-  const [btnCounter, setBtnCounter] = useState(0);
   useEffect(() => {
-    if (btnCounter === 3) {
+    if (btnCounter === 0 && activePlayer.isHost) {
       endTurn();
-      setBtnCounter(0);
     }
-  }, [btnCounter, endTurn]);
+  }, [activePlayer, btnCounter, endTurn]);
 
-  return (
+return (
     <>
+      {activePlayer.name}, {activeTeam}
       <Grid
         justifyContent="center"
         container
@@ -51,6 +56,7 @@ function GameBoard({ sendSelectedCard, endTurn }) {
         ))}
       </Grid>
       {activePlayer.role === "operative" && activePlayer.team === activeTeam && (
+
         <Box
           my={1}
           display="flex"
@@ -61,7 +67,6 @@ function GameBoard({ sendSelectedCard, endTurn }) {
             variant="contained"
             onClick={() => {
               sendSelectedCard(selectedCard);
-              setBtnCounter((curr) => curr + 1);
             }}
           >
             Flip Card
@@ -71,6 +76,11 @@ function GameBoard({ sendSelectedCard, endTurn }) {
           </Button>
         </Box>
       )}
+
+      {activePlayer.role === "operative" && (
+        <h3 style={{ color: "black" }}>{btnCounter} guesses left</h3>
+      )}
+
     </>
   );
 }

@@ -18,6 +18,7 @@ export function GameProvider(props) {
   const [players, setPlayers] = useState([]);
   const [winningTeam, setWinningTeam] = useState(null);
   const [clue, setClue] = useState("");
+  const [btnCounter, setBtnCounter] = useState(3);
 
   const createCards = useCallback((words) => {
     function shuffleArray(array) {
@@ -38,10 +39,10 @@ export function GameProvider(props) {
         color = "blue";
       } else if (idx === 12) {
         type = "bomb";
-        color = "gray";
+        color = "#2b2929";
       } else {
         type = "neutral";
-        color = "beige";
+        color = "#a24cae";
       }
       return {
         word,
@@ -92,6 +93,8 @@ export function GameProvider(props) {
         createCards,
         setSelectedCard,
         selectedCard,
+        btnCounter,
+        setBtnCounter,
         resetGame,
       }}
     >

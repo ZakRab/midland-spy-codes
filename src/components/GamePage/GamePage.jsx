@@ -126,7 +126,7 @@ function GamePage() {
             className="background-card bg-white"
             item
             xs={12}
-            md={8}
+            md={6}
             order={{ xs: 1, md: 2 }}
           >
             <Clue sendClue={sendClue} />
