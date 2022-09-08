@@ -1,27 +1,29 @@
 import React from "react";
-import { Typography, Grid } from "@mui/material";
+import { Typography, Grid, List, ListItem } from "@mui/material";
 
 function RulesPage() {
   return (
     <>
       <Grid
+        style={{ color: "black" }}
         container
         display="flex"
         justifyContent="center"
         alignItems="center"
         sx={{
           background: "rgba(58, 21, 152, 1);",
-          paddingY: "40px",
-          paddingX: "80px",
+          paddingY: "20px",
+          paddingX: "5px",
         }}
       >
         <Grid
+          style={{ color: "black" }}
           item
           xs={8}
           sx={{
             backgroundColor: "#fff",
             color: "#1976d2",
-            padding: "60px",
+            padding: "30px",
             borderRadius: "80px",
           }}
         >
@@ -38,36 +40,36 @@ function RulesPage() {
           >
             Game Rules
           </Typography>
-          <Typography variant="h5" my={2} align={"center"}>
+          <Typography variant="h5" my={2} align={"left"}>
             Teams
           </Typography>
           <Typography variant="body1" ml={2} mr={2} align={"left"}>
-            <p>
+            <Typography>
               Codenames is a game for two teams. There is a grid of 16 words.
               There are:{" "}
-            </p>
-            <ul>
-              <li>(6) red cards</li>
-              <li>(6) blue cards</li>
-              <li>(3) neutral cards</li>
-              <li>One bomb. </li>
-            </ul>
-            <p>
+            </Typography>
+            <List>
+              <ListItem>6 red cards</ListItem>
+              <ListItem>6 blue cards</ListItem>
+              <ListItem>3 neutral cards</ListItem>
+              <ListItem>1 bomb. </ListItem>
+            </List>
+            <Typography>
               Each team has one SpyMaster and one Operative, and only Spymasters
               see which cards belonging to which teams.
-            </p>
-            <p>
+            </Typography>
+            <Typography>
               Spymasters take turns giving clues to their teammates (Operatives)
               based on the words that appear on the card, trying to lead them to
               guessing their teams' cards. The team that guesses all their cards
               first wins the game.
-            </p>
+            </Typography>
           </Typography>
 
-          <Typography variant="h5" my={2} align={"center"}>
+          <Typography variant="h5" my={2} align={"left"}>
             Giving Clues
           </Typography>
-          <Typography paragraph ml={2} mr={2} align={"center"}>
+          <Typography paragraph ml={2} mr={2} align={"left"}>
             When it's the SpyMasters turn to give a clue, type in a one word
             clue that relates to one or all of your teams colored cards. Your
             Operatives will only see the clue provided and the 16 cards with the
@@ -77,10 +79,10 @@ function RulesPage() {
             provided on the cards, cannot be used.
           </Typography>
 
-          <Typography variant="h5" my={2} align={"center"}>
+          <Typography variant="h5" my={2} align={"left"}>
             Guessing
           </Typography>
-          <Typography paragraph ml={2} mr={2} align={"center"}>
+          <Typography paragraph ml={2} mr={2} align={"left"}>
             Operatives guess the cards based on their Spymaster's clue. You get
             up to 3 correct guesses for each clue per team turn. To make your
             guess official, select the card. The game will then reveal the color
@@ -90,28 +92,28 @@ function RulesPage() {
             turns. Pay attention to opposing teams clues.
           </Typography>
 
-          <Typography variant="h5" align={"center"}>
+          <Typography variant="h5" align={"left"}>
             End of Turn
           </Typography>
-          <Typography paragraph ml={2} mr={2} align={"center"}>
+          <Typography paragraph ml={2} mr={2} align={"left"}>
             Your turn can end in one of three ways: Guessing a word of the
             opponent's color or neutral color. End guessing manually by clicking
             End Turn. Your turn ends upon 3 successful guesses.
           </Typography>
 
-          <Typography variant="h5" align={"center"}>
+          <Typography variant="h5" align={"left"}>
             Winning and Losing
           </Typography>
-          <Typography paragraph ml={2} mr={2} align={"center"}>
+          <Typography paragraph ml={2} mr={2} align={"left"}>
             Teams alternate turns. A team wins once all their cards have been
             guessed. They lose if they guess the bomb or the other team
             successfully guesses all of their cards first!
           </Typography>
 
-          <Typography variant="h5" align={"center"}>
-            Valid Clues:
+          <Typography variant="h5" align={"left"}>
+            Valid Clues
           </Typography>
-          <Typography paragraph ml={2} mr={2} align={"center"}>
+          <Typography paragraph ml={2} mr={2} align={"left"}>
             The clue is strictly limited to one word. The Spymaster is expected
             to keep a straight face and they shouldn't comment on players'
             guesses, to avoid giving up any unwanted information. Your clue is
