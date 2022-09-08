@@ -139,7 +139,7 @@ function HomePage() {
           </Grid>
         </Grid>
         <Typography mt={2} variant="h6" align={"center"}>
-          Created by 1&&0
+          Created by
         </Typography>
       </div >
     </div >
