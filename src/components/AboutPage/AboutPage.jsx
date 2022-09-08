@@ -19,13 +19,15 @@ function AboutPage() {
           align={"center"}
           padding="40px"
         >
-          <Typography
+          <div className="background-card bg-white text-black about-width">
+          <Typography 
             mt={2}
             mb={2}
             variant="h4"
             align={"center"}
             sx={{ marginTop: 0 }}
           >
+           
             Our Team
           </Typography>
           <Typography variant="h5">Read about our project!</Typography>
@@ -38,8 +40,10 @@ function AboutPage() {
             about each of us and why we decided to get into coding as well as
             our career goals. Please feel free to connect with us on our
             included social networks.
-          </Typography>
+          </Typography></div>
         </Grid>
+        
+        
         <div
           style={{
             display: "flex",

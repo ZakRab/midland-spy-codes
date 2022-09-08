@@ -30,6 +30,9 @@ export default function CreatorInfo({ creator }) {
           <Typography gutterBottom variant="h5" component="div">
             {name}
           </Typography>
+          <Typography>
+            {bio}
+          </Typography>
         </CardContent>
         <CardActions>
           <IconButton
@@ -52,28 +55,9 @@ export default function CreatorInfo({ creator }) {
           >
             <LinkedInIcon fontSize="large" />
           </IconButton>
-          {expanded && (
-            <ExpandLess
-              sx={{ cursor: "pointer" }}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show less"
-            />
-          )}
-          {!expanded && (
-            <ExpandMore
-              sx={{ cursor: "pointer" }}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show less"
-            />
-          )}
+          
         </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>{bio}</Typography>
-          </CardContent>
-        </Collapse>
+       
       </Card>
     </>
   );
