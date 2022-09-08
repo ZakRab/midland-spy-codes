@@ -13,11 +13,12 @@ export default function useSocket(lobby) {
     setCards,
     setActiveTeam,
     setGameStatus,
+    setBtnCounter,
   } = useGameContext();
 
   const socketRef = useRef;
   useEffect(() => {
-    socketRef.current = io("http://localhost:8080", {
+    socketRef.current = io(process.env.REACT_APP_SOCKET_SERVER, {
       query: {
         name: activePlayer.name,
         isHost: activePlayer.isHost,
@@ -43,13 +44,11 @@ export default function useSocket(lobby) {
 
     socketRef.current.on("join team", ({ player, team, role }) => {
       if (activePlayer.isHost) {
-        console.log(player, team, role);
         setPlayers((curr) => {
           let newPlayers = curr.map((p) => {
             if (p.name === player.name) {
               p.team = team;
               p.role = role;
-              console.log(p);
             }
             return p;
           });
@@ -60,7 +59,6 @@ export default function useSocket(lobby) {
     });
 
     socketRef.current.on("send clue", (clue) => {
-      console.log(clue);
       setClue(clue);
     });
 
@@ -68,57 +66,38 @@ export default function useSocket(lobby) {
       if (!activePlayer.isHost) {
         setCards(cards);
         setGameStatus("started");
-        console.log(cards);
       }
     });
 
-    socketRef.current.on("end turn", () =>
-      setActiveTeam((curr) => {
-        if (curr === "blue") {
-          return "red";
-        } else {
-          return "blue";
-        }
-      })
-    );
+    socketRef.current.on("end turn", () => {
+      setBtnCounter(3);
+      setActiveTeam((curr) => (curr === "blue" ? "red" : "blue"));
+    });
+
     socketRef.current.on("end game", (winningTeam) => {
       setGameStatus("game over");
       setWinningTeam(winningTeam);
     });
 
-    socketRef.current.on("send selected card", (card) => {
-      console.log(card);
-      if (card.type === activeTeam) {
-        setCards((curr) =>
-          curr.map((c) => {
-            if (c.word === card.word) {
-              c.isFaceUp = true;
-            }
-            return c;
-          })
-        );
-      } else if (card.type === "bomb") {
-        endGame(flipTeam());
-      } else {
-        setCards((curr) =>
-          curr.map((c) => {
-            if (c.word === card.word) {
-              c.isFaceUp = true;
-            }
-            return c;
-          })
-        );
+    socketRef.current.on("send selected card", ({ card, activeTeam }) => {
+      if (card.type === "bomb") {
+        return endGame();
+      }
+
+      setBtnCounter((curr) => curr - 1);
+      setCards((curr) =>
+        curr.map((c) => {
+          if (c.word === card.word) {
+            c.isFaceUp = true;
+          }
+          return c;
+        })
+      );
+      if (card.type !== activeTeam && activePlayer.isHost) {
         endTurn();
       }
     });
   }, []);
-  function flipTeam(params) {
-    if (activeTeam === "blue") {
-      return "red";
-    } else {
-      return "blue";
-    }
-  }
 
   function joinTeam(player, team, role) {
     setActivePlayer((curr) => ({ ...curr, role, team }));
@@ -130,16 +109,14 @@ export default function useSocket(lobby) {
   }
 
   function sendClue(clue) {
-    console.log(clue);
     socketRef.current.emit("send clue", clue);
   }
   function sendCards(cards) {
-    console.log(cards);
     socketRef.current.emit("send cards", cards);
   }
 
   function sendSelectedCard(card) {
-    socketRef.current.emit("send selected card", card);
+    socketRef.current.emit("send selected card", { card, activeTeam });
   }
 
   function endTurn() {

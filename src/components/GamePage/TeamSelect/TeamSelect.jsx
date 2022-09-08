@@ -1,24 +1,42 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import useGameContext from "../../../context/GameContext";
-import randomWords from "random-words";
 import TeamDisplay from "../TeamDisplay/TeamDisplay";
 import { Grid } from "@mui/material";
+import { generateSlug } from "random-word-slugs";
 
 export default function TeamSelect({ players, joinTeam, sendCards }) {
-  const {
-    activePlayer,
-    createCards,
-    setGameStatus,
-    setActivePlayer,
-    activeTeam,
-  } = useGameContext();
+  const { activePlayer, createCards, setGameStatus, setActivePlayer } =
+    useGameContext();
 
   function gameStart() {
     setGameStatus("started");
-    let words = randomWords(16);
+    const slug = generateSlug(16, {
+      format: "kebab",
+      partsOfSpeech: [
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+      ],
+    });
+    const words = slug.split("-");
+    console.log(words);
     let cards = createCards(words);
+    console.log(cards);
     sendCards(cards);
   }
 
@@ -58,7 +76,8 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
         alignItems="center"
       >
         <Grid
-          md={6}
+          item
+          md={8}
           sx={{
             padding: "50px",
             borderRadius: "10px",
@@ -156,8 +175,6 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
                   role: "spymaster",
                   team: "blue",
                 });
-
-                console.log(players);
               }}
               variant="contained"
               color="primary"

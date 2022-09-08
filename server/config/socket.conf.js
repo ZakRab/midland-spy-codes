@@ -15,7 +15,6 @@ const socketConf = (io) => {
     });
 
     socket.on("send clue", (clue) => {
-      console.log(clue);
       io.to(lobby).emit("send clue", clue);
     });
 
@@ -23,8 +22,8 @@ const socketConf = (io) => {
       io.to(lobby).emit("send cards", cards);
     });
 
-    socket.on("send selected card", (card) => {
-      io.to(lobby).emit("send selected card", card);
+    socket.on("send selected card", ({ card, activeTeam }) => {
+      io.to(lobby).emit("send selected card", { card, activeTeam });
     });
 
     socket.on("end turn", () => {

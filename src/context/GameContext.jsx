@@ -1,4 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type";
 import React, { createContext, useContext, useState, useCallback } from "react";
 
 export const GameContext = createContext(null);
@@ -19,6 +18,7 @@ export function GameProvider(props) {
   const [players, setPlayers] = useState([]);
   const [winningTeam, setWinningTeam] = useState(null);
   const [clue, setClue] = useState("");
+  const [btnCounter, setBtnCounter] = useState(3);
 
   const createCards = useCallback((words) => {
     function shuffleArray(array) {
@@ -29,6 +29,7 @@ export function GameProvider(props) {
     }
 
     let cards = words.map((word, idx) => {
+      console.log(words);
       let type;
       let color;
       if (idx <= 5) {
@@ -39,10 +40,10 @@ export function GameProvider(props) {
         color = "blue";
       } else if (idx === 12) {
         type = "bomb";
-        color = "gray";
+        color = "#2b2929";
       } else {
         type = "neutral";
-        color = "beige";
+        color = "#a24cae";
       }
       return {
         word,
@@ -56,8 +57,23 @@ export function GameProvider(props) {
     setCards(cards);
     return cards;
   }, []);
+
   const [activeTeam, setActiveTeam] = useState("red");
   const [selectedCard, setSelectedCard] = useState({});
+
+  function resetGame() {
+    setCards([]);
+    setActivePlayer({
+      name: null,
+      isHost: false,
+      team: null,
+      role: null,
+    });
+    setGameStatus(null);
+    setPlayers([]);
+    setWinningTeam(null);
+    setClue("");
+  }
   return (
     <GameContext.Provider
       value={{
@@ -78,6 +94,9 @@ export function GameProvider(props) {
         createCards,
         setSelectedCard,
         selectedCard,
+        btnCounter,
+        setBtnCounter,
+        resetGame,
       }}
     >
       {props.children}
