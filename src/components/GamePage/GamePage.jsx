@@ -17,16 +17,9 @@ function GamePage() {
   const navigate = useNavigate();
   const { joinTeam, sendClue, sendCards, endGame, sendSelectedCard, endTurn } =
     useSocket(lobby);
+  const { gameStatus, players, activeTeam, cards, winningTeam, resetGame } =
+    useGameContext();
 
-  const {
-    gameStatus,
-    setGameStatus,
-    players,
-    activeTeam,
-    cards,
-    winningTeam,
-    setWinningTeam,
-  } = useGameContext();
   const redTeam = useMemo(
     () =>
       players
@@ -70,22 +63,30 @@ function GamePage() {
     } else if (faceUpByColor.red === 6) {
       endGame("red");
     }
-  }, [cards, activeTeam]);
+  }, [cards, activeTeam, endGame]);
 
   return (
-    <div>
-      <Modal open={gameStatus === "game over"}>
+    <>
+      <Modal open={gameStatus === "game over"} size="lg">
+        {/* <div style={{ marginTop: 20, width: 340 }}> */}
         <Box sx={style}>
-          <Typography>GAME OVER</Typography>
-          <Typography>{winningTeam + "won"}</Typography>
-          <Button onClick={() => (setGameStatus(null), navigate("/home"))}>
-            Reset Game
+          <Typography color={"black"}>GAME OVER</Typography>
+          <Typography color={winningTeam}>
+            The {winningTeam} team won!
+          </Typography>
+          <Button
+            onClick={() => {
+              resetGame();
+              navigate("/home");
+            }}
+          >
+            Exit Game
           </Button>
         </Box>
+        {/* </div> */}
       </Modal>
-      <hr className="d-none"></hr>
-      <hr className="d-none"></hr>
       <Grid
+        mt={1}
         container
         direction="row"
         alignContent={"flex-start"}
@@ -120,7 +121,7 @@ function GamePage() {
         >
           <TeamDisplay team="Blue" players={blueTeam} activeTeam={activeTeam} />
         </Grid>
-        {gameStatus == "started" && (
+        {gameStatus === "started" && (
           <Grid
             className="background-card bg-white"
             item
@@ -133,7 +134,7 @@ function GamePage() {
           </Grid>
         )}
       </Grid>
-    </div>
+    </>
   );
 }
 

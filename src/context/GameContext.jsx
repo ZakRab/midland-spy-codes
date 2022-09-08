@@ -1,4 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type";
 import React, { createContext, useContext, useState, useCallback } from "react";
 
 export const GameContext = createContext(null);
@@ -57,8 +56,23 @@ export function GameProvider(props) {
     setCards(cards);
     return cards;
   }, []);
+
   const [activeTeam, setActiveTeam] = useState("red");
   const [selectedCard, setSelectedCard] = useState({});
+
+  function resetGame() {
+    setCards([]);
+    setActivePlayer({
+      name: null,
+      isHost: false,
+      team: null,
+      role: null,
+    });
+    setGameStatus(null);
+    setPlayers([]);
+    setWinningTeam(null);
+    setClue("");
+  }
   return (
     <GameContext.Provider
       value={{
@@ -81,6 +95,7 @@ export function GameProvider(props) {
         selectedCard,
         btnCounter,
         setBtnCounter,
+        resetGame,
       }}
     >
       {props.children}

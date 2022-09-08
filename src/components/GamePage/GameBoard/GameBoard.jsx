@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import useGameContext from "../../../context/GameContext";
 import Card from "./Card";
+import Box from "@mui/material/Box";
 
 function GameBoard({ sendSelectedCard, endTurn }) {
   const Item = styled(Paper)(({ theme }) => ({
@@ -28,8 +29,9 @@ function GameBoard({ sendSelectedCard, endTurn }) {
     if (btnCounter === 0 && activePlayer.isHost) {
       endTurn();
     }
-  }, [activePlayer, btnCounter]);
-  return (
+  }, [activePlayer, btnCounter, endTurn]);
+
+return (
     <>
       {activePlayer.name}, {activeTeam}
       <Grid
@@ -54,22 +56,31 @@ function GameBoard({ sendSelectedCard, endTurn }) {
         ))}
       </Grid>
       {activePlayer.role === "operative" && activePlayer.team === activeTeam && (
-        <Button
-          variant="contained"
-          onClick={() => {
-            sendSelectedCard(selectedCard);
-          }}
+
+        <Box
+          my={1}
+          display="flex"
+          flexDirection="row"
+          justifyContent="space-evenly"
         >
-          Flip Card
-        </Button>
+          <Button
+            variant="contained"
+            onClick={() => {
+              sendSelectedCard(selectedCard);
+            }}
+          >
+            Flip Card
+          </Button>
+          <Button variant="contained" color="error" onClick={() => endTurn()}>
+            End Turn
+          </Button>
+        </Box>
       )}
+
       {activePlayer.role === "operative" && (
-        <h3 style={{ color: "black" }}>{btnCounter}</h3>
+        <h3 style={{ color: "black" }}>{btnCounter} guesses left</h3>
       )}
-      {activePlayer.role === "operative" &&
-        activePlayer.team === activeTeam && (
-          <Button onClick={() => endTurn()}> End Turn</Button>
-        )}
+
     </>
   );
 }

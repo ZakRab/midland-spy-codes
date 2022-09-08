@@ -29,12 +29,13 @@ function HomePage() {
         >
           <Grid item xs={12}>
             <div className="spacing picture2">
-              <img src="https://czechgames.com/for-press/codenames/codenames-13.png"></img>
+              <img alt="code-words logo" src="./images/codenames-13.png"></img>
             </div>
           </Grid>
           <Grid
             className="background-card bg-white"
             md={4}
+            item
             sx={{
               padding: "50px",
               borderRadius: "10px",
@@ -114,7 +115,8 @@ function HomePage() {
                 }}
                 disabled={nameError || !(!nameError && lobbyError)}
                 onClick={(e) => {
-                  let lobby = (Math.random() + 1).toString(36).substring(7);
+                  let lobby = Math.random().toString(36).slice(7);
+                  lobby += lobby.length < 5 ? "a" : "";
                   setActivePlayer({
                     name,
                     isHost: true,
