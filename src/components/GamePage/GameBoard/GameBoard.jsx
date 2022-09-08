@@ -41,14 +41,7 @@ function GameBoard({ sendSelectedCard, endTurn }) {
       >
         {cards.map((card, index) => (
           <Grid flexGrow={1} item xs={2} sm={3} md={3} key={index}>
-            <Item
-              sx={{ cursor: "pointer" }}
-              onClick={() =>
-                card === selectedCard
-                  ? setSelectedCard(null)
-                  : setSelectedCard(card)
-              }
-            >
+            <Item sx={{ cursor: "pointer" }}>
               <Card card={card}></Card>
             </Item>
           </Grid>

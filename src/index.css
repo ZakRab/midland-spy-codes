@@ -126,8 +126,38 @@ body {
     rgba(234, 235, 241, 100) 100%
   );
 }
-@media screen and(max-width:600px) {
-  .test {
-    aspect-ratio: initial;
+
+@media (min-width: 600px) {
+  .word-card {
+    aspect-ratio: 3/2.5;
   }
+}
+@media (max-width: 600px) {
+  .word-card {
+    height: 57px;
+  }
+}
+
+.word-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: semibold;
+  hyphens: auto;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+.spy-card {
+  color: #fff;
+}
+
+.op-selected {
+  color: #212020;
+  border: 3px solid yellow;
+}
+
+.op-card {
+  color: #212020;
 }
