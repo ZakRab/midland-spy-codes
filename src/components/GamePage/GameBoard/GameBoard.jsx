@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -31,7 +31,7 @@ function GameBoard({ sendSelectedCard, endTurn }) {
     }
   }, [activePlayer, btnCounter, endTurn]);
 
-return (
+  return (
     <>
       {activePlayer.name}, {activeTeam}
       <Grid
@@ -56,7 +56,6 @@ return (
         ))}
       </Grid>
       {activePlayer.role === "operative" && activePlayer.team === activeTeam && (
-
         <Box
           my={1}
           display="flex"
@@ -76,11 +75,9 @@ return (
           </Button>
         </Box>
       )}
-
       {activePlayer.role === "operative" && (
         <h3 style={{ color: "black" }}>{btnCounter} guesses left</h3>
       )}
-
     </>
   );
 }

@@ -1,6 +1,7 @@
 a.active {
   text-decoration: underline;
 }
+
 a:hover {
   color: orangered;
 }
@@ -16,6 +17,7 @@ a:hover {
   height: 50px;
   width: 50px;
 }
+
 .d-none {
   visibility: hidden;
 }
@@ -26,9 +28,11 @@ a:hover {
   padding: 5px;
   width: max-content;
 }
+
 .bg-gray {
   background-color: rgb(81, 81, 81);
 }
+
 .bg-white {
   background-color: rgb(255, 255, 255);
 }
@@ -43,50 +47,60 @@ a:hover {
 .width400px {
   width: 400px;
 }
+
 .width70p {
   width: 70%;
 }
+
 .min-height150px {
   min-height: 150px;
 }
+
 .margin-auto {
-  margin: auto !important ;
+  margin: auto !important;
 }
+
 .animate-right {
   animation: slideright linear 1s 1s;
 }
 
+
 @media screen and (min-width: 1150px) {
   .image {
     background: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png"),
-      url("https://cdn.pixabay.com/photo/2018/08/15/14/11/audit-3608131_960_720.png");
-    background-repeat: no-repeat, no-repeat;
-    background-size: auto 25vw, auto 25vw;
-    background-position: 5% 70%, 95% 70%;
+      url("https://cdn.pixabay.com/photo/2018/08/15/14/11/audit-3608131_960_720.png"),
+      url("https://i.postimg.cc/d05VdBGs/gaming-logo4-4.png");
+
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: auto 30vw, auto 30vw, auto 10vw;
+    background-position: 5% 70%, 95% 70%, 50% 100%;
     height: 90vh;
   }
 }
+
 html,
 body,
 #root {
   height: 100%;
   margin: 0;
 }
+
 .spacing1 {
   margin-top: 40px;
 }
-
 
 .picture2 img {
   width: 60vw;
   margin: 20px 0;
 }
+
 .picture3 img {
   width: 150px;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
+
 @media screen and (max-width: 600px) {
   .picture2 img {
     width: 200px;
@@ -99,11 +113,22 @@ body,
 
 body {
   color: white;
-  background: linear-gradient(
-    27deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(255, 0, 0, 1) 31%,
-    rgba(37, 15, 208, 1) 62%,
-    rgba(234, 235, 241, 100) 100%
-  );
+  background: linear-gradient(27deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(255, 0, 0, 1) 31%,
+      rgba(37, 15, 208, 1) 62%,
+      rgba(234, 235, 241, 100) 100%);
 }
+
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.game-title {
+  font-family: 'Rubik Dirt', cursive;
+  font-size: 60px;
+  font-weight: normal;
+
+}
+
