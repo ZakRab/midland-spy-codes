@@ -13,10 +13,10 @@ a:hover {
   box-sizing: border-box;
 }
 .text-black {
-  color: black;  
+  color: black;
 }
 .about-width {
-  width: 90vw !important
+  width: 90vw !important;
 }
 .spy-icon {
   height: 50px;
@@ -137,6 +137,7 @@ body {
 }
 
 .word-card {
+  font-family: Poppins;
   cursor: pointer;
   margin: 5px;
   border-radius: 5px;
@@ -166,4 +167,7 @@ body {
   font-family: "Rubik Dirt", cursive;
   font-size: 60px;
   font-weight: normal;
+}
+.zindex {
+  z-index: 1;
 }
