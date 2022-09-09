@@ -97,14 +97,15 @@ export default function useSocket(lobby) {
       );
       if (card.type !== activeTeam && activePlayer.isHost) {
         endTurn();
+      } else {
+        setBtnCounter((curr) => {
+          if (curr === 1 && activePlayer.isHost) {
+            endTurn();
+            return 3;
+          }
+          return curr - 1;
+        });
       }
-      setBtnCounter((curr) => {
-        if (curr === 1 && activePlayer.isHost) {
-          endTurn();
-          return 3;
-        }
-        return curr - 1;
-      });
     });
   }, []);
 
