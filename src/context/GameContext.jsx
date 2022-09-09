@@ -28,6 +28,7 @@ export function GameProvider(props) {
       }
     }
 
+
     let cards = words.map((word, idx) => {
       let type;
       let color;
@@ -58,7 +59,7 @@ export function GameProvider(props) {
   }, []);
 
   const [activeTeam, setActiveTeam] = useState("red");
-  const [selectedCard, setSelectedCard] = useState({});
+  const [selectedCard, setSelectedCard] = useState(null);
 
   function resetGame() {
     setCards([]);
@@ -72,6 +73,9 @@ export function GameProvider(props) {
     setPlayers([]);
     setWinningTeam(null);
     setClue("");
+    setBtnCounter(3);
+    setSelectedCard(null);
+    setActiveTeam("red");
   }
   return (
     <GameContext.Provider
@@ -102,3 +106,24 @@ export function GameProvider(props) {
     </GameContext.Provider>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,9 +3,8 @@ import Button from "@mui/material/Button";
 import { Grid, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import useGameContext from "../../../context/GameContext";
-import { margin } from "@mui/system";
 
-function Clue({ sendClue, endTurn }) {
+function Clue({ sendClue }) {
   const { activePlayer, setClue, clue, activeTeam, btnCounter } =
     useGameContext();
   const [hasClicked, setHasClicked] = useState(false);
@@ -13,12 +12,6 @@ function Clue({ sendClue, endTurn }) {
   useEffect(() => {
     setHasClicked(false);
   }, [activeTeam]);
-
-  useEffect(() => {
-    if (btnCounter === 0 && activePlayer.isHost) {
-      endTurn();
-    }
-  }, [activePlayer, btnCounter, endTurn]);
 
   return (
     <div style={{ margin: "5px" }}>
@@ -126,3 +119,10 @@ function Clue({ sendClue, endTurn }) {
 }
 
 export default Clue;
+
+
+
+
+
+
+
