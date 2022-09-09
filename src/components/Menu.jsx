@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
+import ClickToCopy from "../shared/functions/ClickToCopy";
 
 import Button from "@mui/material/Button";
 
@@ -16,7 +17,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import InfoIcon from "@mui/icons-material/Info";
 import spyIcon from "../shared/icons/spy-icon.svg";
-import { Grid } from "@mui/material";
+import useGameContext from "../context/GameContext";
+import Grid from "@mui/material/Grid";
 
 const pages = [
   { text: "Home", path: "/home", icon: HomeIcon },
@@ -27,7 +29,7 @@ const pages = [
 function NavMenu() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   // const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const { lobbyCode } = useGameContext();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -57,7 +59,6 @@ function NavMenu() {
           >
             <img className="spy-icon" src={spyIcon} alt="spy-icon" />
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -124,9 +125,25 @@ function NavMenu() {
           >
             <img className="spy-icon" src={spyIcon} alt="spy-icon" />
           </Typography>
-
+          {/* Mobile Lobby Code */}
+          {lobbyCode && (
+            <>
+              <Typography
+                sx={{
+                  display: { xs: "flex", md: "none", lg: "none" },
+                  paddingRight: "5px",
+                }}
+              >
+                Lobby Code:
+              </Typography>
+              {/* <MenuItem
+                sx={{ display: { xs: "flex", md: "none", lg: "none" } }}
+              > */}
+              <ClickToCopy copyText={lobbyCode}></ClickToCopy>
+              {/* </MenuItem> */}
+            </>
+          )}
           {/* desktop links: */}
-
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -142,10 +159,25 @@ function NavMenu() {
                 {page.text}
               </Button>
             ))}
+            {/* Desktop Lobby Code: */}
+            {lobbyCode && (
+              <Grid
+                sx={{
+                  marginLeft: "auto",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <Typography>Lobby Code:</Typography>
+                <MenuItem>
+                  <ClickToCopy
+                    copyText={lobbyCode}
+                    sx={{ display: "flex" }}
+                  ></ClickToCopy>
+                </MenuItem>
+              </Grid>
+            )}
           </Box>
-          {/* <Grid item xs={12}>
-            <h1 className="game-title2">SPY CODE</h1>
-          </Grid> */}
         </Toolbar>
       </Container>
     </AppBar>

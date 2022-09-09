@@ -28,7 +28,6 @@ export function GameProvider(props) {
       }
     }
 
-
     let cards = words.map((word, idx) => {
       let type;
       let color;
@@ -60,6 +59,7 @@ export function GameProvider(props) {
 
   const [activeTeam, setActiveTeam] = useState("red");
   const [selectedCard, setSelectedCard] = useState(null);
+  const [lobbyCode, setLobbyCode] = useState(null);
 
   function resetGame() {
     setCards([]);
@@ -76,6 +76,7 @@ export function GameProvider(props) {
     setBtnCounter(3);
     setSelectedCard(null);
     setActiveTeam("red");
+    setLobbyCode(null);
   }
   return (
     <GameContext.Provider
@@ -100,30 +101,11 @@ export function GameProvider(props) {
         btnCounter,
         setBtnCounter,
         resetGame,
+        lobbyCode,
+        setLobbyCode,
       }}
     >
       {props.children}
     </GameContext.Provider>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

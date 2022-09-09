@@ -102,7 +102,6 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
             item
             md={8}
             sx={{
-              padding: "50px",
               borderRadius: "10px",
             }}
           >
