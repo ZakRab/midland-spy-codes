@@ -66,13 +66,13 @@ a:hover {
 @media screen and (min-width: 1150px) {
   .image {
     background: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png"),
-      url("https://cdn.pixabay.com/photo/2018/08/15/14/11/audit-3608131_960_720.png"),
-      url("https://i.postimg.cc/d05VdBGs/gaming-logo4-4.png");
+      url("https://cdn.pixabay.com/photo/2018/08/15/14/11/audit-3608131_960_720.png");
 
-    background-repeat: no-repeat, no-repeat, no-repeat;
-    background-size: auto 30vw, auto 30vw, auto 10vw;
-    background-position: 5% 70%, 95% 70%, 50% 100%;
+    background-repeat: no-repeat, no-repeat;
+    background-size: auto 30vw, auto 30vw;
+    background-position: 5% 70%, 95% 70%;
     height: 90vh;
+    background-attachment: fixed;
   }
 }
 
@@ -107,10 +107,28 @@ body,
   .spacing {
     margin: 20px 0;
   }
+  h1.game-title {
+    font-family: "Rubik Dirt", sans-serif;
+    font-size: 55px;
+    font-weight: normal;
+    margin: 20px;
+  }
+  .home {
+    min-height: calc(100% - 56px);
+  }
+}
+
+h1 {
+  font-family: "Rubik Dirt", sans-serif;
+  font-size: 100px;
+  font-weight: initial;
 }
 
 body {
   color: white;
+}
+
+.home {
   background: linear-gradient(
     27deg,
     rgba(0, 0, 0, 1) 0%,
@@ -118,47 +136,32 @@ body {
     rgba(37, 15, 208, 1) 62%,
     rgba(234, 235, 241, 100) 100%
   );
+  min-height: calc(100% - 64px);
+  background-position: fixed;
+  background-size: cover;
 }
 
-@media (min-width: 600px) {
-  .word-card {
-    height: 100px;
+/* @media (max-width: 600px) {
+  .home {
+    min-height: calc(100% - 56px);
   }
-}
-@media (max-width: 600px) {
-  .word-card {
-    height: 57px;
-  }
-}
+} */
 
-.word-card {
-  cursor: pointer;
-  margin: 5px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2em;
-  font-weight: semibold;
-  hyphens: auto;
-  text-transform: uppercase;
-  box-sizing: border-box;
-}
+/* * {
+  font-family: "Poppins", sans-serif;
+} */
 
-.spy-card {
-  color: #fff;
-}
+/* 
+  .game-title {
+    font-family: "Rubik Dirt", cursive;
+    font-size: 85px;
+    font-weight: normal;
+    margin: 20px;
+  } */
 
-.op-selected {
-  color: #212020;
-  border: 3px solid yellow;
-}
-
-.op-card {
-  color: #212020;
-}
-.game-title {
-  font-family: "Rubik Dirt", cursive;
-  font-size: 60px;
+/* .game-title2 {
+  font-family: "Rubik Dirt", sans-serif;
+  font-size: 45px;
   font-weight: normal;
-}
+  margin: 0px;
+} */
