@@ -14,6 +14,13 @@
     "github": "ethanhaneklaus"
   },
   {
+    "name": "Donella Cooper",
+    "bio": "Hey Everybody! I have always had a burning desire to break into the tech field and after 26 years of being creative as hairstylist I decided to take the plunge and here I am... Enjoy!",
+    "photo": "./team-photos/donella.jpeg",
+    "linkedIn": "donella-cooper-456361160",
+    "github": "Donellawc"
+  },
+  {
     "name": "Aidee Hernandez",
     "bio": "I got into coding because I wanted a career with higher stability and growth potential.",
     "photo": "./team-photos/aidee.jpg",
@@ -26,13 +33,6 @@
     "photo": "./team-photos/aaron.jpg",
     "linkedIn": "aaron-locatis-a78b8a199",
     "github": "AaronLocatis"
-  },
-  {
-    "name": "Donella Cooper",
-    "bio": "Hey Everybody! I have always had a burning desire to break into the tech field and after 26 years of being creative as hairstylist I decided to take the plunge and here I am... Enjoy!",
-    "photo": "./team-photos/donella.jpeg",
-    "linkedIn": "donella-cooper-456361160",
-    "github": "Donellawc"
   },
   {
     "name": "Chris Hegarty",
