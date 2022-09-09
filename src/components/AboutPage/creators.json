@@ -1,32 +1,10 @@
 [
   {
-    "name": "Aaron Locatis",
-    "bio": "I got into computer coding because I drastically wanted a career change. I was inspired by my brother, who had done this exact same scenario 5 years prior. He has had great success in his career and is now a senior developer here in Omaha. I would like to eventually fit into a great company where I can contribute to a positive working environment and be a valueable asset with good work/life balance.",
-    "photo": "./team-photos/aaron.jpg",
-    "linkedIn": "aaron-locatis-a78b8a199",
-    "github": "AaronLocatis"
-  },
-  {
-    "name": "Chris Hegarty",
-    "bio": "Being a Midland Code student has been one of the most challenging, rewarding experiences of my life. I'm proud of this project, and proud of my classmates for all we've learned and accomplished together. The sky is the limit for what each of us will accomplish going forward. Thanks for checking out our work!",
-    "photo": "./team-photos/chris.jpg",
-    "linkedIn": "chrishegarty",
-    "github": "chris-hegarty"
-  },
-  {
-    "name": "Aidee Hernandez",
-    "bio": "I got into coding because I wanted a career with higher stability and growth potential.",
-    "photo": "./team-photos/aidee.jpg",
-    "linkedIn": "aidee-hernandez-449473217",
-    "github": "AideeGH"
-  },
-  
-  {
-    "name": "Donella Cooper",
-    "bio": "Hey Everybody! I have always had a burning desire to break into the tech field and after 26 years of being creative as hairstylist I decided to take the plunge and here I am... Enjoy!",
-    "photo": "./team-photos/donella.jpeg",
-    "linkedIn": "donella-cooper-456361160",
-    "github": "Donellawc"
+    "name": "Zak Rab (Project Lead)",
+    "bio": "I decided to take The Midland Code Academy class to expand my passion for technology and use my skills to help other people.",
+    "photo": "./team-photos/zak.jpg",
+    "linkedIn": "zakaria-rab-6b274b234",
+    "github": "ZakRab"
   },
   {
     "name": "Ethan Haneklaus",
@@ -36,10 +14,31 @@
     "github": "ethanhaneklaus"
   },
   {
-    "name": "Zak Rab (Project Lead)",
-    "bio": "I decided to take The Midland Code Academy class to expand my passion for technology and use my skills to help other people.",
-    "photo": "./team-photos/zak.jpg",
-    "linkedIn": "zakaria-rab-6b274b234",
-    "github": "ZakRab"
+    "name": "Aidee Hernandez",
+    "bio": "I got into coding because I wanted a career with higher stability and growth potential.",
+    "photo": "./team-photos/aidee.jpg",
+    "linkedIn": "aidee-hernandez-449473217",
+    "github": "AideeGH"
+  },
+  {
+    "name": "Aaron Locatis",
+    "bio": "I got into computer coding because I drastically wanted a career change. I was inspired by my brother, who had done this exact same scenario 5 years prior. He has had great success in his career and is now a senior developer here in Omaha. I would like to eventually fit into a great company where I can contribute to a positive working environment and be a valueable asset with good work/life balance.",
+    "photo": "./team-photos/aaron.jpg",
+    "linkedIn": "aaron-locatis-a78b8a199",
+    "github": "AaronLocatis"
+  },
+  {
+    "name": "Donella Cooper",
+    "bio": "Hey Everybody! I have always had a burning desire to break into the tech field and after 26 years of being creative as hairstylist I decided to take the plunge and here I am... Enjoy!",
+    "photo": "./team-photos/donella.jpeg",
+    "linkedIn": "donella-cooper-456361160",
+    "github": "Donellawc"
+  },
+  {
+    "name": "Chris Hegarty",
+    "bio": "Being a Midland Code student has been one of the most challenging, rewarding experiences of my life. I'm proud of this project, and proud of my classmates for all we've learned and accomplished together. The sky is the limit for what each of us will accomplish going forward. Thanks for checking out our work!",
+    "photo": "./team-photos/chris.jpg",
+    "linkedIn": "chrishegarty",
+    "github": "chris-hegarty"
   }
 ]

@@ -5,7 +5,7 @@ import GameBoard from "./GameBoard/GameBoard";
 import TeamSelect from "./TeamSelect/TeamSelect";
 import { useParams } from "react-router-dom";
 import useSocket from "../../hooks/useSocket";
-import { Grid, Typography, Button } from "@mui/material";
+import { Grid, Typography, Button, Card } from "@mui/material";
 import TeamDisplay from "./TeamDisplay/TeamDisplay";
 import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
@@ -70,9 +70,20 @@ function GamePage() {
       <Grid
         mx={{
           background: "rgba(58, 21, 152, 1)",
-          paddingTop: "20px",
+          paddingTop: "10px",
         }}
       >
+        <div className="margin-auto zindex">
+          <Typography
+            mt={2}
+            mb={2}
+            variant="h4"
+            align={"center"}
+            sx={{ marginTop: 0 }}
+          >
+            {lobby}
+          </Typography>
+        </div>
         <Modal open={gameStatus === "game over"} size="lg">
           {/* <div style={{ marginTop: 20, width: 340 }}> */}
           <Box sx={style}>

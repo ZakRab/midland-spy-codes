@@ -7,20 +7,14 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 
 export default function CreatorInfo({ creator }) {
   const { name, photo, bio, linkedIn, github } = creator;
   const [expanded, setExpanded] = useState(false);
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <>
-      <Card sx={{ maxWidth: 345, mx: "auto", p: 1, m: 1 }}>
+      <Card sx={{ maxWidth: 345, mx: "auto", p: 1, m: 1, display: "flex", flexDirection: "column" }}>
         <CardMedia
           sx={{ width: 345, height: 350 }}
           component="img"
@@ -34,7 +28,9 @@ export default function CreatorInfo({ creator }) {
             {bio}
           </Typography>
         </CardContent>
-        <CardActions>
+        <CardActions
+          style={{ marginTop: "auto" }}
+        >
           <IconButton
             size="small"
             component={"a"}
@@ -55,10 +51,11 @@ export default function CreatorInfo({ creator }) {
           >
             <LinkedInIcon fontSize="large" />
           </IconButton>
-          
+
         </CardActions>
-       
+
       </Card>
     </>
   );
 }
+
