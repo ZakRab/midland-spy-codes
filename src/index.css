@@ -13,8 +13,14 @@ a:hover {
 	box-sizing: border-box;
 }
 .text-black {
+  color: black;
+}
+
+.about-width {
+  width: 90vw !important;
 	color: black;
 }
+
 .about-width {
 	width: 90vw !important;
 }
@@ -166,4 +172,7 @@ body {
 	font-family: "Rubik Dirt", cursive;
 	font-size: 60px;
 	font-weight: normal;
+}
+.zindex {
+  z-index: 1;
 }

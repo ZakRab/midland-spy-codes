@@ -34,9 +34,7 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
       ],
     });
     const words = slug.split("-");
-    console.log(words);
     let cards = createCards(words);
-    console.log(cards);
     sendCards(cards);
   }
 
@@ -71,7 +69,7 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
         mx={{
           background: "rgba(58, 21, 152, 1)",
           paddingY: "40px",
-          height: "100vh",
+          // height: "100vh",
         }}
       >
         <Grid
@@ -95,7 +93,7 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
               justifyContent="space-evenly"
               alignItems="center"
               spacing={2}
-              m={6}
+              m={2}
             >
               <Button
                 onClick={() => {
