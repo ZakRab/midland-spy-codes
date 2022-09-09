@@ -33,8 +33,7 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
         "noun",
       ],
     });
-    let words = slug.split("-");
-    words = words.filter(e => e.length <= 12);
+    const words = slug.split("-");
     let cards = createCards(words);
     console.log(cards);
     sendCards(cards);
