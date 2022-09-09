@@ -150,17 +150,9 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
             <Stack direction="row" spacing={2} justifyContent="center" m={4}>
               <Button
                 // TODO UNCOMMENT NEXT LINE WHEN READY TO FULLY TEST
-                // disabled={!activePlayer.isHost || !gameReady}
-                // TODO
-                // DELETE
-                // NEXT
-                // LINE
-                // WHEN
-                // READY
-                // TO
-                // FULLY
-                // TEST
-                disabled={!activePlayer.isHost}
+                disabled={!activePlayer.isHost || !gameReady}
+                // TODO DELETE NEXT LINE WHEN READY TO FULLY TEST
+                // disabled={!activePlayer.isHost}
                 variant="contained"
                 size="large"
                 onClick={() => {
