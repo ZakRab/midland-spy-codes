@@ -23,7 +23,7 @@ function ClickToCopy({ copyText }) {
 
   return (
     <Grid sx={{ display: "flex" }} onClick={handleCopyClick}>
-      <Typography>{copyText}</Typography>
+      <Typography paddingRight="5px">{copyText} </Typography>
       <ContentCopyIcon></ContentCopyIcon>
     </Grid>
   );
