@@ -23,6 +23,7 @@ function Card({ card }) {
     <div
       onClick={() => {
         if (!card.isFaceUp && activePlayer.team === activeTeam && clue) {
+
           setSelectedCard(card);
         } else {
           setSelectedCard(null);
