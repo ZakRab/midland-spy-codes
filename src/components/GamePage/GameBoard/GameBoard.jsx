@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import useGameContext from "../../../context/GameContext";
 import Card from "./Card";
 import Box from "@mui/material/Box";
+import { height } from "@mui/system";
 
 function GameBoard({ sendSelectedCard, endTurn }) {
   const { activePlayer, activeTeam, selectedCard, cards, btnCounter } =
@@ -19,38 +20,40 @@ function GameBoard({ sendSelectedCard, endTurn }) {
 
   return (
     <>
-      <Grid
-        justifyContent="center"
-        container
-        // spacing={{ xs: 0, md: 1 }}
-        columns={{ xs: 1, sm: 9, md: 12 }}
-      >
-        {cards.map((card, index) => (
-          <Grid flexGrow={1} item xs={2} sm={3} md={3} key={index}>
-            <Card card={card}></Card>
-          </Grid>
-        ))}
-      </Grid>
-      {activePlayer.role === "operative" && activePlayer.team === activeTeam && (
-        <Box
-          my={1}
-          display="flex"
-          flexDirection="row"
-          justifyContent="space-evenly"
+      <div className="full-height">
+        <Grid
+          justifyContent="center"
+          container
+          // spacing={{ xs: 0, md: 1 }}
+          columns={{ xs: 1, sm: 9, md: 12 }}
         >
-          <Button
-            variant="contained"
-            onClick={() => {
-              sendSelectedCard(selectedCard);
-            }}
+          {cards.map((card, index) => (
+            <Grid flexGrow={1} item xs={2} sm={3} md={3} key={index}>
+              <Card card={card}></Card>
+            </Grid>
+          ))}
+        </Grid>
+        {activePlayer.role === "operative" && activePlayer.team === activeTeam && (
+          <Box
+            my={1}
+            display="flex"
+            flexDirection="row"
+            justifyContent="space-evenly"
           >
-            Flip Card
-          </Button>
-          <Button variant="contained" color="error" onClick={() => endTurn()}>
-            End Turn
-          </Button>
-        </Box>
-      )}
+            <Button
+              variant="contained"
+              onClick={() => {
+                sendSelectedCard(selectedCard);
+              }}
+            >
+              Flip Card
+            </Button>
+            <Button variant="contained" color="error" onClick={() => endTurn()}>
+              End Turn
+            </Button>
+          </Box>
+        )}
+      </div>
     </>
   );
 }

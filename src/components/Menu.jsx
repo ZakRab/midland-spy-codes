@@ -16,6 +16,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import InfoIcon from "@mui/icons-material/Info";
 import spyIcon from "../shared/icons/spy-icon.svg";
+import { Grid } from "@mui/material";
 
 const pages = [
   { text: "Home", path: "/home", icon: HomeIcon },
@@ -142,6 +143,9 @@ function NavMenu() {
               </Button>
             ))}
           </Box>
+          {/* <Grid item xs={12}>
+            <h1 className="game-title2">SPY CODE</h1>
+          </Grid> */}
         </Toolbar>
       </Container>
     </AppBar>

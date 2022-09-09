@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import useGameContext from "../../context/GameContext";
 import { Grid, Typography } from "@mui/material";
-
 import lobbyCode from "../../shared/functions/lobbyCode";
 
 function HomePage() {
@@ -25,11 +24,12 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
+    <div className="home">
       <div className="image">
         <Grid
           textAlign="center"
           container
+          mt={0}
           direction="row"
           justifyContent="center"
           rowSpacing={2}
@@ -148,8 +148,18 @@ function HomePage() {
         <Typography mt={2} variant="h6" align={"center"}>
           Created by
         </Typography>
-      </div >
-    </div >
+        <img
+          style={{
+            height: "140px",
+
+            margin: "auto",
+            display: "block",
+          }}
+          alt="Logo"
+          src="https://i.postimg.cc/d05VdBGs/gaming-logo4-4.png"
+        />
+      </div>
+    </div>
   );
 }
 
