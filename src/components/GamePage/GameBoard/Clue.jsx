@@ -76,20 +76,18 @@ function Clue({ sendClue }) {
             Your clue is: {clue}
           </Typography>
         )}
-      {activePlayer.role === "operative" &&
-        activePlayer.team !== activeTeam &&
-        clue && (
-          <Typography
-            style={{
-              color: "black",
-              display: "inline",
-              variant: "h2",
-              fontSize: "25px",
-            }}
-          >
-            Their clue is: {clue}
-          </Typography>
-        )}
+      {activePlayer.team !== activeTeam && clue && (
+        <Typography
+          style={{
+            color: "black",
+            display: "inline",
+            variant: "h2",
+            fontSize: "25px",
+          }}
+        >
+          Their clue is: {clue}
+        </Typography>
+      )}
       <div
         style={{
           display: "flex",
