@@ -42,6 +42,25 @@ function Clue({ sendClue, endTurn }) {
               />
             </Grid>
             <Grid item alignSelf={"center"} xs={3}>
+              {activePlayer.team === activeTeam && clue && (
+                <h1
+                  style={{
+                    color: "black",
+                    marginTop: "0",
+                    paddingBottom: "0",
+                  }}
+                >
+                  Your clue is: {clue}
+                </h1>
+              )}
+
+              {activePlayer.team !== activeTeam && clue && (
+                <h1
+                  style={{ color: "black", marginTop: "0", paddingBottom: "0" }}
+                >
+                  Their clue is: {clue}
+                </h1>
+              )}
               <Button
                 fullWidth
                 endIcon={<SendIcon />}

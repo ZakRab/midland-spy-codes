@@ -6,8 +6,6 @@ import useGameContext from "../../context/GameContext";
 import { Grid, Typography } from "@mui/material";
 import { useEffect } from "react";
 
-
-
 function HomePage() {
   const navigate = useNavigate();
   const { setActivePlayer, resetGame } = useGameContext();
@@ -24,11 +22,12 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
+    <div className="home">
       <div className="image">
         <Grid
           textAlign="center"
           container
+          mt={0}
           direction="row"
           justifyContent="center"
           rowSpacing={2}
@@ -141,8 +140,18 @@ function HomePage() {
         <Typography mt={2} variant="h6" align={"center"}>
           Created by
         </Typography>
-      </div >
-    </div >
+        <img
+          style={{
+            height: "140px",
+
+            margin: "auto",
+            display: "block",
+          }}
+          alt="1 && 0 Logo"
+          src="https://i.postimg.cc/d05VdBGs/gaming-logo4-4.png"
+        />
+      </div>
+    </div>
   );
 }
 
