@@ -5,84 +5,95 @@ import SendIcon from "@mui/icons-material/Send";
 import useGameContext from "../../../context/GameContext";
 
 function Clue({ sendClue }) {
-  const { activePlayer, setClue, clue, activeTeam, btnCounter } =
-    useGameContext();
-  const [hasClicked, setHasClicked] = useState(false);
-
-  useEffect(() => {
-    setHasClicked(false);
-  }, [activeTeam]);
+  const { activePlayer, clue, activeTeam, btnCounter } = useGameContext();
+  const [clueInput, setClueInput] = useState("");
 
   return (
-    <div style={{ margin: "5px" }}>
+    <div style={{ margin: "5px", textAlign: "center" }}>
+      <Typography
+        style={{
+          color: "black",
+          marginTop: "0",
+          paddingBottom: "0",
+          display: "inline",
+          variant: "h2",
+          fontSize: "25px",
+          textAlign: "center",
+        }}
+      >
+        {activeTeam === activePlayer.team ? "Your" : "Their"} turn!
+      </Typography>
       <div>
-        {activePlayer.role === "spymaster" && activeTeam === activePlayer.team && (
-          <Grid mt={1} container justifyContent="space-between" spacing={1}>
-            <Grid item xs={9}>
-              <TextField
-                fullWidth
-                id="Clue"
-                label="Enter Clue to Send"
-                variant="outlined"
-                sx={{
-                  borderRadius: "10px",
-                  fontWeight: "bold",
-                  color: "#212121",
-                  backgroundColor: "#e0e0e0",
-                }}
-                value={clue}
-                onChange={(e) => setClue(e.target.value)}
-              />
+        {activePlayer.role === "spymaster" &&
+          activeTeam === activePlayer.team &&
+          !clue && (
+            <Grid mt={1} container justifyContent="space-between" spacing={1}>
+              <Grid item xs={9}>
+                <TextField
+                  fullWidth
+                  id="Clue"
+                  label="Enter Clue to Send"
+                  variant="outlined"
+                  sx={{
+                    borderRadius: "10px",
+                    fontWeight: "bold",
+                    color: "#212121",
+                    backgroundColor: "#e0e0e0",
+                  }}
+                  value={clueInput}
+                  onChange={(e) => setClueInput(e.target.value)}
+                />
+              </Grid>
+              <Grid item alignSelf={"center"} xs={3}>
+                <Button
+                  fullWidth
+                  endIcon={<SendIcon />}
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#d50000",
+                    backgroundColor: "#212121",
+                  }}
+                  disabled={
+                    activePlayer.team !== activeTeam || clueInput.length === 0
+                  }
+                  onClick={() => {
+                    sendClue(clueInput);
+                  }}
+                >
+                  Send
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item alignSelf={"center"} xs={3}>
-              <Button
-                fullWidth
-                endIcon={<SendIcon />}
-                variant="contained"
-                size="large"
-                sx={{
-                  fontWeight: "bold",
-                  color: "#d50000",
-                  backgroundColor: "#212121",
-                }}
-                disabled={
-                  activePlayer.team !== activeTeam ||
-                  hasClicked ||
-                  clue.length === 0
-                }
-                onClick={() => {
-                  setHasClicked(true);
-                  sendClue(clue);
-                }}
-              >
-                Send
-              </Button>
-            </Grid>
-          </Grid>
-        )}
+          )}
       </div>
 
-      {activePlayer.role === "operative" &&
-        activePlayer.team === activeTeam &&
-        clue && (
-          <Typography
-            style={{
-              color: "black",
-              display: "inline",
-              variant: "h2",
-              fontSize: "25px",
-            }}
-          >
-            Your clue is: {clue}
-          </Typography>
-        )}
-      {activePlayer.team !== activeTeam && clue && (
+      {activePlayer.team === activeTeam && clue && (
         <Typography
           style={{
             color: "black",
             display: "inline",
+            textAlign: "center",
             variant: "h2",
             fontSize: "25px",
+            lineHeight: "64px",
+            height: "64px",
+          }}
+        >
+          Your clue is: {clue}
+        </Typography>
+      )}
+      {activePlayer.team !== activeTeam && clue && (
+        <Typography
+          style={{
+            color: "black",
+            textAlign: "center",
+            display: "inline",
+            variant: "h2",
+            fontSize: "25px",
+            lineHeight: "64px",
+            height: "64px",
           }}
         >
           Their clue is: {clue}
@@ -96,53 +107,39 @@ function Clue({ sendClue }) {
         }}
       >
         <div>
-          {activePlayer.role === "operative" &&
-            activePlayer.team === activeTeam &&
-            clue === "" && (
+          {!clue &&
+            (activePlayer.team !== activeTeam ||
+              activePlayer.role !== "spymaster") && (
               <Typography
                 style={{
                   color: "black",
                   marginTop: "0",
+                  textAlign: "center",
                   marginBottom: "0",
                   display: "inline",
                   variant: "h2",
                   fontSize: "25px",
+                  lineHeight: "64px",
+                  height: "64px",
                 }}
               >
-                {" "}
                 Waiting on clue{" "}
               </Typography>
             )}
-          {activePlayer.team !== activeTeam && !clue && (
-            <Typography
-              style={{
-                color: "black",
-                marginTop: "0",
-                paddingBottom: "0",
-                display: "inline",
-                variant: "h2",
-                fontSize: "25px",
-              }}
-            >
-              Waiting on other Team!
-            </Typography>
-          )}
         </div>
-        <div tyle={{ marginTop: "0", paddingBottom: "0" }}>
-          {activePlayer.role === "operative" && (
-            <Typography
-              style={{
-                color: "black",
-                marginTop: "0",
-                paddingBottom: "0",
-                display: "inline",
-                variant: "h2",
-                fontSize: "25px",
-              }}
-            >
-              Flips remaining: {btnCounter}
-            </Typography>
-          )}
+        <div style={{ marginTop: "0", paddingBottom: "0" }}>
+          <Typography
+            style={{
+              color: "black",
+              marginTop: "0",
+              paddingBottom: "0",
+              display: "inline",
+              variant: "h2",
+              fontSize: "15px",
+            }}
+          >
+            Flips remaining: {btnCounter}
+          </Typography>
         </div>
       </div>
     </div>
