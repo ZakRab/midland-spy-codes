@@ -48,8 +48,13 @@ function GameBoard({ sendSelectedCard, endTurn }) {
             >
               Flip Card
             </Button>
-            disabled={btnCounter === 3 || !clue}
-            <Button variant="contained" color="error" onClick={() => endTurn()}>
+
+            <Button
+              disabled={btnCounter === 3 || !clue}
+              variant="contained"
+              color="error"
+              onClick={() => endTurn()}
+            >
               End Turn
             </Button>
           </Box>
