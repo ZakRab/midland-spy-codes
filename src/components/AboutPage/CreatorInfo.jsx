@@ -11,13 +11,10 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 export default function CreatorInfo({ creator }) {
   const { name, photo, bio, linkedIn, github } = creator;
   const [expanded, setExpanded] = useState(false);
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <>
-      <Card sx={{ maxWidth: 345, mx: "auto", p: 1, m: 1 }}>
+      <Card sx={{ maxWidth: 345, mx: "auto", p: 1, m: 1, display: "flex", flexDirection: "column" }}>
         <CardMedia
           sx={{ width: 345, height: 350 }}
           component="img"
@@ -32,7 +29,7 @@ export default function CreatorInfo({ creator }) {
           </Typography>
         </CardContent>
         <CardActions
-          style={{ bottom: 2 }}
+          style={{ marginTop: "auto" }}
         >
           <IconButton
             size="small"

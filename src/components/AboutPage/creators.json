@@ -28,17 +28,17 @@
     "github": "AaronLocatis"
   },
   {
-    "name": "Chris Hegarty",
-    "bio": "Being a Midland Code student has been one of the most challenging, rewarding experiences of my life. I'm proud of this project, and proud of my classmates for all we've learned and accomplished together. The sky is the limit for what each of us will accomplish going forward. Thanks for checking out our work!",
-    "photo": "./team-photos/chris.jpg",
-    "linkedIn": "chrishegarty",
-    "github": "chris-hegarty"
-  },
-  {
     "name": "Donella Cooper",
     "bio": "Hey Everybody! I have always had a burning desire to break into the tech field and after 26 years of being creative as hairstylist I decided to take the plunge and here I am... Enjoy!",
     "photo": "./team-photos/donella.jpeg",
     "linkedIn": "donella-cooper-456361160",
     "github": "Donellawc"
+  },
+  {
+    "name": "Chris Hegarty",
+    "bio": "Being a Midland Code student has been one of the most challenging, rewarding experiences of my life. I'm proud of this project, and proud of my classmates for all we've learned and accomplished together. The sky is the limit for what each of us will accomplish going forward. Thanks for checking out our work!",
+    "photo": "./team-photos/chris.jpg",
+    "linkedIn": "chrishegarty",
+    "github": "chris-hegarty"
   }
 ]
