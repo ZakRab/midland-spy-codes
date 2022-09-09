@@ -8,7 +8,7 @@ import lobbyCode from "../../shared/functions/lobbyCode";
 
 function HomePage() {
   const navigate = useNavigate();
-  const { setActivePlayer, resetGame } = useGameContext();
+  const { setActivePlayer, resetGame, setLobbyCode } = useGameContext();
   const [lobby, setLobby] = useState("");
   const [lobbyTouched, setLobbyTouched] = useState(false);
   const [userTouched, setUserTouched] = useState(false);
@@ -89,6 +89,7 @@ function HomePage() {
                   team: null,
                   role: null,
                 });
+                setLobbyCode(lobby);
                 navigate(`/game/${lobby}`);
               }}
             >
@@ -136,6 +137,7 @@ function HomePage() {
                     team: null,
                     role: null,
                   });
+                  setLobbyCode(lobby);
                   navigate(`/game/${lobby}`);
                 }}
               >

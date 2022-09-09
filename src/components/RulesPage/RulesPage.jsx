@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography, Grid, List, ListItem } from "@mui/material";
+import useGameContext from "../../context/GameContext";
 
 function RulesPage() {
+  const { setLobbyCode } = useGameContext();
+  useEffect(() => setLobbyCode(null), []);
   return (
     <>
       <Grid
