@@ -7,9 +7,6 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 
 export default function CreatorInfo({ creator }) {
   const { name, photo, bio, linkedIn, github } = creator;
@@ -34,7 +31,9 @@ export default function CreatorInfo({ creator }) {
             {bio}
           </Typography>
         </CardContent>
-        <CardActions>
+        <CardActions
+          style={{ bottom: 2 }}
+        >
           <IconButton
             size="small"
             component={"a"}
@@ -55,10 +54,11 @@ export default function CreatorInfo({ creator }) {
           >
             <LinkedInIcon fontSize="large" />
           </IconButton>
-          
+
         </CardActions>
-       
+
       </Card>
     </>
   );
 }
+
