@@ -77,7 +77,8 @@ function GamePage() {
           {/* <div style={{ marginTop: 20, width: 340 }}> */}
           <Box sx={style}>
             <Typography color={"black"}>GAME OVER</Typography>
-            <Typography color={winningTeam}>The {winningTeam} team won!
+            <Typography color={winningTeam}>
+              The {winningTeam} team won!
             </Typography>
             <Button
               onClick={() => {
@@ -152,3 +153,12 @@ function GamePage() {
 }
 
 export default GamePage;
+
+
+
+
+
+
+
+
+
