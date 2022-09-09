@@ -76,7 +76,7 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
     return (
       teams.red.spymaster &&
       teams.red.operative &&
-      teams.red.operative &&
+      teams.blue.spymaster &&
       teams.blue.operative
     );
   }, [teams]);
