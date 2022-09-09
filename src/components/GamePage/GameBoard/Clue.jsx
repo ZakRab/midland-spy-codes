@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import { Grid, TextField } from "@mui/material";
+import { Grid, TextField, Typography } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import useGameContext from "../../../context/GameContext";
 
@@ -64,10 +64,32 @@ function Clue({ sendClue }) {
 
       {activePlayer.role === "operative" &&
         activePlayer.team === activeTeam &&
-        clue && <h1 style={{ color: "black" }}>Your clue is: {clue}</h1>}
+        clue && (
+          <Typography
+            style={{
+              color: "black",
+              display: "inline",
+              variant: "h2",
+              fontSize: "25px",
+            }}
+          >
+            Your clue is: {clue}
+          </Typography>
+        )}
       {activePlayer.role === "operative" &&
         activePlayer.team !== activeTeam &&
-        clue && <h1 style={{ color: "black" }}>Their clue is: {clue}</h1>}
+        clue && (
+          <Typography
+            style={{
+              color: "black",
+              display: "inline",
+              variant: "h2",
+              fontSize: "25px",
+            }}
+          >
+            Their clue is: {clue}
+          </Typography>
+        )}
       <div
         style={{
           display: "flex",
@@ -79,22 +101,49 @@ function Clue({ sendClue }) {
           {activePlayer.role === "operative" &&
             activePlayer.team === activeTeam &&
             clue === "" && (
-              <h1 style={{ color: "black", marginTop: "0", marginBottom: "0" }}>
+              <Typography
+                style={{
+                  color: "black",
+                  marginTop: "0",
+                  marginBottom: "0",
+                  display: "inline",
+                  variant: "h2",
+                  fontSize: "25px",
+                }}
+              >
                 {" "}
                 Waiting on clue{" "}
-              </h1>
+              </Typography>
             )}
           {activePlayer.team !== activeTeam && !clue && (
-            <h1 style={{ color: "black", marginTop: "0", paddingBottom: "0" }}>
+            <Typography
+              style={{
+                color: "black",
+                marginTop: "0",
+                paddingBottom: "0",
+                display: "inline",
+                variant: "h2",
+                fontSize: "25px",
+              }}
+            >
               Waiting on other Team!
-            </h1>
+            </Typography>
           )}
         </div>
         <div tyle={{ marginTop: "0", paddingBottom: "0" }}>
           {activePlayer.role === "operative" && (
-            <h1 style={{ color: "black", marginTop: "0", paddingBottom: "0" }}>
+            <Typography
+              style={{
+                color: "black",
+                marginTop: "0",
+                paddingBottom: "0",
+                display: "inline",
+                variant: "h2",
+                fontSize: "25px",
+              }}
+            >
               Flips remaining: {btnCounter}
-            </h1>
+            </Typography>
           )}
         </div>
       </div>

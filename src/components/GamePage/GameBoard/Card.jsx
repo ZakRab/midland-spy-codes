@@ -3,7 +3,7 @@ import useGameContext from "../../../context/GameContext";
 import Typography from "@mui/material/Typography";
 
 function Card({ card }) {
-  const { activePlayer, setSelectedCard, selectedCard, activeTeam } =
+  const { activePlayer, setSelectedCard, selectedCard, activeTeam, clue } =
     useGameContext();
   const cardClasses = useMemo(() => {
     let cardClass = "word-card ";
@@ -22,7 +22,8 @@ function Card({ card }) {
   return (
     <div
       onClick={() => {
-        if (!card.isFaceUp && activePlayer.team === activeTeam) {
+        if (!card.isFaceUp && activePlayer.team === activeTeam && clue) {
+
           setSelectedCard(card);
         } else {
           setSelectedCard(null);
@@ -37,7 +38,7 @@ function Card({ card }) {
       }}
     >
       {!card.isFaceUp && (
-        <Typography sx={{ textAlign: "center", wordBreak: "break-word" }}>{card.word}</Typography>
+        <Typography sx={{ hyphens: "auto" }}>{card.word}</Typography>
       )}
     </div>
   );
