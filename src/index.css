@@ -129,7 +129,7 @@ body,
   }
 }
 
-h1 {
+h1.game-title {
   font-family: "Rubik Dirt", sans-serif;
   font-size: 100px;
   font-weight: initial;
@@ -147,6 +147,17 @@ h1 {
   background-position: fixed;
   background-size: cover;
 }
+
+/* body {
+  color: white;
+  background: linear-gradient(
+    27deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 0, 0, 1) 31%,
+    rgba(37, 15, 208, 1) 62%,
+    rgba(234, 235, 241, 100) 100%
+  );
+} */
 
 @media (min-width: 600px) {
   .word-card {
@@ -192,4 +203,8 @@ h1 {
 }
 .zindex {
   z-index: 1;
+}
+
+.full-height {
+  height: 100%;
 }

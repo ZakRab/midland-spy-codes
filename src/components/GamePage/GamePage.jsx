@@ -71,6 +71,7 @@ function GamePage() {
         mx={{
           background: "rgba(58, 21, 152, 1)",
           paddingTop: "10px",
+          height: "100%",
         }}
       >
         <div className="margin-auto zindex">
