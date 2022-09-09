@@ -72,6 +72,7 @@ export default function useSocket(lobby) {
 
     socketRef.current.on("end turn", () => {
       setBtnCounter(3);
+      setClue(null);
       setActiveTeam((curr) => (curr === "blue" ? "red" : "blue"));
     });
 
@@ -96,14 +97,15 @@ export default function useSocket(lobby) {
       );
       if (card.type !== activeTeam && activePlayer.isHost) {
         endTurn();
+      } else {
+        setBtnCounter((curr) => {
+          if (curr === 1 && activePlayer.isHost) {
+            endTurn();
+            return 3;
+          }
+          return curr - 1;
+        });
       }
-      setBtnCounter((curr) => {
-        if (curr === 1 && activePlayer.isHost) {
-          endTurn();
-          return 3;
-        }
-        return curr - 1;
-      });
     });
   }, []);
 
@@ -128,7 +130,6 @@ export default function useSocket(lobby) {
   }
 
   function endTurn() {
-    console.log("Triggered");
     socketRef.current.emit("end turn");
   }
 
@@ -138,10 +139,3 @@ export default function useSocket(lobby) {
   // delete me
   return { joinTeam, sendSelectedCard, sendCards, endGame, endTurn, sendClue };
 }
-
-
-
-
-
-
-

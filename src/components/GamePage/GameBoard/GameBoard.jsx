@@ -6,10 +6,9 @@ import Button from "@mui/material/Button";
 import useGameContext from "../../../context/GameContext";
 import Card from "./Card";
 import Box from "@mui/material/Box";
-import { height } from "@mui/system";
 
 function GameBoard({ sendSelectedCard, endTurn }) {
-  const { activePlayer, activeTeam, selectedCard, cards, btnCounter } =
+  const { activePlayer, activeTeam, selectedCard, cards, btnCounter, clue } =
     useGameContext();
 
   useEffect(() => {
@@ -41,6 +40,7 @@ function GameBoard({ sendSelectedCard, endTurn }) {
             justifyContent="space-evenly"
           >
             <Button
+              disabled={!clue}
               variant="contained"
               onClick={() => {
                 sendSelectedCard(selectedCard);
@@ -48,7 +48,13 @@ function GameBoard({ sendSelectedCard, endTurn }) {
             >
               Flip Card
             </Button>
-            <Button variant="contained" color="error" onClick={() => endTurn()}>
+
+            <Button
+              disabled={btnCounter === 3 || !clue}
+              variant="contained"
+              color="error"
+              onClick={() => endTurn()}
+            >
               End Turn
             </Button>
           </Box>

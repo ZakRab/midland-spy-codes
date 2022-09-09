@@ -12,7 +12,7 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
 
   function gameStart() {
     setGameStatus("started");
-    const slug = generateSlug(16, {
+    const slug = generateSlug(32, {
       format: "kebab",
       partsOfSpeech: [
         "noun",
@@ -31,10 +31,28 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
         "noun",
         "noun",
         "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
+        "noun",
       ],
     });
-    const words = slug.split("-");
-    let cards = createCards(words);
+    let words = slug.split("-");
+    let uniqueWords = [...new Set(words)];
+    const slicedArray = uniqueWords.slice(0, 16);
+    let cards = createCards(slicedArray);
     sendCards(cards);
   }
 
@@ -58,7 +76,7 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
     return (
       teams.red.spymaster &&
       teams.red.operative &&
-      teams.red.operative &&
+      teams.blue.spymaster &&
       teams.blue.operative
     );
   }, [teams]);
@@ -131,9 +149,9 @@ export default function TeamSelect({ players, joinTeam, sendCards }) {
             <Stack direction="row" spacing={2} justifyContent="center" m={4}>
               <Button
                 // TODO UNCOMMENT NEXT LINE WHEN READY TO FULLY TEST
-                // disabled={!activePlayer.isHost || !gameReady}
-                //TODO DELETE NEXT LINE WHEN READY TO FULLY TEST
-                disabled={!activePlayer.isHost}
+                disabled={!activePlayer.isHost || !gameReady}
+                // TODO DELETE NEXT LINE WHEN READY TO FULLY TEST
+                // disabled={!activePlayer.isHost}
                 variant="contained"
                 size="large"
                 onClick={() => {

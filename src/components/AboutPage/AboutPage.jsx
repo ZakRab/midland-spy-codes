@@ -20,11 +20,13 @@ function AboutPage() {
           alignItems="center"
           align={"center"}
           padding="40px"
+          display="flex"
         >
           <div className="background-card bg-white text-black about-width">
             <Typography
               mt={2}
               mb={2}
+
               variant="h4"
               align={"center"}
               sx={{ marginTop: 0 }}
@@ -43,6 +45,7 @@ function AboutPage() {
               our included social networks.
             </Typography>
           </div>
+
         </Grid>
 
         <div

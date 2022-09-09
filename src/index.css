@@ -82,7 +82,7 @@ a:hover {
     background-repeat: no-repeat, no-repeat;
     background-size: auto 30vw, auto 30vw;
     background-position: 5% 70%, 95% 70%;
-    height: 90vh;
+    height: 100%;
     background-attachment: fixed;
   }
 }
