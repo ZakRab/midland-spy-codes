@@ -13,10 +13,16 @@ a:hover {
   box-sizing: border-box;
 }
 .text-black {
-  color: black;  
+  color: black;
 }
+
 .about-width {
-  width: 90vw !important
+  width: 90vw !important;
+  color: black;
+}
+
+.about-width {
+  width: 90vw !important;
 }
 .spy-icon {
   height: 50px;
@@ -129,10 +135,6 @@ h1 {
   font-weight: initial;
 }
 
-body {
-  color: white;
-}
-
 .home {
   background: linear-gradient(
     27deg,
@@ -146,27 +148,48 @@ body {
   background-size: cover;
 }
 
-/* @media (max-width: 600px) {
-  .home {
-    min-height: calc(100% - 56px);
+@media (min-width: 600px) {
+  .word-card {
+    height: 100px;
   }
-} */
+}
+@media (max-width: 600px) {
+  .word-card {
+    height: 57px;
+  }
+}
 
-/* * {
-  font-family: "Poppins", sans-serif;
-} */
+.word-card {
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: semibold;
+  hyphens: auto;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
 
-/* 
-  .game-title {
-    font-family: "Rubik Dirt", cursive;
-    font-size: 85px;
-    font-weight: normal;
-    margin: 20px;
-  } */
+.spy-card {
+  color: #fff;
+}
 
-/* .game-title2 {
-  font-family: "Rubik Dirt", sans-serif;
-  font-size: 45px;
+.op-selected {
+  color: #212020;
+  border: 3px solid yellow;
+}
+
+.op-card {
+  color: #212020;
+}
+.game-title {
+  font-family: "Rubik Dirt", cursive;
+  font-size: 60px;
   font-weight: normal;
-  margin: 0px;
-} */
+}
+.zindex {
+  z-index: 1;
+}
