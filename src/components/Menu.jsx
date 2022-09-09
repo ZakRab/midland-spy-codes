@@ -8,8 +8,8 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import ClickToCopy from "../shared/functions/ClickToCopy";
-import lobbyCode from "../shared/functions/lobbyCode";
+import ClickToCopy from "../shared/functions/ClickToCopy"; // import lobbyCode from "../shared/functions/lobbyCode";
+import { useParams } from "react-router-dom";
 
 import Button from "@mui/material/Button";
 
@@ -18,7 +18,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import InfoIcon from "@mui/icons-material/Info";
 import spyIcon from "../shared/icons/spy-icon.svg";
-import { Grid } from "@mui/material";
+// import { Grid } from "@mui/material"
 
 const pages = [
 	{ text: "Home", path: "/home", icon: HomeIcon },
@@ -38,7 +38,8 @@ function NavMenu() {
 		setAnchorElNav(null);
 	};
 
-	let lobby = lobbyCode(5);
+	// let lobby = lobbyCode(5);
+	const { lobby } = useParams();
 
 	return (
 		<AppBar position="static">
@@ -107,9 +108,6 @@ function NavMenu() {
 									</Typography>
 								</MenuItem>
 							))}
-							<MenuItem>
-								<ClickToCopy copyText={lobby}></ClickToCopy>
-							</MenuItem>
 						</Menu>
 					</Box>
 					<Typography
@@ -131,6 +129,14 @@ function NavMenu() {
 					>
 						<img className="spy-icon" src={spyIcon} alt="spy-icon" />
 					</Typography>
+					{lobby && (
+						<>
+							<Typography>Lobby Code:</Typography>
+							<MenuItem>
+								<ClickToCopy copyText={lobby}></ClickToCopy>
+							</MenuItem>
+						</>
+					)}
 
 					{/* desktop links: */}
 
@@ -149,6 +155,14 @@ function NavMenu() {
 								{page.text}
 							</Button>
 						))}
+						{lobby && (
+							<>
+								<Typography>Lobby Code:</Typography>
+								<MenuItem>
+									<ClickToCopy copyText={lobby}></ClickToCopy>
+								</MenuItem>
+							</>
+						)}
 					</Box>
 					{/* <Grid item xs={12}>
             <h1 className="game-title2">SPY CODE</h1>
