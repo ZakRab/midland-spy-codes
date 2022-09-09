@@ -1,172 +1,177 @@
 a.active {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 a:hover {
-  color: orangered;
+	color: orangered;
 }
 .margin-top {
-  margin: 8px auto;
+	margin: 8px auto;
 }
 
 .box-sizing {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 .text-black {
   color: black;
 }
+
 .about-width {
   width: 90vw !important;
+	color: black;
+}
+
+.about-width {
+	width: 90vw !important;
 }
 .spy-icon {
-  height: 50px;
-  width: 50px;
+	height: 50px;
+	width: 50px;
 }
 
 .d-none {
-  visibility: hidden;
+	visibility: hidden;
 }
 
 .background-card {
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.498) 0px 5px 15px;
-  padding: 5px;
-  width: max-content;
+	border-radius: 10px;
+	box-shadow: rgba(0, 0, 0, 0.498) 0px 5px 15px;
+	padding: 5px;
+	width: max-content;
 }
 
 .bg-gray {
-  background-color: rgb(81, 81, 81);
+	background-color: rgb(81, 81, 81);
 }
 
 .bg-white {
-  background-color: rgb(255, 255, 255);
+	background-color: rgb(255, 255, 255);
 }
 
 .activeTeamBorder {
-  border-color: orange;
-  border-style: solid;
-  border-width: 5px;
+	border-color: orange;
+	border-style: solid;
+	border-width: 5px;
 }
 
 .width400px {
-  width: 400px;
+	width: 400px;
 }
 
 .width70p {
-  width: 70%;
+	width: 70%;
 }
 
 .min-height150px {
-  min-height: 150px;
+	min-height: 150px;
 }
 
 .margin-auto {
-  margin: auto !important;
+	margin: auto !important;
 }
 
 .animate-right {
-  animation: slideright linear 1s 1s;
+	animation: slideright linear 1s 1s;
 }
 
 @media screen and (min-width: 1150px) {
-  .image {
-    background: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png"),
-      url("https://cdn.pixabay.com/photo/2018/08/15/14/11/audit-3608131_960_720.png"),
-      url("https://i.postimg.cc/d05VdBGs/gaming-logo4-4.png");
+	.image {
+		background: url("https://www.pinclipart.com/picdir/big/1-14882_detective-clipart-secret-agent-clipart-silhouette-png-download.png"),
+			url("https://cdn.pixabay.com/photo/2018/08/15/14/11/audit-3608131_960_720.png"),
+			url("https://i.postimg.cc/d05VdBGs/gaming-logo4-4.png");
 
-    background-repeat: no-repeat, no-repeat, no-repeat;
-    background-size: auto 30vw, auto 30vw, auto 10vw;
-    background-position: 5% 70%, 95% 70%, 50% 100%;
-    height: 90vh;
-  }
+		background-repeat: no-repeat, no-repeat, no-repeat;
+		background-size: auto 30vw, auto 30vw, auto 10vw;
+		background-position: 5% 70%, 95% 70%, 50% 100%;
+		height: 90vh;
+	}
 }
 
 html,
 body,
 #root {
-  height: 100%;
-  margin: 0;
+	height: 100%;
+	margin: 0;
 }
 
 .spacing1 {
-  margin-top: 40px;
+	margin-top: 40px;
 }
 
 .picture2 img {
-  width: 60vw;
-  margin: 20px 0;
+	width: 60vw;
+	margin: 20px 0;
 }
 
 .picture3 img {
-  width: 150px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+	width: 150px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 @media screen and (max-width: 600px) {
-  .picture2 img {
-    width: 200px;
-  }
+	.picture2 img {
+		width: 200px;
+	}
 
-  .spacing {
-    margin: 20px 0;
-  }
+	.spacing {
+		margin: 20px 0;
+	}
 }
 
 body {
-  color: white;
-  background: linear-gradient(
-    27deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(255, 0, 0, 1) 31%,
-    rgba(37, 15, 208, 1) 62%,
-    rgba(234, 235, 241, 100) 100%
-  );
+	color: white;
+	background: linear-gradient(
+		27deg,
+		rgba(0, 0, 0, 1) 0%,
+		rgba(255, 0, 0, 1) 31%,
+		rgba(37, 15, 208, 1) 62%,
+		rgba(234, 235, 241, 100) 100%
+	);
 }
 
 @media (min-width: 600px) {
-  .word-card {
-    height: 100px;
-  }
+	.word-card {
+		height: 100px;
+	}
 }
 @media (max-width: 600px) {
-  .word-card {
-    height: 57px;
-  }
+	.word-card {
+		height: 57px;
+	}
 }
 
 .word-card {
-  font-family: Poppins;
-  cursor: pointer;
-  margin: 5px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2em;
-  font-weight: semibold;
-  hyphens: auto;
-  text-transform: uppercase;
-  box-sizing: border-box;
+	cursor: pointer;
+	margin: 5px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2em;
+	font-weight: semibold;
+	hyphens: auto;
+	text-transform: uppercase;
+	box-sizing: border-box;
 }
 
 .spy-card {
-  color: #fff;
+	color: #fff;
 }
 
 .op-selected {
-  color: #212020;
-  border: 3px solid yellow;
+	color: #212020;
+	border: 3px solid yellow;
 }
 
 .op-card {
-  color: #212020;
+	color: #212020;
 }
 .game-title {
-  font-family: "Rubik Dirt", cursive;
-  font-size: 60px;
-  font-weight: normal;
+	font-family: "Rubik Dirt", cursive;
+	font-size: 60px;
+	font-weight: normal;
 }
 .zindex {
   z-index: 1;

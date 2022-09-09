@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material";
 
 export const spyTheme = createTheme({
-  typography: {
-    fontFamily: "Poppins",
-  },
+	typography: {
+		fontFamily: ["Poppins", "sans-serif"].join(","),
+	},
 });
