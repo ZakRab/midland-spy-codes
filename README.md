@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+First and foremost, thank you for taking the time to look at our project! This group project was our final for The Midland Code Academy to show off our newly gained knowledge and skills developed in the program. We hope you enjoy playing our game Spy Code that we have worked very hard on
+Game Rules
+Teams
+Codenames is a game for two teams. There is a grid of 16 words. There are:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+6 red cards
+6 blue cards
+3 neutral cards
+1 bomb.
+Each team has one SpyMaster and one Operative, and only Spymasters see which cards belonging to which teams.
 
-## Available Scripts
+Spymasters take turns giving clues to their teammates (Operatives) based on the words that appear on the card, trying to lead them to guessing their teams' cards. The team that guesses all their cards first wins the game.
 
-In the project directory, you can run:
 
-### `npm start`
+Giving Clues
+When it's the SpyMasters turn to give a clue, type in a one word clue that relates to one or all of your teams colored cards. Your Operatives will only see the clue provided and the 16 cards with the words provided. Watch out for the bomb card, it's an automatic game over! Avoid clues that would lead to the bomb or to the other team's cards. Note: Some clues are not allowed, for example using any words provided on the cards, cannot be used.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Guessing
+Operatives guess the cards based on their Spymaster's clue. You get up to 3 correct guesses for each clue per team turn. To make your guess official, select the card. The game will then reveal the color of the chosen card, upon hitting submit. If you choose the oposing teams card your teams turn is over. On your teams next turn the SpyMaster will give a new clue. Notes: Remember clues from previous turns. Pay attention to opposing teams clues.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+End of Turn
+Your turn can end in one of three ways: Guessing a word of the opponent's color or neutral color. End guessing manually by clicking End Turn. Your turn ends upon 3 successful guesses.
 
-### `npm test`
+Winning and Losing
+Teams alternate turns. A team wins once all their cards have been guessed. They lose if they guess the bomb or the other team successfully guesses all of their cards first!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Valid Clues
+The clue is strictly limited to one word. The Spymaster is expected to keep a straight face and they shouldn't comment on players' guesses, to avoid giving up any unwanted information. Your clue is supposed to be a single word, but Spymasters can agree on more flexible rules. For example, you can agree to allow two-word clue, like NEW YORK. Give clues in the language you have agreed on. Don't use foreign words to give extra information. Don't give clues about the letters/length in the word or its position in the grid. Keep your clues in the spirit of the game, and if you aren't sure, ask the opposing Spymaster (using some form of communication that the other players can't hear or see). You can end turn without a guess for first and/or second guess. However, a quess is required to finish your teams' turn. Or you can make a quess on the first and/or second and end your teams' turn on the third without a guess.
