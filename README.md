@@ -1,3 +1,8 @@
+<img width="1424" alt="Screenshot 2024-09-05 at 13 23 51" src="https://github.com/user-attachments/assets/09dbeb39-f858-45c4-92bd-ad1acddcdc38">
+<img width="1434" alt="Screenshot 2024-09-05 at 13 23 28" src="https://github.com/user-attachments/assets/0a75806a-1c1f-443f-8386-04674b43d4e4">
+<img width="1424" alt="Screenshot 2024-09-05 at 13 23 04" src="https://github.com/user-attachments/assets/5b65cd1a-0fef-4b71-a646-b0fc71469ec3">
+<img width="1433" alt="Screenshot 2024-09-05 at 13 21 44" src="https://github.com/user-attachments/assets/ab28aaf1-43c5-4d10-8628-37a024410a6d">
+
 First and foremost, thank you for taking the time to look at our project! This group project was our final for The Midland Code Academy to show off our newly gained knowledge and skills developed in the program. We hope you enjoy playing our game Spy Code that we have worked very hard on
 Game Rules
 Teams
